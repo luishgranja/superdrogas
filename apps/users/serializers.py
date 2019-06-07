@@ -1,10 +1,8 @@
 # Django
-from django.contrib.auth import password_validation, authenticate
+from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
-
 # Django Rest Framework
 from rest_framework import serializers
-from rest_framework.authtoken.models import Token
 
 # Users models
 from .models import UserModel
