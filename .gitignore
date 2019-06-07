@@ -1,2 +1,14 @@
-frontend/node_modules/
+# backend
+__pycache__/
+migrations/
+media/
+
+# frontend
+node_modules/
+dist/
+
+# config
 .env/
+.vscode/
+.idea/
+db.sqlite3
