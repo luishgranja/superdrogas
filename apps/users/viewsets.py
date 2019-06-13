@@ -22,5 +22,5 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.get_object()
         user.is_active = not user.is_active
         user.save()
-        data = {'message': 'Deleted successfully.'}
+        data = {'message': 'Changed sucessfully.'}
         return Response(data)

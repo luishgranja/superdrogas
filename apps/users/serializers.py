@@ -1,6 +1,7 @@
 # Django
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
+
 # Django Rest Framework
 from rest_framework import serializers
 
@@ -33,6 +34,10 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def validate_password(self, value):
+        """
+        validate_password confirms if the password
+        and the confirmation of the password match
+        """
         data = self.get_initial()
         password_confirmation = data.get('password_confirmation')
         if value != password_confirmation:
@@ -40,5 +45,5 @@ class UserSerializer(serializers.ModelSerializer):
         password_validation.validate_password(value)
         return value
 
-    def create(self, data):
-        return UserModel.objects.create_user(**data)
+    def create(self, validated_data):
+        return UserModel.objects.create_user(**validated_data)
