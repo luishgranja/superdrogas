@@ -1,33 +1,39 @@
 <template>
   <vuestic-layout v-layout>
-    <app-navbar :isOpen="opened" @toggle-menu="toggleSidebar"/>
-    <app-sidebar :isOpen="opened" @toggle-menu="toggleSidebar"/>
+    <app-navbar
+      :isOpen="opened"
+      @toggle-menu="toggleSidebar"
+    />
+    <app-sidebar
+      :isOpen="opened"
+      @toggle-menu="toggleSidebar"
+    />
     <main
       slot="content"
       id="content"
       class="content va-layout gutter--lg fluid"
       role="main"
     >
-      <app-breadcrumbs/>
+      <app-breadcrumbs />
       <vuestic-pre-loader
         v-show="isLoading"
         class="pre-loader"
       />
-      <router-view/>
+      <router-view />
     </main>
     <span slot="footer">
-      ©2018. Made by&nbsp;<a href="https://epicmax.co" target="_blank"> Epicmax</a>
+      ©2019. Made by
+      <router-link :to="{ name: 'dashboard' }">Superdrogas</router-link>
     </span>
   </vuestic-layout>
 </template>
 
 <script>
-import VuesticLayout
-  from '../../vuestic-theme/vuestic-components/vuestic-layout/VuesticLayout'
+import Layout from '@/vuestic-theme/vuestic-directives/Layout'
+import VuesticLayout from '@/vuestic-theme/vuestic-components/vuestic-layout/VuesticLayout'
 import AppNavbar from './app-navbar/AppNavbar'
 import AppSidebar from './app-sidebar/AppSidebar'
 import AppBreadcrumbs from './app-breadcrumbs/AppBreadcrumbs'
-import Layout from '../../vuestic-theme/vuestic-directives/Layout'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -36,25 +42,23 @@ export default {
     VuesticLayout,
     AppNavbar,
     AppSidebar,
-    AppBreadcrumbs,
+    AppBreadcrumbs
   },
   directives: {
-    layout: Layout,
+    layout: Layout
   },
   data () {
     return {
-      opened: true,
+      opened: true
     }
   },
   methods: {
     toggleSidebar (opened) {
       this.opened = opened
-    },
+    }
   },
   computed: {
-    ...mapGetters([
-      'isLoading',
-    ]),
-  },
+    ...mapGetters(['isLoading'])
+  }
 }
 </script>

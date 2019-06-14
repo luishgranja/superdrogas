@@ -1,8 +1,6 @@
 <template>
   <div class="profile-dropdown flex-center">
-    <span class="profile-dropdown__avatar-container">
-      <slot/>
-    </span>
+    <h4 class="m-0">Iván Toro</h4>
     <vuestic-dropdown
       v-model="isShown"
       position="bottom"
@@ -12,8 +10,11 @@
         :key="option.name"
         class="dropdown-item plain-link-item"
       >
-        <router-link :to="{name: option.redirectTo}" class="plain-link"
-                     href="#">
+        <router-link
+          :to="{ name: option.redirectTo }"
+          class="plain-link"
+          href="#"
+        >
           {{ $t(`user.${option.name}`) }}
         </router-link>
       </div>
@@ -39,7 +40,7 @@ export default {
         },
         {
           name: 'logout',
-          redirectTo: 'login',
+          redirectTo: '',
         },
       ],
     },
@@ -48,24 +49,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../../../vuestic-theme/vuestic-sass/resources/resources';
+@import "~@/vuestic-theme/vuestic-sass/resources/resources";
 
 .profile-dropdown {
   cursor: pointer;
-
-  &__avatar-container {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background-color: white;
-    border-radius: 50%;
-    border: 2px solid $lighter-gray;
-    overflow: hidden;
-
-    img {
-      height: 100%;
-      width: 100%;
-    }
-  }
+  color: $vue-green;
 }
 </style>

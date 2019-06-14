@@ -1,16 +1,21 @@
 <template>
   <li class="sidebar-link-group sidebar-link">
-    <a href="#"
-       target="_self"
-       @click.stop.prevent="toggleMenuItem()"
-       class="sidebar-link__router-link"
-       :class="classObject">
+    <a
+      href="#"
+      target="_self"
+      @click.stop.prevent="toggleMenuItem()"
+      class="sidebar-link__router-link"
+      :class="classObject"
+    >
       <slot name="title"></slot>
       <i class="expand-icon fa fa-angle-down"></i>
     </a>
     <expanding>
-      <ul class="sidebar-submenu in" v-show="this.expanded"
-          ref="linkGroupWrapper">
+      <ul
+        class="sidebar-submenu in"
+        v-show="this.expanded"
+        ref="linkGroupWrapper"
+      >
         <slot></slot>
       </ul>
     </expanding>
@@ -18,8 +23,8 @@
 </template>
 
 <script>
-import SidebarLink from './SidebarLink'
 import Expanding from 'vue-bulma-expanding/src/Expanding'
+import SidebarLink from './SidebarLink'
 
 export default {
   name: 'sidebar-link-group',
@@ -94,5 +99,4 @@ export default {
 .expand-icon {
   color: $vue-green;
 }
-
 </style>

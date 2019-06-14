@@ -16,6 +16,7 @@
     "amcharts3": "^3.21.13",
     "ammap3": "^3.21.13",
     "awesome-bootstrap-checkbox": "1.0.0-alpha.5",
+    "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "4.3.1",
     "chart.js": "^2.6.0",
@@ -52,9 +53,9 @@
     "vuex-router-sync": "5.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.0.5",
-    "@vue/cli-service": "^3.0.5",
+    "@vue/cli-service": "^3.8.3",
     "@vue/eslint-config-standard": "^3.0.5",
     "autoprefixer": "9.1.5",
     "chalk": "2.4.1",

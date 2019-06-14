@@ -3,7 +3,8 @@
     <router-link
       class="sidebar-link__router-link"
       :to="to"
-      :target="target">
+      :target="target"
+    >
       <slot name="title"></slot>
     </router-link>
   </li>
@@ -51,6 +52,7 @@ export default {
     align-items: center;
     cursor: pointer;
     text-decoration: none;
+
     &.router-link-active,
     &:hover {
       color: $white;
@@ -60,9 +62,11 @@ export default {
         color: $white;
       }
     }
+
     &:hover {
       background-color: $hover-black;
     }
+
     .sidebar-menu-item-icon {
       font-size: $sidebar-menu-item-icon-size;
       color: $vue-green;
@@ -80,5 +84,4 @@ export default {
     text-decoration: none;
   }
 }
-
 </style>
