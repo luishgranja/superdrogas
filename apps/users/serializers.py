@@ -1,9 +1,10 @@
 # Django
-from django.contrib.auth import password_validation
+from django.contrib.auth import password_validation, authenticate
 from django.core.exceptions import ValidationError
 
 # Django Rest Framework
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
 # Users models
 from .models import UserModel
@@ -47,3 +48,39 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return UserModel.objects.create_user(**validated_data)
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length = 20)
+    password = serializers.CharField(min_length = 8, max_length = 64)
+
+    def validate_username(self, value):
+        try:
+            user = UserModel.objects.get(username = value)
+        except UserModel.DoesNotExist:
+            raise ValidationError('User does not exist.')
+        if not user.is_active:
+            raise ValidationError('User is not active.')
+        self.context['user'] = user
+        return value
+
+    def validate(self, data):
+        user = authenticate(
+            username = data['username'],
+            password = data['password']
+        )
+        if not user:
+            raise serializers.ValidationError('Invalid credentials.')
+        return data
+
+    def create(self, data):
+        token, created = Token.objects.get_or_create(user = self.context['user'])
+        return self.context['user'], token.key
