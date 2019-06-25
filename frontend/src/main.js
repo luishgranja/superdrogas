@@ -10,8 +10,7 @@ import VuesticPlugin from '@/vuestic-theme/vuestic-plugin'
 import './i18n'
 
 Vue.use(VuesticPlugin)
-
-Vue.use(VeeValidate, { fieldsByyhtyrt5edagName: 'formFields' })
+Vue.use(VeeValidate, { fieldsBagName: 'formFields' })
 
 router.beforeEach((to, from, next) => {
   store.commit('setLoading', true)

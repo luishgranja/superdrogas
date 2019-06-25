@@ -15,10 +15,10 @@ const state = {
       black: '#000',
       fontColor: '#34495e',
       transparent: 'transparent',
-      lighterGray: '#ddd',
+      lighterGray: '#ddd'
     },
   },
-  isLoading: true,
+  isLoading: true
 }
 
 const mutations = {

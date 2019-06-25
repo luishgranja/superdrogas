@@ -1,16 +1,24 @@
-# Django Rest Framework
-from rest_framework import routers
+"""
+URLs configuration
+
+The 'urlpatterns' list routes URLs to views
+"""
+
+# Django
 from django.conf.urls import url
 
+# Django Rest Framework
+from rest_framework import routers
 
 # Apps viewsets
 from apps.users.viewsets import UserViewSet, ChangePasswordView
 
-router = routers.DefaultRouter()
 
-router.register(r'users', UserViewSet)
+ROUTER = routers.DefaultRouter()
 
-# Change password url definition
-url_password = url(r'change-password', ChangePasswordView.as_view())
+# CRUD users
+ROUTER.register(r'users', UserViewSet)
 
-urlpatterns = router.urls + [url_password]
+urlpatterns = ROUTER.urls + [
+    url(r'change-password', ChangePasswordView.as_view())
+]

@@ -29,20 +29,22 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Layout from '@/vuestic-theme/vuestic-directives/Layout'
 import VuesticLayout from '@/vuestic-theme/vuestic-components/vuestic-layout/VuesticLayout'
+
+import AppBreadcrumbs from './app-breadcrumbs/AppBreadcrumbs'
 import AppNavbar from './app-navbar/AppNavbar'
 import AppSidebar from './app-sidebar/AppSidebar'
-import AppBreadcrumbs from './app-breadcrumbs/AppBreadcrumbs'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'app-layout',
   components: {
     VuesticLayout,
+    AppBreadcrumbs,
     AppNavbar,
-    AppSidebar,
-    AppBreadcrumbs
+    AppSidebar
   },
   directives: {
     layout: Layout

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { breadcrumbs } from './Breadcrumbs'
+import { breadcrumbs } from './breadcrumbs'
 
 export default {
   name: 'app-breadcrumbs',
@@ -27,5 +27,4 @@ export default {
     },
   },
 }
-
 </script>

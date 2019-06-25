@@ -15,6 +15,7 @@ export default {
 
 body {
   height: 100%;
+
   #app {
     height: 100%;
   }

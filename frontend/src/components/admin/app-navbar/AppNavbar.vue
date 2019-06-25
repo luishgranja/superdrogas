@@ -4,7 +4,7 @@
       slot="selector"
       :isOpen.sync="valueProxy"
     />
-    <admin-icon slot="logo" />
+    <vuestic-icon-vuestic slot="logo" />
     <notification-dropdown class="col nav-item" />
     <profile-dropdown class="col nav-item"></profile-dropdown>
   </vuestic-navbar>
@@ -12,7 +12,8 @@
 
 <script>
 import VuesticNavbar from '@/vuestic-theme/vuestic-components/vuestic-navbar/VuesticNavbar'
-import AdminIcon from './components/AdminIcon'
+import VuesticIconVuestic from '@/vuestic-theme/vuestic-components/vuestic-icon/VuesticIconVuestic'
+
 import HeaderSelector from './components/HeaderSelector'
 import NotificationDropdown from './components/dropdowns/NotificationDropdown'
 import ProfileDropdown from './components/dropdowns/ProfileDropdown'
@@ -21,7 +22,7 @@ export default {
   name: 'app-navbar',
   components: {
     VuesticNavbar,
-    AdminIcon,
+    VuesticIconVuestic,
     HeaderSelector,
     NotificationDropdown,
     ProfileDropdown

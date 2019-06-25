@@ -1,7 +1,6 @@
 <template>
   <li class="sidebar-link-group sidebar-link">
     <a
-      href="#"
       target="_self"
       @click.stop.prevent="toggleMenuItem()"
       class="sidebar-link__router-link"
@@ -29,12 +28,12 @@ import SidebarLink from './SidebarLink'
 export default {
   name: 'sidebar-link-group',
   components: {
-    SidebarLink,
     Expanding,
+    SidebarLink
   },
   data () {
     return {
-      expanded: this.expanded,
+      expanded: this.expanded
     }
   },
   mounted () {
@@ -46,22 +45,21 @@ export default {
   watch: {
     $route (route) {
       this.expanded = false
-    },
+    }
   },
   methods: {
     toggleMenuItem () {
       this.expanded = !this.expanded
-    },
+    }
   },
   computed: {
     classObject: function () {
       return {
-        'expanded': this.expanded,
+        'expanded': this.expanded
       }
-    },
-  },
+    }
+  }
 }
-
 </script>
 
 <style lang="scss">
@@ -74,6 +72,7 @@ export default {
       font-weight: bold;
       transition: transform 0.3s ease;
     }
+
     &.expanded {
       .expand-icon {
         transform: rotate(180deg);
@@ -84,10 +83,12 @@ export default {
   .sidebar-submenu {
     list-style: none;
     padding-left: 0;
+
     li {
       display: block;
       padding-left: 0;
     }
+
     .sidebar-link__router-link {
       height: $sidebar-submenu-link-height;
       padding-left: $sidebar-submenu-link-pl;

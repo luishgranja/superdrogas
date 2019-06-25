@@ -1,11 +1,9 @@
 {
   "name": "superdrogas",
   "version": "1.0.0",
-  "description": "Project SaaS",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build"
   },
   "repository": {
     "type": "git",

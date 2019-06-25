@@ -8,7 +8,7 @@ superdrogas/settings.py
 node_modules/
 dist/
 
-# config
+# dev
 .env/
 .vscode/
 .idea/

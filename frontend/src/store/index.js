@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     app,
   },
   state: {},
-  mutations: {},
+  mutations: {}
 })
 
 Vue.use(VuexI18n.plugin, store)

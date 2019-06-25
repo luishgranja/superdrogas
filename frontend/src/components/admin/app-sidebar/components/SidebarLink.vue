@@ -36,8 +36,8 @@ export default {
         }
         linkGroup.expanded = true
       })
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -57,6 +57,7 @@ export default {
     &:hover {
       color: $white;
       background-color: $sidebar-link-active-bg;
+
       .sidebar-menu-item-icon,
       .expand-icon {
         color: $white;
@@ -71,8 +72,8 @@ export default {
       font-size: $sidebar-menu-item-icon-size;
       color: $vue-green;
       margin-right: 14px;
+
       &.fa-dashboard {
-        /* Temp fix */
         position: relative;
         top: -2px;
       }

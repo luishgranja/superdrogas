@@ -1,6 +1,6 @@
 <template>
   <div class="profile-dropdown flex-center">
-    <h4 class="m-0">Iván Toro</h4>
+    <h4 class="m-0">{{ name }}</h4>
     <vuestic-dropdown
       v-model="isShown"
       position="bottom"
@@ -13,9 +13,8 @@
         <router-link
           :to="{ name: option.redirectTo }"
           class="plain-link"
-          href="#"
         >
-          {{ $t(`user.${option.name}`) }}
+          {{ option.name }}
         </router-link>
       </div>
     </vuestic-dropdown>
@@ -28,6 +27,7 @@ export default {
   data () {
     return {
       isShown: false,
+      name: 'Iván Toro'
     }
   },
   props: {
@@ -35,16 +35,16 @@ export default {
       type: Array,
       default: () => [
         {
-          name: 'profile',
-          redirectTo: '',
+          name: 'Profile',
+          redirectTo: ''
         },
         {
-          name: 'logout',
-          redirectTo: '',
-        },
-      ],
-    },
-  },
+          name: 'Logout',
+          redirectTo: ''
+        }
+      ]
+    }
+  }
 }
 </script>
 

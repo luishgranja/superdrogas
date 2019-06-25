@@ -19,21 +19,22 @@
 
 <script>
 import VuesticSidebar from '@/vuestic-theme/vuestic-components/vuestic-sidebar/VuesticSidebar'
-import SidebarLink from './components/SidebarLink'
+
 import SidebarLinkGroup from './components/SidebarLinkGroup'
+import SidebarLink from './components/SidebarLink'
 
 export default {
   name: 'app-sidebar',
   components: {
     VuesticSidebar,
-    SidebarLink,
     SidebarLinkGroup,
+    SidebarLink
   },
   props: {
     isOpen: {
       type: Boolean,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 }
 </script>

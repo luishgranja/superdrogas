@@ -5,7 +5,7 @@
         class="vuestic-breadcrumbs__nav-section-item"
         :to="{ path: breadcrumbs.root.name }"
       >
-        {{ $t(breadcrumbs.root.displayName) }}
+        {{ breadcrumbs.root.displayName }}
       </router-link>
       <router-link
         v-for="(item, index) in displayedCrumbs"
@@ -14,17 +14,8 @@
         class="vuestic-breadcrumbs__nav-section-item"
         :class="{ disabled: item.disabled }"
       >
-        {{ $t(item.displayName) }}
+        {{ item.displayName }}
       </router-link>
-    </div>
-    <div class="vuestic-breadcrumbs__help-section">
-      <a
-        target="_blank"
-        :href="currentRoute"
-        class="btn btn-micro btn-info"
-      >
-        <span class="vuestic-icon vuestic-icon-files"/>
-      </a>
     </div>
   </div>
 </template>
@@ -35,40 +26,31 @@ export default {
   props: {
     breadcrumbs: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     currentRouteName: {
       type: String,
-      default: '',
+      default: ''
     },
   },
   computed: {
     displayedCrumbs () {
-      // Breadcrumbs object has root and routes. Root is required for us to display home page.
       const routeBreadcrumbList = this.breadcrumbs.routes
-
       const foundBreadcrumbs = this.findInNestedByName(routeBreadcrumbList, this.currentRouteName)
 
       if (!foundBreadcrumbs.length) {
-        // eslint-disable-next-line no-console
         console.warn(`No breadcrumbs registered for route with name "${this.currentRouteName}"`)
       }
 
       return foundBreadcrumbs
-    },
-    currentRoute () {
-      return this.$route.meta.wikiLink || 'https://github.com/epicmaxco/vuestic-admin/wiki'
-    },
+    }
   },
   methods: {
     findInNestedByName (routeBreadcrumbList, name) {
       for (const routeBreadcrumb of routeBreadcrumbList) {
-        // We found breadcrumbs for route
         if (routeBreadcrumb.name === name) {
           return [routeBreadcrumb]
         }
-        // We didn't find any breadcrumbs for route - means we have to go deeper!
-        // Which works only if route breadcrumb has children declared.
         if (!routeBreadcrumb.children) {
           continue
         }
@@ -78,8 +60,8 @@ export default {
         }
       }
       return []
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -115,12 +97,6 @@ export default {
       color: $brand-primary;
       font-size: $breadcrumbs-arrow-font;
       font-family: FontAwesome;
-    }
-  }
-
-  .vuestic-breadcrumbs__help-section {
-    .vuestic-icon {
-      font-size: 20px;
     }
   }
 }

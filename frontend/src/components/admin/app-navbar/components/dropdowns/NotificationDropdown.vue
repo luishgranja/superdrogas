@@ -1,19 +1,28 @@
 <template>
   <div class="notification-dropdown flex-center">
-    <span class="i-nav-notification"/>
+    <span class="i-nav-notification" />
     <vuestic-dropdown
       v-model="isShown"
       position="bottom"
       class="notification-dropdown__list"
     >
-      <a v-for="(option, id) in options" :key="id" class="dropdown-item"
-         href="#">
-        <span class="ellipsis">{{$t(`notifications.${option.name}`,
-          { name: option.details.name, type: option.details.type })}}
+      <a
+        v-for="(notification, id) in notifications"
+        :key="id"
+        class="dropdown-item"
+        href=""
+      >
+        <span class="ellipsis">
+          {{ notification }}
         </span>
       </a>
       <div class="dropdown-item plain-link-item">
-        <a class="plain-link" href="#">{{ $t('notifications.all') }}</a>
+        <a
+          class="plain-link"
+          href=""
+        >
+          Ver todas las notificaciones
+        </a>
       </div>
     </vuestic-dropdown>
   </div>
@@ -24,33 +33,24 @@ export default {
   name: 'notification-dropdown',
   data () {
     return {
-      isShown: false,
+      isShown: false
     }
   },
   props: {
-    options: {
+    notifications: {
       type: Array,
       default: () => [
-        {
-          name: 'sentMessage',
-          details: { name: 'Vasily S' },
-        },
-        {
-          name: 'uploadedZip',
-          details: { name: 'Oleg M', type: 'typography component' },
-        },
-        {
-          name: 'startedTopic',
-          details: { name: 'Andrei H' },
-        },
-      ],
-    },
-  },
+        'Luis registered a new batch',
+        'Sebastian registered a new product',
+        'Hadder made a new sale'
+      ]
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-@import '../../../../../vuestic-theme/vuestic-sass/resources/resources';
+@import "~@/vuestic-theme/vuestic-sass/resources/resources";
 
 .notification-dropdown {
   cursor: pointer;
@@ -65,7 +65,7 @@ export default {
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       right: -4px;
       top: 0;
