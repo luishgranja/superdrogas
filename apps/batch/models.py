@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Batch(models.Model):
-    medicamento = models.CharField(max_length=20)
-    cantidad = models.IntegerField()
-    fecha_entrega = models.DateField()
-    fecha_vencimiento = models.DateField()
+    product = models.CharField(max_length=20)
+    quantity = models.IntegerField()
+    manufacturing_date = models.DateField()
+    expiration_date = models.DateField()
 
     def __str__(self):
-        return self.medicamento
+        return self.product
