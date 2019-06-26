@@ -9,6 +9,7 @@ from django.contrib.auth import password_validation, authenticate
 from django.core.exceptions import ValidationError
 
 # Django Rest Framework
+from rest_auth.serializers import PasswordResetSerializer
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
@@ -31,9 +32,11 @@ class UserSerializer(serializers.ModelSerializer):
             'id',
             'username',
             'name',
+            'last_name',
+            'email',
             'is_active',
             'password',
-            'password_confirmation'
+            'password_confirmation',
         )
         extra_kwargs = {
             'password': {'write_only': True},
@@ -54,51 +57,3 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return UserModel.objects.create_user(**validated_data)
-
-
-class ChangePasswordSerializer(serializers.Serializer):
-    """
-    Change password serializer
-
-    For change the user's password
-    """
-    old_password = serializers.CharField(required=True)
-    new_password = serializers.CharField(required=True)
-
-
-class LoginSerializer(serializers.Serializer):
-    """
-    Login serializer
-
-    For user login
-    """
-    username = serializers.CharField(max_length=20)
-    password = serializers.CharField(min_length=8, max_length=64)
-
-    def validate_username(self, value):
-        """
-        validate_username confirm if user exists
-        """
-        try:
-            user = UserModel.objects.get(username=value)
-        except UserModel.DoesNotExist:
-            raise ValidationError('User does not exist.')
-
-        if not user.is_active:
-            raise ValidationError('User is not active.')
-
-        self.context['user'] = user
-        return value
-
-    def validate(self, attrs):
-        user = authenticate(
-            username=attrs['username'],
-            password=attrs['password']
-        )
-        if not user:
-            raise serializers.ValidationError('Invalid credentials.')
-        return attrs
-
-    def create(self, validated_data):
-        token, _ = Token.objects.get_or_create(user=self.context['user'])
-        return self.context['user'], token.key
