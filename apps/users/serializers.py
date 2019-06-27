@@ -5,13 +5,11 @@ Serializers of the users app
 """
 
 # Django
-from django.contrib.auth import password_validation, authenticate
+from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
 # Django Rest Framework
-from rest_auth.serializers import PasswordResetSerializer
 from rest_framework import serializers
-from rest_framework.authtoken.models import Token
 
 # Users models
 from .models import UserModel
@@ -31,7 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'username',
-            'name',
+            'first_name',
             'last_name',
             'email',
             'is_active',
