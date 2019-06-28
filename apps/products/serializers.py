@@ -9,6 +9,7 @@ class ProductSerialize(serializers.ModelSerializer):
                   'description',
                   'price',
                   'category',
+                  'image',
                   'sku',
                   'unit',
                   'weight',
