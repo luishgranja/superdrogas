@@ -36,6 +36,7 @@ class UserSerializer(serializers.ModelSerializer):
             'password',
             'password_confirmation',
         )
+
         extra_kwargs = {
             'password': {'write_only': True},
             'password_confirmation': {'write_only': True}
@@ -55,3 +56,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return UserModel.objects.create_user(**validated_data)
+
+    def to_representation(self, obj):
+        rep = super(UserSerializer, self).to_representation(obj)
+        rep.pop('password', None)
+        rep.pop('password_confirmation', None)
+        return rep

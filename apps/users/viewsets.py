@@ -10,7 +10,6 @@ from rest_framework.response import Response
 
 # Users models
 from .models import UserModel
-from django.conf import settings
 
 # Users serializers
 from .serializers import (
