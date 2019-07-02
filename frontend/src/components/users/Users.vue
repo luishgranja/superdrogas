@@ -1,95 +1,98 @@
 <template>
-  <div class="va-row">
-    <div class="flex md12 xs12">
-      <vuestic-widget headerText="Users">
-        <vuestic-data-table
-          :apiUrl="apiUrl"
-          :tableFields="tableFields"
-          :itemsPerPage="itemsPerPage"
-          :defaultPerPage="defaultTablePerPage"
-          :sortFunctions="sortFunctions"
-          :apiMode="apiMode"
-          :paginationPath="paginationPath"
-          :queryParams="queryParams"
-          :perPageSelectorShown="perPageSelectorShown"
-        >
-          <spring-spinner
-            slot="loading"
-            :animation-duration="2500"
-            :size="70"
-            color="#4ae387"
-          />
-        </vuestic-data-table>
-      </vuestic-widget>
-    </div>
+  <div>
+    <section class="content-header">
+      <div class="list-inline">
+        <h1>
+          Users
+          <a href="#create" class="btn btn-primary btn-raised" data-toggle="modal" data-target="#create">Add new user</a>
+        </h1>
+      </div>
+      <ol class="breadcrumb">
+        <li><router-link :to="{ name: 'home' }">Home</router-link></li>
+        <li class="active">Users</li>
+      </ol>
+    </section>
+    <section class="content">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box">
+            <div class="box-body">
+              <table id="table" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Identification</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(user, index) in users" :key="index" class="odd">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.identification }}</td>
+                    <td class="text-center">
+                      <p v-if="user.status" class="badge bg-green p-bg">Active</p>
+                      <p v-else class="badge bg-red p-bg">Inactive</p>
+                    </td>
+                    <td class="text-center">
+                      <a href="#delete" :class="[user.status ? 'btn-danger' : 'btn-success']" class="btn.btn-app btn-sm action-btn" data-toggle="modal" data-target="#delete">
+                        <i v-if="user.status" class="fa fa-user-times"></i>
+                        <i v-else class="fa fa-user-plus"></i>
+                      </a>
+                      <a href="#update" class="btn.btn-app btn-primary btn-sm action-btn" data-toggle="modal" data-target="#update">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <a href="#read" class="btn.btn-app btn-info btn-sm action-btn" data-toggle="modal" data-target="#read">
+                        <i class="fa fa-info-circle"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import BadgeColumn from '@/components/tables/BadgeColumn'
-import { SpringSpinner } from 'epic-spinners'
-
-Vue.component('badge-column', BadgeColumn)
+// eslint-disable-next-line
+$(function () { $('#table').DataTable() })
 
 export default {
   name: 'users',
-  components: {
-    SpringSpinner,
-  },
   data () {
     return {
-      apiUrl: 'https://vuetable.ratiw.net/api/users',
-      apiMode: true,
-      tableFields: [
+      users: [
         {
-          name: '__component:badge-column',
-          title: '',
-          dataClass: 'text-center',
-          width: '4%',
+          name: 'Iván Toro',
+          username: 'ivanmtoroc',
+          identification: '123467890',
+          status: false
         },
         {
-          name: 'name',
-          sortField: 'name',
-          width: '24%',
+          name: 'Luis Granja',
+          username: 'luisgranja',
+          identification: '0987654321',
+          status: true
         },
         {
-          name: 'email',
-          sortField: 'email',
-          width: '24%',
+          name: 'Sebastián Villegas',
+          username: 'sebastianvillegas',
+          identification: '0987612345',
+          status: true
         },
         {
-          name: 'address.line2',
-          title: 'city',
-          width: '24%',
-        },
-        {
-          name: 'salary',
-          title: 'score',
-          width: '24%',
-        },
-      ],
-      itemsPerPage: [
-        { value: 5 },
-        { value: 6 },
-        { value: 10 },
-      ],
-      sortFunctions: {
-        'name': function (item1, item2) {
-          return item1 >= item2 ? 1 : -1
-        },
-        'email': function (item1, item2) {
-          return item1 >= item2 ? 1 : -1
-        },
-      },
-      paginationPath: '',
-      defaultTablePerPage: 6,
-      queryParams: {
-        sort: 'sort',
-        page: 'page',
-        perPage: 'per_page'
-      },
-      perPageSelectorShown: true
+          name: 'Jhon Hadder',
+          username: 'jhonhadder',
+          identification: '1234657809',
+          status: false
+        }
+      ]
     }
   }
 }
