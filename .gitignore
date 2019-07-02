@@ -7,6 +7,7 @@ superdrogas/settings.py
 # frontend
 node_modules/
 frontend/dist/
+package-lock.json
 
 # dev
 .env/
