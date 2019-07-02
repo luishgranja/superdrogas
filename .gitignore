@@ -6,7 +6,7 @@ superdrogas/settings.py
 
 # frontend
 node_modules/
-dist/
+frontend/dist/
 
 # dev
 .env/
