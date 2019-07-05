@@ -4,7 +4,9 @@
       <div class="list-inline">
         <h1>
           Users
-          <a href="#create" class="btn btn-primary btn-raised" data-toggle="modal" data-target="#create">Add new user</a>
+          <a class="btn btn-primary btn-raised" data-toggle="modal" data-target="#create">
+            + New user
+          </a>
         </h1>
       </div>
       <ol class="breadcrumb">
@@ -17,28 +19,31 @@
         <div class="col-sm-12">
           <div class="box">
             <div class="box-body">
-              <table id="table" class="table table-bordered table-striped">
+              <div v-if="isLoading" class="text-center">
+                <spinner-component />
+              </div>
+              <table v-else id="table" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Name</th>
                     <th>Username</th>
-                    <th>Identification</th>
+                    <th>Email</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(user, index) in users" :key="index" class="odd">
-                    <td>{{ user.name }}</td>
+                  <tr v-for="(user, index) in users" :key="index">
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
                     <td>{{ user.username }}</td>
-                    <td>{{ user.identification }}</td>
+                    <td>{{ user.email }}</td>
                     <td class="text-center">
-                      <p v-if="user.status" class="badge bg-green p-bg">Active</p>
+                      <p v-if="user.is_active" class="badge bg-green p-bg">Active</p>
                       <p v-else class="badge bg-red p-bg">Inactive</p>
                     </td>
                     <td class="text-center">
-                      <a href="#delete" :class="[user.status ? 'btn-danger' : 'btn-success']" class="btn.btn-app btn-sm action-btn" data-toggle="modal" data-target="#delete">
-                        <i v-if="user.status" class="fa fa-user-times"></i>
+                      <a href="#delete" :class="[user.is_active ? 'btn-danger' : 'btn-success']" class="btn.btn-app btn-sm action-btn" data-toggle="modal" data-target="#delete">
+                        <i v-if="user.is_active" class="fa fa-user-times"></i>
                         <i v-else class="fa fa-user-plus"></i>
                       </a>
                       <a href="#update" class="btn.btn-app btn-primary btn-sm action-btn" data-toggle="modal" data-target="#update">
@@ -56,44 +61,37 @@
         </div>
       </div>
     </section>
+    <create />
   </div>
 </template>
 
 <script>
-// eslint-disable-next-line
-$(function () { $('#table').DataTable() })
+import { mapState, mapActions } from 'vuex'
+
+import Create from './actions/Create'
 
 export default {
   name: 'users',
-  data () {
-    return {
-      users: [
-        {
-          name: 'Iván Toro',
-          username: 'ivanmtoroc',
-          identification: '123467890',
-          status: false
-        },
-        {
-          name: 'Luis Granja',
-          username: 'luisgranja',
-          identification: '0987654321',
-          status: true
-        },
-        {
-          name: 'Sebastián Villegas',
-          username: 'sebastianvillegas',
-          identification: '0987612345',
-          status: true
-        },
-        {
-          name: 'Jhon Hadder',
-          username: 'jhonhadder',
-          identification: '1234657809',
-          status: false
-        }
-      ]
-    }
+  components: {
+    Create
+  },
+  computed: {
+    ...mapState('users', [
+      'users',
+      'isLoading'
+    ])
+  },
+  methods: {
+    ...mapActions('users', [
+      'getUsers'
+    ])
+  },
+  created () {
+    this.getUsers()
+  },
+  updated () {
+    // eslint-disable-next-line
+    $(function () { $('#table').DataTable() })
   }
 }
 </script>

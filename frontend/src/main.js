@@ -3,6 +3,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import UIPlugin from '@/components/ui/UIPlugin'
+
+Vue.use(UIPlugin)
 
 Vue.config.productionTip = false
 
