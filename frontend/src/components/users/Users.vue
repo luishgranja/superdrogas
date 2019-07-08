@@ -5,6 +5,7 @@
         <h1>
           Users
           <a
+            @click="getUser(0)"
             class="btn btn-primary btn-raised"
             data-toggle="modal"
             data-target="#user-form"

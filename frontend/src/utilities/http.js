@@ -18,6 +18,17 @@ export default {
       return CONNECTION_ERROR
     }
   },
+  post: async function (url, data) {
+    try {
+      return await http.post(url, data)
+    } catch (error) {
+      if (error.response) {
+        error.response.error = true
+        return error.response
+      }
+      return CONNECTION_ERROR
+    }
+  },
   delete: async function (url) {
     try {
       return await http.delete(url)
