@@ -6,7 +6,6 @@ Viewsets and views of the users app
 
 # Django Rest Framework
 from rest_framework import viewsets
-from rest_framework.response import Response
 
 # Users models
 from .models import UserModel
@@ -26,12 +25,9 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = UserModel.objects.all()
     serializer_class = UserSerializer
 
-    def destroy(self, request, *args, **kwargs):
+    def perform_destroy(self, instance):
         """
-        destroy is used to performance a logic delete
+        perform_destroy is used to performance a logic delete
         """
-        user = self.get_object()
-        user.is_active = not user.is_active
-        user.save()
-        data = {'message': 'Updated sucessfully.'}
-        return Response(data)
+        instance.is_active = not instance.is_active
+        instance.save()

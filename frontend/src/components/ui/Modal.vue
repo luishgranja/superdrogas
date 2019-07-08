@@ -3,8 +3,8 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button @click="close()" type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">×</span>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>×</span>
           </button>
           <div class="modal-title">
             <h2>{{ title }}</h2>
@@ -30,12 +30,6 @@ export default {
     title: {
       type: String,
       default: ''
-    }
-  },
-  methods: {
-    close () {
-      // eslint-disable-next-line
-      $(this.id).modal('hide')
     }
   }
 }

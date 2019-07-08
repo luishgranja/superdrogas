@@ -1,5 +1,4 @@
 import HomeView from '@/views/home/Home'
-
 import Home from '@/components/home/Home'
 import Users from '@/components/users/Users'
 

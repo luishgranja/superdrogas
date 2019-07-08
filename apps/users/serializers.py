@@ -55,10 +55,16 @@ class UserSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
+        """
+        create creates a UserModel with validated data
+        """
         return UserModel.objects.create_user(**validated_data)
 
-    def to_representation(self, obj):
-        rep = super(UserSerializer, self).to_representation(obj)
-        rep.pop('password', None)
-        rep.pop('password_confirmation', None)
-        return rep
+    def to_representation(self, instance):
+        """
+        to_representation define the data for the responses
+        """
+        data = super(UserSerializer, self).to_representation(instance)
+        data.pop('password', None)
+        data.pop('password_confirmation', None)
+        return data

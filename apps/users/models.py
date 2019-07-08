@@ -22,4 +22,3 @@ class UserModel(AbstractUser):
         return self.username
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['name']

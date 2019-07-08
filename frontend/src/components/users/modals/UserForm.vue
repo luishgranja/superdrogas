@@ -1,11 +1,19 @@
 <template>
-  <modal-component id="create" title="Create a new user">
+  <modal-component id="user-form" title="Create user">
     <form>
       <div class="row">
         <div class="form-group col-sm-6">
           <input
             placeholder="Username"
             type="text"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group col-sm-6">
+          <input
+            placeholder="Email address"
+            type="email"
             class="form-control"
             required
           />
@@ -22,14 +30,6 @@
           <input
             placeholder="Last name"
             type="text"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="form-group col-sm-6">
-          <input
-            placeholder="Email address"
-            type="email"
             class="form-control"
             required
           />
