@@ -5,7 +5,7 @@
         <h1>
           Users
           <a
-            @click="getUser(0)"
+            @click="getUser()"
             class="btn btn-primary btn-raised"
             data-toggle="modal"
             data-target="#user-form"
@@ -42,7 +42,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(user, index) in userList" :key="index">
+                  <tr v-for="(user, index) in users" :key="index">
                     <td>{{ user.first_name }} {{ user.last_name }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
@@ -89,8 +89,8 @@
         </div>
       </div>
     </section>
-    <user-form />
     <user-detail />
+    <user-form />
     <user-status />
   </div>
 </template>
@@ -98,20 +98,20 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import template from '@/utilities/template'
-import UserForm from './modals/UserForm'
 import UserDetail from './modals/UserDetail'
+import UserForm from './modals/UserForm'
 import UserStatus from './modals/UserStatus'
 
 export default {
   name: 'users',
   components: {
-    UserForm,
     UserDetail,
+    UserForm,
     UserStatus
   },
   computed: {
     ...mapState('users', [
-      'userList',
+      'users',
       'isLoading'
     ])
   },

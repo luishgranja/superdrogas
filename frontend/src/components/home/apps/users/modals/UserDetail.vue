@@ -5,19 +5,19 @@
         <ul>
           <li>
             <strong>Name:</strong>
-            {{ currentUser.first_name }} {{ currentUser.last_name }}
+            {{ user.first_name }} {{ user.last_name }}
           </li>
           <li>
             <strong>Username:</strong>
-            {{ currentUser.username }}
+            {{ user.username }}
           </li>
           <li>
             <strong>Email:</strong>
-            {{ currentUser.email }}
+            {{ user.email }}
           </li>
           <li>
             <strong>Status:</strong>
-            {{ currentUser.is_active ? 'Active' : 'Inactive' }}
+            {{ user.is_active ? 'Active' : 'Inactive' }}
           </li>
         </ul>
       </div>
@@ -35,7 +35,7 @@ export default {
   name: 'user-detail',
   computed: {
     ...mapState('users', [
-      'currentUser'
+      'user'
     ])
   }
 }

@@ -1,6 +1,6 @@
-import HomeView from '@/views/home/Home'
-import Home from '@/components/home/Home'
-import Users from '@/components/users/Users'
+import HomeView from '@/components/home/HomeView'
+import Home from '@/components/home/apps/home/Home'
+import Users from '@/components/home/apps/users/Users'
 
 export default {
   path: '/home',

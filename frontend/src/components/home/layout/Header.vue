@@ -11,7 +11,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <img src="https://i.imgur.com/VvO9nVO.png" class="user-image" alt="User image" />
               <span class="hidden-xs">Iván Toro</span>
               <div class="ripple-container"></div>
@@ -26,7 +26,10 @@
                 </p>
               </li>
               <li class="user-footer">
-                <a class="btn btn-default">Logout</a>
+                <a class="btn btn-warning">
+                  <i class="fa fa-sign-out"></i>
+                  Logout
+                </a>
               </li>
             </ul>
           </li>

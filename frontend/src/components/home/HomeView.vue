@@ -10,16 +10,16 @@
 </template>
 
 <script>
-import HeaderComponent from '@/views/home/layout/Header'
-import AsideComponent from '@/views/home/layout/Aside'
-import FooterComponent from '@/views/home/layout/Footer'
+import AsideComponent from './layout/Aside'
+import FooterComponent from './layout/Footer'
+import HeaderComponent from './layout/Header'
 
 export default {
-  name: 'home',
+  name: 'home-view',
   components: {
-    HeaderComponent,
     AsideComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderComponent
   }
 }
 </script>

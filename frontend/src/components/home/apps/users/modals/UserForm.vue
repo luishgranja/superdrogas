@@ -1,53 +1,52 @@
 <template>
-  <modal-component
-    id="user-form"
-    :title="`${ newUser ? 'Create' : 'Update' } user`"
-  >
+  <modal-component id="user-form" :title="`${ isNewUser ? 'Create' : 'Update' } user`">
     <form>
       <div class="row">
         <input-component
           v-model="username"
           id="username"
           label="Username"
-          :erros="errorList.username"
+          :erros="errors.username"
         />
         <input-component
           v-model="email"
           id="email"
           label="Email"
           type="email"
-          :erros="errorList.email"
+          :erros="errors.email"
         />
         <input-component
           v-model="firstName"
           id="firstName"
           label="First name"
-          :erros="errorList.first_name"
+          :erros="errors.first_name"
         />
         <input-component
           v-model="lastName"
           id="lastName"
           label="Last name"
-          :erros="errorList.last_name"
+          :erros="errors.last_name"
         />
         <input-component
+          v-if="isNewUser"
           v-model="password"
           id="password"
           label="Password"
           type="password"
-          :erros="errorList.password"
+          :erros="errors.password"
         />
         <input-component
+          v-if="isNewUser"
           v-model="passwordConfirmation"
           id="passwordConfirmation"
           label="Password confirmation"
           type="password"
-          :erros="errorList.password_confirmation"
+          :erros="errors.password_confirmation"
         />
       </div>
       <div class="pull-right">
         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-        <button v-if="newUser" @click="createUser($event)" type="submit" class="btn btn-success">Create</button>
+        <button v-if="isNewUser" @click="createUser($event)" type="submit" class="btn btn-success">Create</button>
         <button v-else @click="updateUser($event)" type="submit" class="btn btn-primary">Update</button>
       </div>
     </form>
@@ -58,17 +57,18 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'create-user',
+  name: 'user-form',
   computed: {
     ...mapState('users', [
-      'errorList'
+      'user',
+      'errors'
     ]),
     ...mapGetters('users', [
-      'newUser'
+      'isNewUser'
     ]),
     username: {
       get () {
-        return this.$store.state.users.currentUser.username
+        return this.user.username
       },
       set (value) {
         this.$store.commit('users/SET_USERNAME', value)
@@ -76,7 +76,7 @@ export default {
     },
     firstName: {
       get () {
-        return this.$store.state.users.first_name
+        return this.user.first_name
       },
       set (value) {
         this.$store.commit('users/SET_FIRST_NAME', value)
@@ -84,7 +84,7 @@ export default {
     },
     lastName: {
       get () {
-        return this.$store.state.users.currentUser.last_name
+        return this.user.last_name
       },
       set (value) {
         this.$store.commit('users/SET_LAST_NAME', value)
@@ -92,7 +92,7 @@ export default {
     },
     email: {
       get () {
-        return this.$store.state.users.email
+        return this.user.email
       },
       set (value) {
         this.$store.commit('users/SET_EMAIL', value)
@@ -100,7 +100,7 @@ export default {
     },
     password: {
       get () {
-        return this.$store.state.users.password
+        return this.user.password
       },
       set (value) {
         this.$store.commit('users/SET_PASSWORD', value)
@@ -108,7 +108,7 @@ export default {
     },
     passwordConfirmation: {
       get () {
-        return this.$store.state.users.password_confirmation
+        return this.user.password_confirmation
       },
       set (value) {
         this.$store.commit('users/SET_PASSWORD_CONFIRMATION', value)

@@ -1,23 +1,18 @@
 <template>
-  <div
-    :class="`${ erros ? 'has-error' : '' }`"
-    class="form-group col-sm-6"
-  >
-    <label :for="id">{{ label }}</label>
+  <div :class="`${ erros ? 'has-error' : '' }`" class="form-group col-sm-6">
+    <label :for="id">
+      {{ label }}
+    </label>
     <input
       :id="id"
       :value="value"
-      @input="$emit('input', $event.target.value)"
+      @input="updateValue"
       :placeholder="label"
       :type="type"
       class="form-control"
       :required="required"
     >
-    <span
-      v-for="(error, index) in erros"
-      :key="index"
-      class="help-block"
-    >
+    <span v-for="(error, index) in erros" :key="index" class="help-block">
       {{ error }}
     </span>
   </div>
@@ -36,7 +31,8 @@ export default {
       required: true
     },
     value: {
-      type: [String, Number]
+      type: [String, Number],
+      default: ''
     },
     type: {
       type: String,
@@ -47,7 +43,13 @@ export default {
       default: true
     },
     erros: {
-      type: Array
+      type: Array,
+      default: () => null
+    }
+  },
+  methods: {
+    updateValue (event) {
+      this.$emit('input', event.target.value)
     }
   }
 }

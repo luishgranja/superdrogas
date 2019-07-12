@@ -7,7 +7,7 @@ const http = axios.create({
 const CONNECTION_ERROR = {
   error: true,
   status: 400,
-  statusText: 'Connection error'
+  statusText: 'Connection error 😿'
 }
 
 export default {
@@ -15,6 +15,10 @@ export default {
     try {
       return await http.get(url)
     } catch (error) {
+      if (error.response) {
+        error.response.error = true
+        return error.response
+      }
       return CONNECTION_ERROR
     }
   },
@@ -33,6 +37,21 @@ export default {
     try {
       return await http.delete(url)
     } catch (error) {
+      if (error.response) {
+        error.response.error = true
+        return error.response
+      }
+      return CONNECTION_ERROR
+    }
+  },
+  patch: async function (url, data) {
+    try {
+      return await http.patch(url, data)
+    } catch (error) {
+      if (error.response) {
+        error.response.error = true
+        return error.response
+      }
       return CONNECTION_ERROR
     }
   }

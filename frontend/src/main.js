@@ -2,9 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import UIPlugin from '@/components/ui/UIPlugin'
+import TemplatePlugin from '@/template/TemplatePlugin'
 
-Vue.use(UIPlugin)
+Vue.use(TemplatePlugin)
 
 Vue.config.productionTip = false
 
