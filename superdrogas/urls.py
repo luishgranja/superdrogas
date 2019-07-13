@@ -6,6 +6,8 @@ The 'urlpatterns' list routes URLs to views
 
 # Django
 from django.conf.urls import url, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 # Django Rest Framework
 from rest_framework import routers
@@ -15,12 +17,16 @@ from rest_auth.views import PasswordResetConfirmView
 
 # Apps viewsets
 from apps.users.viewsets import UserViewSet
+from apps.batch.viewsets import BatchViewSet
+from apps.products.viewsets import ProductViewSet
 
 
 ROUTER = routers.DefaultRouter()
 
-# CRUD users
+# CRUD apps
 ROUTER.register(r'users', UserViewSet)
+ROUTER.register(r'batches', BatchViewSet)
+ROUTER.register(r'products', ProductViewSet)
 
 urlpatterns = ROUTER.urls + [
     url(
@@ -29,4 +35,4 @@ urlpatterns = ROUTER.urls + [
         name='password_reset_confirm'
     ),
     url(r'^rest-auth/', include('rest_auth.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,6 +11,7 @@ package-lock.json
 
 # dev
 .env/
+venv/
 .vscode/
 .idea/
 db.sqlite3

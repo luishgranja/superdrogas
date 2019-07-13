@@ -11,16 +11,14 @@ from rest_framework import viewsets
 from .models import UserModel
 
 # Users serializers
-from .serializers import (
-    UserSerializer,
-)
+from .serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
     """
     User viewset
 
-    To define the CRUD views of the user model and login action
+    To define the CRUD views of the user model
     """
     queryset = UserModel.objects.all()
     serializer_class = UserSerializer
