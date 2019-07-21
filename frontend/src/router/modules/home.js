@@ -1,6 +1,7 @@
 import HomeView from '@/components/home/HomeView'
 import Home from '@/components/home/apps/home/Home'
 import Users from '@/components/home/apps/users/Users'
+import Batches from '@/components/home/apps/batches/Batches'
 
 export default {
   path: '/home',
@@ -15,6 +16,11 @@ export default {
       path: 'users',
       name: 'users',
       component: Users
+    },
+    {
+      path: 'batches',
+      name: 'batches',
+      component: Batches
     }
   ]
 }

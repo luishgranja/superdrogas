@@ -26,3 +26,6 @@ class Batch(models.Model):
 
     def __str__(self):
         return self.product
+
+    def NombreProducto (self):
+        return self.product.name
