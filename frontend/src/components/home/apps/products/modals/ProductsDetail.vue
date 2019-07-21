@@ -4,6 +4,9 @@
       <div class="col-sm-12">
         <ul>
           <li>
+            <img :src="product.image" alt="product image" width="250" height="200">
+          </li>
+          <li>
             <strong>Name:</strong>
             {{ product.name }}
           </li>
@@ -14,10 +17,6 @@
           <li>
             <strong>Price:</strong>
             {{ product.price }}
-          </li>
-          <li>
-            <strong>Image:</strong>
-            {{ product.image }}
           </li>
           <li>
             <strong>Category:</strong>

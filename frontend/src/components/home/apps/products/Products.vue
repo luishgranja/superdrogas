@@ -37,7 +37,6 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
-
                     <th>Category</th>
                     <th>Sku</th>
                     <th>Weight</th>
@@ -51,7 +50,6 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>
-                    
                     <td>{{ product.category }}</td>
                     <td>{{ product.sku }}</td>
                     <td>{{ product.weight }}</td>

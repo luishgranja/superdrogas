@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     ...mapActions('products', [
-      'deleteproduct'
+      'deleteProduct'
     ])
   }
 }

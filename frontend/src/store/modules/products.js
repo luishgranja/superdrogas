@@ -5,12 +5,14 @@ const state = {
   products: [],
   product: {},
   errors: {},
-  isLoading: false
+  isLoading: false,
+  formData: new FormData()
 }
 
 const getters = {
   isNewProduct: state => state.product.id === undefined,
-  activeProducts: state => state.products.filter(product => product.is_active)
+  activeProducts: state => state.products.filter(product => product.is_active),
+  formData: state => state.formData
 }
 
 const mutations = {
@@ -79,6 +81,16 @@ const mutations = {
 
   SET_BRAND: (state, newBrand) => {
     state.product = { ...state.product, brand: newBrand }
+  },
+  buildRequest (state) {
+    state.formData.append('image', state.product.image)
+    state.formData.append('name', state.product.name)
+    state.formData.append('description', state.product.description)
+    state.formData.append('price', state.product.price)
+    state.formData.append('sku', state.product.sku)
+    state.formData.append('category', state.product.category)
+    state.formData.append('weight', state.product.weight)
+    state.formData.append('brand', state.product.brand)
   }
 }
 
@@ -99,7 +111,8 @@ const actions = {
   createProduct: async ({ state, commit }, event) => {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
-    const response = await http.post('products/', state.product)
+    commit('buildRequest')
+    const response = await http.post('products/', state.formData)
     if (!response.error) {
       commit('ADD_PRODUCT', response.data)
       template.hideModal('#product-form')
@@ -112,9 +125,10 @@ const actions = {
   updateProduct: async ({ state, commit }, event) => {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
-    const response = await http.patch(`products/${state.product.id}/`, state.product)
+    commit('buildRequest')
+    const response = await http.patch(`products/${state.product.id}/`, state.formData)
     if (!response.error) {
-      commit('SET_product', response.data)
+      commit('SET_PRODUCT', response.data)
       template.hideModal('#product-form')
     } else {
       commit('SET_ERRORS', response.data)

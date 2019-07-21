@@ -20,12 +20,10 @@
           label="Price:"
           :erros="errors.price"
         />
-        <input-component
-          v-model="image"
-          id="image"
-          label="Image:"
-          :erros="errors.image"
-        />
+        <div class="col-sm-6 custom-file">
+          <label for="image-create">Image:</label>
+          <input type="file" ref="file" class="custom-file-input" id="image-create" @change="handleFileUpload()">
+        </div>
         <input-component
           v-model="category"
           id="category"
@@ -142,7 +140,11 @@ export default {
     ...mapActions('products', [
       'createProduct',
       'updateProduct'
-    ])
+    ]),
+        handleFileUpload () {
+      this.file = this.$refs.file.files[0]
+      this.$store.commit('products/SET_IMAGE', this.file)
+    }
   }
 }
 </script>
