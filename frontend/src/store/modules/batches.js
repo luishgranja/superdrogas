@@ -13,46 +13,47 @@ const getters = {
 }
 
 const mutations = {
-    SET_BATCHES: (state, newBatches) => {
-        state.batches = newBatches
-    },
-    SET_BATCH: (state, newBatch) => {
-        state.batches = [
-            ...state.batches.filter(batch => batch.id !== newBatch.id),
-            newBatch
-        ]
-    },
-    SET_ERRORS: (state, newErrors) => {
-        state.errors = newErrors || {}
-    },
-    ADD_BATCH: (state, newBatch) => {
-        state.batches.unshift(newBatch)
-    },
-    GET_BATCH: (state, batchId) => {
-        state.batch = state.batches.find(batch => batch.id === batchId) || {}
-    },
-    SWITCH_BATCH_STATUS: state => {
-        state.batches.forEach((batch, index) => {
-            if (batch.id === state.batch.id) {
-                state.batches[index].is_active = !state.batches[index].is_active
-            }
-        })
-    },
-    SET_LOAD_STATUS: (state, newLoadStatus) => {
-        state.isLoading = newLoadStatus
-    },
-    SET_PRODUCT: (state, newProduct) => {
-        state.batch = { ...state.batch, product: newProduct }
-    },
-    SET_QUANTITY: (state, newQuantity) => {
-        state.batch = { ...state.batch, quantity: newQuantity }
-    },
-    SET_MANUFACTURING_DATE: (state, newManufacturingDate) => {
-        state.batch = { ...state.batch, product: newManufacturingDate }
-    },
-    SET_EXPIRATION_DATE: (state, newExpirationDate) => {
-        state.batch = { ...state.batch, product: newExpirationDate }
-    },
+  SET_BATCHES: (state, newBatches) => {
+    state.batches = newBatches
+  },
+  SET_BATCH: (state, newBatch) => {
+    state.batches = [
+      ...state.batches.filter(batch => batch.id !== newBatch.id),
+      newBatch
+    ]
+  },
+  SET_ERRORS: (state, newErrors) => {
+    state.errors = newErrors || {}
+  },
+  ADD_BATCH: (state, newBatch) => {
+    state.batches.unshift(newBatch)
+  },
+  GET_BATCH: (state, batchId) => {
+    state.batch = state.batches.find(batch => batch.id === batchId) || {}
+  },
+  SWITCH_BATCH_STATUS: state => {
+    state.batches.forEach((batch, index) => {
+      if (batch.id === state.batch.id) {
+        state.batches[index].is_active = !state.batches[index].is_active
+      }
+    })
+  },
+  SET_LOAD_STATUS: (state, newLoadStatus) => {
+    state.isLoading = newLoadStatus
+  },
+  SET_PRODUCT: (state, newProduct) => {
+    state.batch = { ...state.batch, product: newProduct }
+    console.log("me cago en todo")
+  },
+  SET_QUANTITY: (state, newQuantity) => {
+    state.batch = { ...state.batch, quantity: newQuantity }
+  },
+  SET_MANUFACTURING_DATE: (state, newManufacturingDate) => {
+    state.batch = { ...state.batch, manufacturing_date: newManufacturingDate }
+  },
+  SET_EXPIRATION_DATE: (state, newExpirationDate) => {
+    state.batch = { ...state.batch, expiration_date: newExpirationDate }
+  }
 }
 
 const actions = {

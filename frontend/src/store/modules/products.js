@@ -9,7 +9,8 @@ const state = {
 }
 
 const getters = {
-  isNewProduct: state => state.product.id === undefined
+  isNewProduct: state => state.product.id === undefined,
+  activeProducts: state => state.products.filter(product => product.is_active)
 }
 
 const mutations = {

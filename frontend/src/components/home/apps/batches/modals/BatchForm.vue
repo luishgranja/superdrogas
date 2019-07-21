@@ -2,10 +2,11 @@
   <modal-component id="batch-form" :title="`${ isNewBatch ? 'Create' : 'Update' } batch`">
     <form>
       <div class="row">
-        <select name="product" id="product">
-          <option v-forvalue=""></option>
-
-        </select>
+        <div class="form-group col-sm-6">
+          <select v-model="product"  class="form-control select2" name="product" id="product"  style="width: 100%; height: 100%;">
+            <option v-for="product in activeProducts":value="product.id" > {{ product.name }} </option>
+          </select>
+        </div>
         <input-component
           v-model="quantity"
           id="quantity"
@@ -14,14 +15,14 @@
         />
         <input-component
           v-model="manufacturing_date"
-          id="manufacturingDate"
+          id="manufacturing_date"
           label="Manufacturing Date"
           type="date"
           :erros="errors.manufacturing_date"
         />
         <input-component
           v-model="expiration_date"
-          id="expirationDate"
+          id="expiration_date"
           label="Expiration Date"
           type="date"
           :erros="errors.expiration_date"
@@ -38,7 +39,8 @@
 </template>
 
 <script>
-  /* eslint-disable eol-last */
+
+/* eslint-disable eol-last */
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -51,12 +53,15 @@ export default {
     ...mapGetters('batches', [
       'isNewBatch'
     ]),
+    ...mapGetters('products', [
+      'activeProducts'
+    ]),
     product: {
       get () {
         return this.batch.product
       },
       set (value) {
-        this.$store.commit('users/SET_PRODUCT', value)
+        this.$store.commit('batches/SET_PRODUCT', value)
       }
     },
     quantity: {
@@ -88,7 +93,20 @@ export default {
     ...mapActions('batches', [
       'createBatch',
       'updateBatch'
-    ])
-  }
+    ]),
+    ...mapActions('products', [
+      'getProducts'
+    ]),
+    updateProduct (value) {
+        this.$store.commit('batches/SET_PRODUCT', value)
+    }
+  },
+  created () {
+    this.getProducts()
+  },
 }
+
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>

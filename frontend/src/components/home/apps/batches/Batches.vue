@@ -99,36 +99,36 @@
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
-    import template from '@/utilities/template'
-    import BatchDetail from "./modals/BatchDetail";
-    import BatchForm from "./modals/BatchForm";
-    import BatchStatus from "./modals/BatchStatus";
+import { mapState, mapActions } from 'vuex'
+import template from '@/utilities/template'
+import BatchDetail from './modals/BatchDetail'
+import BatchForm from './modals/BatchForm'
+import BatchStatus from './modals/BatchStatus'
 
-    export default {
-      name: 'batches',
-      components: {
-        BatchDetail,
-        BatchForm,
-        BatchStatus
-      },
-      computed: {
-        ...mapState('batches', [
-          'batches',
-          'isLoading'
-        ])
-      },
-      methods: {
-        ...mapActions('batches', [
-          'getBatches',
-          'getBatch'
-        ])
-      },
-      created () {
-        this.getBatches()
-      },
-      updated () {
-        template.refresh()
-      }
-    }
+export default {
+  name: 'batches',
+  components: {
+    BatchDetail,
+    BatchForm,
+    BatchStatus
+  },
+  computed: {
+    ...mapState('batches', [
+      'batches',
+      'isLoading'
+    ])
+  },
+  methods: {
+    ...mapActions('batches', [
+      'getBatches',
+      'getBatch'
+    ])
+  },
+  created () {
+    this.getBatches()
+  },
+  updated () {
+    template.refresh()
+  }
+}
 </script>

@@ -132,8 +132,8 @@ export default {
     brand: {
       get () {
         return this.product.brand
-    },
-    set (value) {
+      },
+      set (value) {
         this.$store.commit('products/SET_BRAND', value)
       }
     }
