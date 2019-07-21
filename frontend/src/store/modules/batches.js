@@ -42,8 +42,7 @@ const mutations = {
     state.isLoading = newLoadStatus
   },
   SET_PRODUCT: (state, newProduct) => {
-    state.batch = { ...state.batch, product: newProduct }
-    console.log("me cago en todo")
+    state.batch = { ...state.batch, product: parseInt(newProduct) }
   },
   SET_QUANTITY: (state, newQuantity) => {
     state.batch = { ...state.batch, quantity: newQuantity }

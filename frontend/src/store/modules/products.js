@@ -11,8 +11,19 @@ const state = {
 
 const getters = {
   isNewProduct: state => state.product.id === undefined,
-  activeProducts: state => state.products.filter(product => product.is_active),
-  formData: state => state.formData
+  formData: state => state.formData,
+  activeProducts: state => {
+    var products = []
+    state.products.forEach(product => {
+      if (product.is_active) {
+        products.push({
+          id: product.id,
+          text: product.name
+        })
+      }
+    })
+    return products
+  }
 }
 
 const mutations = {

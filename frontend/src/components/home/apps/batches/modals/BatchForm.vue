@@ -3,9 +3,12 @@
     <form>
       <div class="row">
         <div class="form-group col-sm-6">
-          <select v-model="product"  class="form-control select2" name="product" id="product"  style="width: 100%; height: 100%;">
-            <option v-for="product in activeProducts":value="product.id" > {{ product.name }} </option>
-          </select>
+          <label>Product</label>
+          <select2
+            :options="activeProducts"
+            v-model="product"
+          >
+          </select2>
         </div>
         <input-component
           v-model="quantity"
@@ -39,8 +42,6 @@
 </template>
 
 <script>
-
-/* eslint-disable eol-last */
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -96,17 +97,10 @@ export default {
     ]),
     ...mapActions('products', [
       'getProducts'
-    ]),
-    updateProduct (value) {
-        this.$store.commit('batches/SET_PRODUCT', value)
-    }
+    ])
   },
   created () {
     this.getProducts()
-  },
+  }
 }
-
-$(document).ready(function() {
-    $('.select2').select2();
-});
 </script>
