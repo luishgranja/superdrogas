@@ -31,15 +31,16 @@
               <div v-if="isLoading" class="text-center">
                 <spinner-component />
               </div>
-              <table v-else id="table" class="table table-bordered table-striped">
+              <table
+                v-else
+                id="table"
+                class="table table-bordered table-striped"
+              >
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Description</th>
                     <th>Price</th>
                     <th>Category</th>
-                    <th>Sku</th>
-                    <th>Weight</th>
                     <th>Brand</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -48,11 +49,8 @@
                 <tbody>
                   <tr v-for="(product, index) in products" :key="index">
                     <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>
                     <td>{{ product.category }}</td>
-                    <td>{{ product.sku }}</td>
-                    <td>{{ product.weight }}</td>
                     <td>{{ product.brand }}</td>
                     <td class="text-center">
                       <p
@@ -86,7 +84,7 @@
                         data-toggle="modal"
                         data-target="#product-status"
                       >
-                        <i :class="`${ product.is_active ? 'fa fa-product-times' : 'fa fa-product-plus' }`"></i>
+                        <i :class="`${ product.is_active ? 'fa fa-times-circle' : 'fa fa-plus-circle' }`"></i>
                       </a>
                     </td>
                   </tr>

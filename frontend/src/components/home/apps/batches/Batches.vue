@@ -31,7 +31,11 @@
               <div v-if="isLoading" class="text-center">
                 <spinner-component />
               </div>
-              <table v-else id="table" class="table table-bordered table-striped">
+              <table
+                v-else
+                id="table"
+                class="table table-bordered table-striped"
+              >
                 <thead>
                   <tr>
                     <th>Product</th>
@@ -80,7 +84,7 @@
                         data-toggle="modal"
                         data-target="#batch-status"
                       >
-                        <i :class="`${ batch.is_active ? 'fa fa-user-times' : 'fa fa-user-plus' }`"></i>
+                        <i :class="`${ batch.is_active ? 'fa fa-times-circle' : 'fa fa-plus-circle' }`"></i>
                       </a>
                     </td>
                   </tr>
