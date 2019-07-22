@@ -17,7 +17,7 @@ from rest_auth.views import PasswordResetConfirmView
 
 # Apps viewsets
 from apps.users.viewsets import UserViewSet
-from apps.batch.viewsets import BatchViewSet
+from apps.batchs.viewsets import BatchViewSet
 from apps.products.viewsets import ProductViewSet
 
 
