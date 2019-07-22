@@ -19,4 +19,12 @@ class BatchSerialize(serializers.ModelSerializer):
     """
     class Meta:
         model = Batch
-        fields = ('id', 'product', 'quantity', 'manufacturing_date', 'expiration_date', 'is_active', 'NombreProducto')
+        fields = (
+            'id',
+            'product',
+            'quantity',
+            'manufacturing_date',
+            'expiration_date',
+            'is_active',
+            'product_name'
+        )

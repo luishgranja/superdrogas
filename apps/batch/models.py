@@ -27,5 +27,8 @@ class Batch(models.Model):
     def __str__(self):
         return self.product
 
-    def NombreProducto (self):
+    def product_name(self):
+        """
+        product_name return the name of the product
+        """
         return self.product.name

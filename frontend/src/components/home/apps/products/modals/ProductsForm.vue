@@ -141,7 +141,7 @@ export default {
       'createProduct',
       'updateProduct'
     ]),
-        handleFileUpload () {
+    handleFileUpload () {
       this.file = this.$refs.file.files[0]
       this.$store.commit('products/SET_IMAGE', this.file)
     }

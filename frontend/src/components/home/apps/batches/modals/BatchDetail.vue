@@ -5,7 +5,7 @@
         <ul>
           <li>
             <strong>Product:</strong>
-            {{ batch.NombreProducto }}
+            {{ batch.product_name }}
           </li>
           <li>
             <strong>Quantity:</strong>

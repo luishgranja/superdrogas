@@ -54,7 +54,6 @@
                     <td>{{ product.sku }}</td>
                     <td>{{ product.weight }}</td>
                     <td>{{ product.brand }}</td>
-
                     <td class="text-center">
                       <p
                         :class="`${ product.is_active ? 'bg-green' : 'bg-red' }`"
@@ -63,7 +62,6 @@
                         {{ product.is_active ? 'Active' : 'Inactive' }}
                       </p>
                     </td>
-
                     <td class="text-center">
                       <a
                         @click="getProduct(product.id)"

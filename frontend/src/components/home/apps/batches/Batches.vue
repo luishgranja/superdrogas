@@ -44,11 +44,10 @@
                 </thead>
                 <tbody>
                   <tr v-for="(batch, index) in batches" :key="index">
-                    <td>{{ batch.NombreProducto }} </td>
+                    <td>{{ batch.product_name }} </td>
                     <td>{{ batch.quantity }}</td>
                     <td>{{ batch.manufacturing_date }}</td>
                     <td>{{ batch.expiration_date }}</td>
-
                     <td class="text-center">
                       <p
                         :class="`${ batch.is_active ? 'bg-green' : 'bg-red' }`"

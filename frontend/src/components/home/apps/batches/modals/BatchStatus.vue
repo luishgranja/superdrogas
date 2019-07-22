@@ -9,7 +9,7 @@
           Are you sure to
           <strong>{{ batch.is_active ? 'deactivate' : 'activate' }}</strong>
           the batch with
-          <strong> {{ batch.quantity }} {{ batch.NombreProducto }} </strong>?
+          <strong> {{ batch.quantity }} - {{ batch.product_name }} </strong>?
         </p>
       </div>
     </div>
