@@ -27,8 +27,8 @@
               </li>
               <li class="user-footer">
                 <a class="btn btn-warning">
-                  <i class="fa fa-sign-out"></i>
                   Logout
+                  <i class="fa fa-sign-out"></i>
                 </a>
               </li>
             </ul>

@@ -7,6 +7,12 @@
     >
       Home
     </router-link>
+    <router-link
+      :to="{ name: 'login' }"
+      class="btn btn-primary"
+    >
+      Login
+    </router-link>
   </div>
 </template>
 
