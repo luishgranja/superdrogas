@@ -1,4 +1,4 @@
-<template>
+.0<template>
   <modal-component id="batch-detail" title="Batch detail">
     <div class="row">
       <div class="col-sm-12">

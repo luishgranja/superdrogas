@@ -80,7 +80,9 @@ const mutations = {
     state.product = { ...state.product, brand: newBrand }
   },
   BUILD_REQUEST (state) {
-    state.formData.append('image', state.product.image)
+    if (typeof state.product.image === 'object') {
+      state.formData.append('image', state.product.image)
+    }
     state.formData.append('name', state.product.name)
     state.formData.append('description', state.product.description)
     state.formData.append('price', state.product.price)

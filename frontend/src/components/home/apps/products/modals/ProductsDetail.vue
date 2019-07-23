@@ -4,8 +4,7 @@
       <div class="col-sm-12">
         <ul>
           <li>
-            <strong>Imagen:</strong>
-            <img :src="product.image" alt="Product image" width="250" height="250">
+            <img :src="product.image" alt="Product image" width="100%" height="100%">
           </li>
           <li>
             <strong>Name:</strong>
