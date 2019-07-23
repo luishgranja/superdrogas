@@ -19,21 +19,9 @@ from rest_auth.views import PasswordResetConfirmView
 
 # Apps viewsets
 from apps.users.viewsets import UserViewSet
-<<<<<<< HEAD
-from apps.batch.viewsets import BatchViewSet
-=======
-from apps.batchs.viewsets import BatchViewSet
->>>>>>> 72748a2adfb3a306c9be0a943491a32edd55d104
+from apps.batches.viewsets import BatchViewSet
 from apps.products.viewsets import ProductViewSet
 
-
-<<<<<<< HEAD
-router.register(r'users', UserViewSet)
-router.register(r'batches', BatchViewSet)
-router.register(r'products', ProductViewSet)
-
-urlpatterns = router.urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-=======
 ROUTER = routers.DefaultRouter()
 
 # CRUD apps
@@ -49,4 +37,4 @@ urlpatterns = ROUTER.urls + [
     ),
     url(r'^rest-auth/', include('rest_auth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> 72748a2adfb3a306c9be0a943491a32edd55d104
+

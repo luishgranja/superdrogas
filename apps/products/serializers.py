@@ -19,17 +19,5 @@ class ProductSerialize(serializers.ModelSerializer):
     """
     class Meta:
         model = Product
-<<<<<<< HEAD
-        fields = ('name',
-                  'description',
-                  'price',
-                  'category',
-                  'image',
-                  'sku',
-                  'unit',
-                  'weight',
-                  'is_active',
-                  'brand')
-=======
         fields = '__all__'
->>>>>>> 72748a2adfb3a306c9be0a943491a32edd55d104
+
