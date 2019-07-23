@@ -1,77 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Vuestic Admin</title>
+<html lang="en">
 
-    <% if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_YANDEX_METRICS_KEY) { %>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-      /* eslint-disable */
-      (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-          try {
-            w['yaCounter' + '<%= process.env.VUE_APP_YANDEX_METRICS_KEY %>'] = new Ya.Metrika2({
-              id: '<%= process.env.VUE_APP_YANDEX_METRICS_KEY %>',
-              clickmap:true,
-              trackLinks:true,
-              accurateTrackBounce:true,
-              webvisor:true,
-              trackHash:true
-            });
-          } catch(e) { }
-        });
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/bower_components/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/dist/css/bootstrap-material-design.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/dist/css/ripples.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/dist/css/MaterialAdminLTE.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>static/dist/css/personal.css">
+  <link rel="shortcut icon" href="<%= BASE_URL %>static/images/favicon.png">
+  <title>Super Drogas</title>
+</head>
 
-        var n = d.getElementsByTagName("script")[0],
-          s = d.createElement("script"),
-          f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/tag.js";
+<body class="hold-transition skin-blue sidebar-mini">
+  <div id="app"></div>
+  <script src="<%= BASE_URL %>static/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="<%= BASE_URL %>static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="<%= BASE_URL %>static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="<%= BASE_URL %>static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="<%= BASE_URL %>static/bower_components/chart.js/Chart.js"></script>
+  <script src="<%= BASE_URL %>static/bower_components/select2/dist/js/select2.full.min.js"></script>
+  <script src="<%= BASE_URL %>static/dist/js/material.min.js"></script>
+  <script src="<%= BASE_URL %>static/dist/js/ripples.min.js"></script>
+  <script src="<%= BASE_URL %>static/dist/js/adminlte.min.js"></script>
+  <script>$.material.init()</script>
+</body>
 
-        if (w.opera == "[object Opera]") {
-          d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-      })(document, window, "yandex_metrika_callbacks2");
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/<%= process.env.VUE_APP_YANDEX_METRICS_KEY %>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <% } %>
-
-  </head>
-  <body>
-
-  <% if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_DRIFT_KEY) { %>
-  <script>
-    /* eslint-disable */
-    !function() {
-      var t;
-      if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
-        t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
-        t.factory = function(e) {
-          return function() {
-            var n;
-            return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
-          };
-        }, t.methods.forEach(function(e) {
-        t[e] = t.factory(e);
-      }), t.load = function(t) {
-        var e, n, o, i;
-        e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
-          o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
-          n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
-      });
-    }();
-    drift.config({
-      welcomeMessageDelay: 30000
-    });
-    drift.SNIPPET_VERSION = '0.3.1';
-    drift.load('<%= process.env.VUE_APP_DRIFT_KEY %>');
-  </script>
-  <% } %>
-
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
 </html>
+
+
+

@@ -1,6 +1,11 @@
+"""
+Users viewsets
+
+Viewsets and views of the users app
+"""
+
 # Django Rest Framework
 from rest_framework import viewsets
-from rest_framework.response import Response
 
 # Users models
 from .models import UserModel
@@ -13,14 +18,14 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     User viewset
 
-    Define all views to user model
+    To define the CRUD views of the user model
     """
     queryset = UserModel.objects.all()
     serializer_class = UserSerializer
 
-    def destroy(self, request, *args, **kwargs):
-        user = self.get_object()
-        user.is_active = not user.is_active
-        user.save()
-        data = {'message': 'Deleted successfully.'}
-        return Response(data)
+    def perform_destroy(self, instance):
+        """
+        perform_destroy is used to performance a logic delete
+        """
+        instance.is_active = not instance.is_active
+        instance.save()
