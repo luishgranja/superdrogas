@@ -14,7 +14,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <img src="https://i.imgur.com/VvO9nVO.png" class="user-image" alt="User image" />
               <span class="hidden-xs">
-                <!-- Name -->
+                Username
               </span>
               <div class="ripple-container"></div>
             </a>
@@ -22,7 +22,7 @@
               <li class="user-header">
                 <img src="https://i.imgur.com/VvO9nVO.png" class="img-circle" alt="User image" />
                 <p>
-                  <!-- Name -->
+                  Username
                 </p>
               </li>
               <li class="user-footer">
