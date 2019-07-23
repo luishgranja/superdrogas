@@ -12,7 +12,6 @@
       class="form-control"
       :required="required"
     >
-    <slot></slot>
     <span v-for="(error, index) in erros" :key="index" class="help-block">
       {{ error }}
     </span>
