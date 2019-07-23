@@ -4,17 +4,9 @@ import router from '@/router'
 const USER = 'user'
 const TOKEN = 'token'
 
-const getUser = () => {
-  if (!localStorage[USER]) {
-    return { username: '', password: '' }
-  } else {
-    return JSON.parse(localStorage[USER])
-  }
-}
-
 const state = {
   token: localStorage.getItem(TOKEN),
-  user: getUser(),
+  user: {},
   errors: {}
 }
 
@@ -24,7 +16,9 @@ const getters = {
 
 const mutations = {
   SET_TOKEN: (state, newToken) => {
-    state.token = newToken || null
+    var token = newToken || null
+    state.token = token
+    localStorage.setItem(TOKEN, token)
   },
   SET_USER: (state, newUser) => {
     state.user = newUser || {}
@@ -45,6 +39,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.post('rest-auth/login/', state.user)
     if (!response.error) {
+      console.log(response.data.key)
       commit('SET_TOKEN', response.data.key)
       router.push({ name: 'home' })
     } else {

@@ -13,20 +13,20 @@
           <li class="dropdown user user-menu">
             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <img src="https://i.imgur.com/VvO9nVO.png" class="user-image" alt="User image" />
-              <span class="hidden-xs">Iván Toro</span>
+              <span class="hidden-xs">
+                <!-- Name -->
+              </span>
               <div class="ripple-container"></div>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <img src="https://i.imgur.com/VvO9nVO.png" class="img-circle" alt="User image" />
                 <p>
-                  Iván Toro - Administrator
-                  <small>ivanmtoroc</small>
-                  <small>ivanmtoroc@gmail.com</small>
+                  <!-- Name -->
                 </p>
               </li>
               <li class="user-footer">
-                <a class="btn btn-warning">
+                <a @click="logout()" class="btn btn-warning">
                   Logout
                   <i class="fa fa-sign-out"></i>
                 </a>
@@ -40,7 +40,14 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'header-component'
+  name: 'header-component',
+  methods: {
+    ...mapActions('authentication', [
+      'logout'
+    ])
+  }
 }
 </script>
