@@ -1,4 +1,4 @@
-# Super Drogas
+# Super Drogas 💊🏥
 
 SaaS web application for pharmacy administration.
 
