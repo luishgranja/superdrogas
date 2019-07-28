@@ -29,6 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'username',
+            'identification_number',
             'first_name',
             'last_name',
             'email',
@@ -38,10 +39,6 @@ class UserSerializer(serializers.ModelSerializer):
             'password',
             'password_confirmation',
         )
-        extra_kwargs = {
-            'password': {'write_only': True},
-            'password_confirmation': {'write_only': True}
-        }
 
     def validate_password(self, value):
         """
@@ -54,6 +51,13 @@ class UserSerializer(serializers.ModelSerializer):
             raise ValidationError("Passwords do not match.")
         password_validation.validate_password(value)
         return value
+
+    def create(self, validated_data):
+        """
+        create save new user in database
+        """
+        user = User.objects.create_user(**validated_data)
+        return user
 
     def to_representation(self, instance):
         """

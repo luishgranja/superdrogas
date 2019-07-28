@@ -6,3 +6,4 @@ on an API endpoint
 """
 
 from .user_viewset import UserViewSet
+from .login_view import LoginView

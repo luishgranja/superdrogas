@@ -15,10 +15,12 @@ class User(AbstractUser):
 
     Extend from Django's Abstract User
     """
+    identification_number = models.CharField(max_length=10, unique=True)
     phone = models.CharField(max_length=10)
     address = models.CharField(max_length=50)
 
     def __str__(self):
         return self.username
 
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['firt_name', 'last_name', 'email', 'phone']

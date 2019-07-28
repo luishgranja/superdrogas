@@ -12,7 +12,7 @@ from .viewsets import (
     BatchViewSet,
     BrandViewSet,
     CategoryViewSet,
-    ProductViewSet,
+    ProductViewSet
 )
 
 
