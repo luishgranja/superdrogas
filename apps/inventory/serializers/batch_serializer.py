@@ -1,30 +1,30 @@
 """
-Batches serializers
+Batch serializer
 
-Serializers of the batches app
+Serializer to batch model
 """
 
 # Django Rest Framework
 from rest_framework import serializers
 
-# Batches models
-from .models import Batch
+# Inventory models
+from apps.inventory.models import Batch
 
 
-class BatchSerialize(serializers.ModelSerializer):
+class BatchSerializer(serializers.ModelSerializer):
     """
-    Batches serializer
+    Batch serializer
 
-    For execute the CRUD actions in the batch model
+    Execute CRUD actions in the batch model
     """
     class Meta:
         model = Batch
         fields = (
             'id',
             'product',
+            'product_name',
             'quantity',
             'manufacturing_date',
             'expiration_date',
             'is_active',
-            'product_name'
         )

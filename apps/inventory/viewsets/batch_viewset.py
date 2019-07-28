@@ -1,27 +1,27 @@
 """
-Batches viewsets
+Batch viewset
 
-Viewsets and views of the batches app
+Viewset to batch serializer
 """
 
 # Django Rest Framework
 from rest_framework import viewsets
 
-# Batches models
-from .models import Batch
+# Inventory models
+from apps.inventory.models import Batch
 
-# Batches serializers
-from .serializers import BatchSerialize
+# Inventory serializers
+from apps.inventory.serializers import BatchSerializer
 
 
 class BatchViewSet(viewsets.ModelViewSet):
     """
     Batch viewset
 
-    To define the CRUD views of the batch model
+    CRUD views of the batch serializer
     """
     queryset = Batch.objects.all()
-    serializer_class = BatchSerialize
+    serializer_class = BatchSerializer
 
     def perform_destroy(self, instance):
         """

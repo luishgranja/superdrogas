@@ -1,27 +1,27 @@
 """
-Products viewsets
+Product viewset
 
-Viewsets and views of the products app
+Viewset to product serializer
 """
 
 # Django Rest Framework
 from rest_framework import viewsets
 
-# Products models
-from .models import Product
+# Inventory models
+from apps.inventory.models import Product
 
-# Products serializers
-from .serializers import ProductSerialize
+# Inventory serializers
+from apps.inventory.serializers import ProductSerializer
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     """
     Product viewset
 
-    To define the CRUD views of the product model
+    CRUD views of the product serializer
     """
     queryset = Product.objects.all()
-    serializer_class = ProductSerialize
+    serializer_class = ProductSerializer
 
     def perform_destroy(self, instance):
         """
