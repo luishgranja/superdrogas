@@ -1,26 +1,26 @@
 """
-Users viewsets
+User viewset
 
-Viewsets and views of the users app
+Viewset to user serializer
 """
 
 # Django Rest Framework
 from rest_framework import viewsets
 
-# Users models
-from .models import UserModel
+# Accounts models
+from apps.accounts.models import User
 
-# Users serializers
-from .serializers import UserSerializer
+# Accounts serializers
+from apps.accounts.serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
     """
     User viewset
 
-    To define the CRUD views of the user model
+    CRUD views of the user serializer
     """
-    queryset = UserModel.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
     def perform_destroy(self, instance):

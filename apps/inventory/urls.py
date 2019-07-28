@@ -16,8 +16,6 @@ from .viewsets import (
 )
 
 
-app_name = 'inventory'
-
 ROUTER = routers.DefaultRouter()
 
 ROUTER.register(r'batches', BatchViewSet)

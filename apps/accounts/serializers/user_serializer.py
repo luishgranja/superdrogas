@@ -1,7 +1,7 @@
 """
-Users serializers
+User serializer
 
-Serializers of the users app
+Serializer to user model
 """
 
 # Django
@@ -11,32 +11,33 @@ from django.core.exceptions import ValidationError
 # Django Rest Framework
 from rest_framework import serializers
 
-# Users models
-from .models import UserModel
+# Accounts models
+from apps.accounts.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     """
     User serializer
 
-    For execute the CRUD actions in the user model
+    Execute CRUD actions in the user model
     """
     password = serializers.CharField()
     password_confirmation = serializers.CharField(source='password')
 
     class Meta:
-        model = UserModel
+        model = User
         fields = (
             'id',
             'username',
             'first_name',
             'last_name',
             'email',
+            'phone',
+            'address',
             'is_active',
             'password',
             'password_confirmation',
         )
-
         extra_kwargs = {
             'password': {'write_only': True},
             'password_confirmation': {'write_only': True}
@@ -54,15 +55,9 @@ class UserSerializer(serializers.ModelSerializer):
         password_validation.validate_password(value)
         return value
 
-    def create(self, validated_data):
-        """
-        create creates a UserModel with validated data
-        """
-        return UserModel.objects.create_user(**validated_data)
-
     def to_representation(self, instance):
         """
-        to_representation define the data for the responses
+        to_representation define the data for the serializer response
         """
         data = super(UserSerializer, self).to_representation(instance)
         data.pop('password', None)
