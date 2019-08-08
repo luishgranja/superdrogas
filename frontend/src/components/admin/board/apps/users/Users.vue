@@ -31,11 +31,7 @@
               <div v-if="isLoading" class="text-center">
                 <spinner-component />
               </div>
-              <table
-                v-else
-                id="table"
-                class="table table-bordered table-striped"
-              >
+              <table v-else id="table" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Name</th>

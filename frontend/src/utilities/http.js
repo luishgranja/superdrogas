@@ -7,7 +7,7 @@ const http = axios.create({
 const CONNECTION_ERROR = {
   error: true,
   status: 400,
-  statusText: 'Connection error 😿'
+  statusText: 'Connection error. 😿'
 }
 
 export default {

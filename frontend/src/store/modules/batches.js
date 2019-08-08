@@ -58,7 +58,7 @@ const mutations = {
 const actions = {
   getBatches: async ({ commit }) => {
     commit('SET_LOAD_STATUS', true)
-    const response = await http.get('batches/')
+    const response = await http.get('inventory/batches/')
     if (!response.error) {
       commit('SET_BATCHES', response.data)
     }
@@ -71,7 +71,7 @@ const actions = {
   createBatch: async ({ state, commit }, event) => {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
-    const response = await http.post('batches/', state.batch)
+    const response = await http.post('inventory/batches/', state.batch)
     if (!response.error) {
       commit('ADD_BATCH', response.data)
       template.hideModal('#batch-form')
@@ -83,7 +83,7 @@ const actions = {
   updateBatch: async ({ state, commit }, event) => {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
-    const response = await http.patch(`batches/${state.batch.id}/`, state.batch)
+    const response = await http.patch(`inventory/batches/${state.batch.id}/`, state.batch)
     if (!response.error) {
       commit('SET_BATCH', response.data)
       template.hideModal('#batch-form')
@@ -92,7 +92,7 @@ const actions = {
     }
   },
   deleteBatch: async ({ state, commit }) => {
-    const response = await http.delete(`batches/${state.batch.id}/`)
+    const response = await http.delete(`inventory/batches/${state.batch.id}/`)
     if (!response.error) {
       commit('SWITCH_BATCH_STATUS')
       template.hideModal('#batch-status')

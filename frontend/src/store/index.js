@@ -1,9 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+// Application state
+import authentication from './modules/authentication'
+
+// Accounts module
 import users from './modules/users'
+
+// Inventory module
 import batches from './modules/batches'
 import products from './modules/products'
-import authentication from './modules/authentication'
 
 Vue.use(Vuex)
 

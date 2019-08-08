@@ -64,7 +64,7 @@ const mutations = {
 const actions = {
   getUsers: async ({ commit }) => {
     commit('SET_LOAD_STATUS', true)
-    const response = await http.get('users/')
+    const response = await http.get('accounts/users/')
     if (!response.error) {
       commit('SET_USERS', response.data)
     }
@@ -77,7 +77,7 @@ const actions = {
   createUser: async ({ state, commit }, event) => {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
-    const response = await http.post('users/', state.user)
+    const response = await http.post('accounts/users/', state.user)
     if (!response.error) {
       commit('ADD_USER', response.data)
       template.hideModal('#user-form')
@@ -89,7 +89,7 @@ const actions = {
   updateUser: async ({ state, commit }, event) => {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
-    const response = await http.patch(`users/${state.user.id}/`, state.user)
+    const response = await http.patch(`accounts/users/${state.user.id}/`, state.user)
     if (!response.error) {
       commit('SET_USER', response.data)
       template.hideModal('#user-form')
@@ -98,7 +98,7 @@ const actions = {
     }
   },
   deleteUser: async ({ state, commit }) => {
-    const response = await http.delete(`users/${state.user.id}/`)
+    const response = await http.delete(`accounts/users/${state.user.id}/`)
     if (!response.error) {
       commit('SWITCH_USER_STATUS')
       template.hideModal('#user-status')

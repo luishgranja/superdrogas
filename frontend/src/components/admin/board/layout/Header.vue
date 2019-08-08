@@ -11,25 +11,26 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
-            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <img src="https://i.imgur.com/VvO9nVO.png" class="user-image" alt="User image" />
-              <span class="hidden-xs">
-                Username
-              </span>
-              <div class="ripple-container"></div>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="@/static/images/user.png" class="user-image" alt="User">
+              <span class="hidden-xs">Iván Toro</span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <img src="https://i.imgur.com/VvO9nVO.png" class="img-circle" alt="User image" />
+                <img src="@/static/images/user.png" class="img-circle" alt="User">
                 <p>
-                  Username
+                  Iván Toro
+                  <small>ivanmtoroc</small>
+                  <small>ivanmtoroc@gmail.com</small>
                 </p>
               </li>
               <li class="user-footer">
-                <a @click="logout()" class="btn btn-warning">
-                  Logout
-                  <i class="fa fa-sign-out"></i>
-                </a>
+                <div>
+                  <a class="btn btn-default btn-block btn-flat">
+                    Logout
+                    <i class="fa fa-sign-out"></i>
+                  </a>
+                </div>
               </li>
             </ul>
           </li>
@@ -40,14 +41,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
-  name: 'header-component',
-  methods: {
-    ...mapActions('authentication', [
-      'logout'
-    ])
-  }
+  name: 'header-component'
 }
 </script>

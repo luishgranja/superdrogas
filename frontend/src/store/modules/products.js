@@ -96,7 +96,7 @@ const mutations = {
 const actions = {
   getProducts: async ({ commit }) => {
     commit('SET_LOAD_STATUS', true)
-    const response = await http.get('products/')
+    const response = await http.get('inventory/products/')
     if (!response.error) {
       commit('SET_PRODUCTS', response.data)
     }
@@ -110,7 +110,7 @@ const actions = {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
     commit('BUILD_REQUEST')
-    const response = await http.post('products/', state.formData)
+    const response = await http.post('inventory/products/', state.formData)
     if (!response.error) {
       commit('ADD_PRODUCT', response.data)
       template.hideModal('#product-form')
@@ -123,7 +123,7 @@ const actions = {
     if (event) event.preventDefault()
     commit('SET_ERRORS')
     commit('BUILD_REQUEST')
-    const response = await http.patch(`products/${state.product.id}/`, state.formData)
+    const response = await http.patch(`inventory/products/${state.product.id}/`, state.formData)
     if (!response.error) {
       commit('SET_PRODUCT', response.data)
       template.hideModal('#product-form')
@@ -132,7 +132,7 @@ const actions = {
     }
   },
   deleteProduct: async ({ state, commit }) => {
-    const response = await http.delete(`products/${state.product.id}/`)
+    const response = await http.delete(`inventory/products/${state.product.id}/`)
     if (!response.error) {
       commit('SWITCH_PRODUCT_STATUS')
       template.hideModal('#product-status')
