@@ -3,7 +3,7 @@ __pycache__/
 **/migrations/*
 !**/migrations/__init__.py
 media/
-superdrogas/settings.py
+**/secrets.json
 
 # frontend
 node_modules/
