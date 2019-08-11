@@ -1,7 +1,8 @@
 import axios from 'axios'
+import host from './host'
 
-const http = axios.create({
-  baseURL: 'http://localhost:8000/'
+var http = axios.create({
+  baseURL: `http://${host.isAdmin() ? '' : host.getSubdomain() + '.'}localhost:8000/`
 })
 
 const CONNECTION_ERROR = {
@@ -10,49 +11,41 @@ const CONNECTION_ERROR = {
   statusText: 'Connection error. 😿'
 }
 
+const errorHandler = (error) => {
+  if (error.response) {
+    error.response.error = true
+    return error.response
+  }
+  return CONNECTION_ERROR
+}
+
 export default {
-  get: async function (url) {
+  get: async (url) => {
     try {
       return await http.get(url)
     } catch (error) {
-      if (error.response) {
-        error.response.error = true
-        return error.response
-      }
-      return CONNECTION_ERROR
+      return errorHandler(error)
     }
   },
-  post: async function (url, data) {
+  post: async (url, data) => {
     try {
       return await http.post(url, data)
     } catch (error) {
-      if (error.response) {
-        error.response.error = true
-        return error.response
-      }
-      return CONNECTION_ERROR
+      return errorHandler(error)
     }
   },
-  delete: async function (url) {
+  delete: async (url) => {
     try {
       return await http.delete(url)
     } catch (error) {
-      if (error.response) {
-        error.response.error = true
-        return error.response
-      }
-      return CONNECTION_ERROR
+      return errorHandler(error)
     }
   },
-  patch: async function (url, data) {
+  patch: async (url, data) => {
     try {
       return await http.patch(url, data)
     } catch (error) {
-      if (error.response) {
-        error.response.error = true
-        return error.response
-      }
-      return CONNECTION_ERROR
+      return errorHandler(error)
     }
   }
 }

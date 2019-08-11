@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import admin from './modules/admin'
-import ecommerce from './modules/ecommerce'
+import landing from './modules/landing'
+import Error404 from '@/components/errors/Error404'
 
 Vue.use(Router)
 
@@ -10,7 +11,11 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     { ...admin },
-    { ...ecommerce }
+    { ...landing },
+    {
+      path: '*',
+      component: Error404
+    }
   ]
 })
 

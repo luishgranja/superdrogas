@@ -83,6 +83,8 @@ TENANT_MODEL = 'pharmacies.Pharmacy'
 
 TENANT_DOMAIN_MODEL = 'pharmacies.Domain'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -145,6 +147,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -160,8 +163,6 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'apps.accounts.serializers.UserSerializer'
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 OLD_PASSWORD_FIELD_ENABLED = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -171,4 +172,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 SITE_ID = 1

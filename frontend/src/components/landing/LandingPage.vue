@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <h1>ECommerce</h1>
+    <h1>Landing Page</h1>
     <a
       :href="$router.resolve({ name: 'home' }).href"
       class="btn btn-lg btn-success"

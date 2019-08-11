@@ -2,6 +2,6 @@ import ECommerce from '@/components/ecommerce/ECommerce'
 
 export default {
   path: '',
-  name: 'ecommerce',
+  name: 'landing',
   component: ECommerce
 }

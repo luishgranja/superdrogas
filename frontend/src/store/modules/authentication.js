@@ -1,5 +1,5 @@
 import http from '@/utilities/http'
-import router from '@/router'
+// import router from '@/router'
 
 const USER = 'user'
 const TOKEN = 'token'
@@ -41,7 +41,7 @@ const actions = {
     if (!response.error) {
       console.log(response.data.key)
       commit('SET_TOKEN', response.data.key)
-      router.push({ name: 'home' })
+      // router.push({ name: 'home' })
     } else {
       commit('SET_ERRORS', response.data)
     }
@@ -51,7 +51,7 @@ const actions = {
     commit('SET_TOKEN')
     localStorage.removeItem(USER)
     localStorage.removeItem(TOKEN)
-    router.push({ name: 'login' })
+    // router.push({ name: 'login' })
   }
 }
 
