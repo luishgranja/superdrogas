@@ -10,6 +10,7 @@ from django.db import models
 # Accounts models
 from apps.accounts.models.user_model import User
 
+
 class SaleInvoice(models.Model):
     """
     SaleInvoice model
@@ -20,7 +21,7 @@ class SaleInvoice(models.Model):
     sale_type = models.CharField(max_length=50)
     date = models.DateField()
     total_amount = models.IntegerField()
-    #is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.user_id.username} {self.date}'

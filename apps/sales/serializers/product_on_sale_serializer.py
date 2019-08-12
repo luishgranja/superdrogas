@@ -24,5 +24,5 @@ class ProductOnSaleInvoiceSerializer(serializers.ModelSerializer):
             'product_id',
             'quantity',
             'total_price',
-            #'is_active',
+            'is_active',
         )
