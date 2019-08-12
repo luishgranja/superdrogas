@@ -53,6 +53,15 @@ const mutations = {
   SET_LAST_NAME: (state, newLastName) => {
     state.user = { ...state.user, last_name: newLastName }
   },
+  SET_PHONE: (state, newPhone) => {
+    state.user = { ...state.user, phone: newPhone }
+  },
+  SET_ADDRESS: (state, newAddress) => {
+    state.user = { ...state.user, address: newAddress }
+  },
+  SET_IDENTIFICATION_NUMBER: (state, newIdentificationNumber) => {
+    state.user = { ...state.user, identification_number: newIdentificationNumber }
+  },
   SET_PASSWORD: (state, newPassword) => {
     state.user = { ...state.user, password: newPassword }
   },

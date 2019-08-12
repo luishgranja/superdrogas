@@ -3,9 +3,7 @@ export default {
     // eslint-disable-next-line
     $(function () {
       // eslint-disable-next-line
-      $('#table').DataTable({
-        'retrieve': true
-      })
+      $('#table').DataTable({ 'retrieve': true })
     })
   },
   hideModal: (modalName) => {

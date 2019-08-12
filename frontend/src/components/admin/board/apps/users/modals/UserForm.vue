@@ -3,45 +3,63 @@
     <form>
       <div class="row">
         <input-component
+          class="col-md-6"
           v-model="username"
-          id="username"
-          label="Username"
-          :erros="errors.username"
+          placeholder="Username"
+          :inputErrors="errors.username"
         />
         <input-component
+          class="col-md-6"
+          v-model="identification_number"
+          placeholder="Identification number"
+          :inputErrors="errors.identification_number"
+        />
+        <input-component
+          class="col-md-12"
           v-model="email"
-          id="email"
-          label="Email"
+          placeholder="Email"
           type="email"
-          :erros="errors.email"
+          :inputErrors="errors.email"
         />
         <input-component
+          class="col-md-6"
           v-model="firstName"
-          id="firstName"
-          label="First name"
-          :erros="errors.first_name"
+          placeholder="First name"
+          :inputErrors="errors.first_name"
         />
         <input-component
+          class="col-md-6"
           v-model="lastName"
-          id="lastName"
-          label="Last name"
-          :erros="errors.last_name"
+          placeholder="Last name"
+          :inputErrors="errors.last_name"
         />
         <input-component
+          class="col-md-6"
+          v-model="phone"
+          placeholder="Phone"
+          :inputErrors="errors.phone"
+        />
+        <input-component
+          class="col-md-6"
+          v-model="address"
+          placeholder="Address"
+          :inputErrors="errors.address"
+        />
+        <input-component
+          class="col-md-6"
           v-if="isNewUser"
           v-model="password"
-          id="password"
-          label="Password"
+          placeholder="Password"
           type="password"
-          :erros="errors.password"
+          :inputErrors="errors.password"
         />
         <input-component
+          class="col-md-6"
           v-if="isNewUser"
           v-model="passwordConfirmation"
-          id="passwordConfirmation"
-          label="Password confirmation"
+          placeholder="Password confirmation"
           type="password"
-          :erros="errors.password_confirmation"
+          :inputErrors="errors.password_confirmation"
         />
       </div>
       <div class="pull-right">
@@ -96,6 +114,30 @@ export default {
       },
       set (value) {
         this.$store.commit('users/SET_EMAIL', value)
+      }
+    },
+    phone: {
+      get () {
+        return this.user.phone
+      },
+      set (value) {
+        this.$store.commit('users/SET_PHONE', value)
+      }
+    },
+    address: {
+      get () {
+        return this.user.address
+      },
+      set (value) {
+        this.$store.commit('users/SET_ADDRESS', value)
+      }
+    },
+    identification_number: {
+      get () {
+        return this.user.identification_number
+      },
+      set (value) {
+        this.$store.commit('users/SET_IDENTIFICATION_NUMBER', value)
       }
     },
     password: {
