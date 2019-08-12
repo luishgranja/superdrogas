@@ -22,7 +22,7 @@ def get_secret(setting, secrets=SECRETS):
     try:
         return secrets[setting]
     except KeyError:
-        error_msg = f'Set the {setting} environment variable'
+        error_msg = f"Set the {setting} environment variable"
         raise ImproperlyConfigured(error_msg)
 
 
@@ -75,6 +75,7 @@ TENANT_APPS = (
     # Project apps
     'apps.accounts',
     'apps.inventory',
+    'apps.sales',
 )
 
 INSTALLED_APPS = list(set(SHARED_APPS + TENANT_APPS))
