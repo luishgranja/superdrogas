@@ -32,7 +32,7 @@
             </li>
           </ul>
         </li>
-        <li class="treeview">
+        <li v-if="!isAdmin" class="treeview">
           <a>
             <i class="fa fa-cubes"></i>
             <span>Inventory</span>
@@ -73,7 +73,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'aside-component'
+  name: 'aside-component',
+  computed: {
+    ...mapState('app', [
+      'isAdmin'
+    ])
+  }
 }
 </script>

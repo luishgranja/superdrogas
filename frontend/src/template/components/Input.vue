@@ -1,18 +1,15 @@
 <template>
-  <div :class="`${ erros ? 'has-error' : '' }`" class="form-group col-sm-6">
-    <label :for="id">
-      {{ label }}
-    </label>
+  <div :class="`${ inputErrors ? 'has-error is-focused' : '' }`" class="form-group">
     <input
-      :id="id"
       :value="value"
-      @input="updateValue"
-      :placeholder="label"
+      @input="$emit('input', $event.target.value)"
+      :placeholder="placeholder"
       :type="type"
       class="form-control"
       :required="required"
     >
-    <span v-for="(error, index) in erros" :key="index" class="help-block">
+    <slot></slot>
+    <span v-for="(error, index) in inputErrors" :key="index" class="help-block">
       {{ error }}
     </span>
   </div>
@@ -22,11 +19,7 @@
 export default {
   name: 'input-component',
   props: {
-    id: {
-      type: String,
-      required: true
-    },
-    label: {
+    placeholder: {
       type: String,
       required: true
     },
@@ -42,14 +35,9 @@ export default {
       type: Boolean,
       default: true
     },
-    erros: {
+    inputErrors: {
       type: Array,
       default: () => null
-    }
-  },
-  methods: {
-    updateValue (event) {
-      this.$emit('input', event.target.value)
     }
   }
 }

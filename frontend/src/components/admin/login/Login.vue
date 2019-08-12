@@ -5,16 +5,23 @@
         <h1 class="text-center">
           Login
         </h1>
-        <form>
-          <div class="form-group has-feedback is-empty">
-            <input type="username" class="form-control" placeholder="Username" required>
+        <form @submit.prevent="formHandler()">
+          <input-component
+            v-model="user.username"
+            placeholder="Username"
+            :inputErrors="errors.username"
+          >
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback is-empty">
-            <input type="password" class="form-control" placeholder="Password" required>
+          </input-component>
+          <input-component
+            v-model="user.password"
+            placeholder="Password"
+            type="password"
+            :inputErrors="errors.password"
+          >
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="row">
+          </input-component>
+          <div class="row footer">
             <router-link :to="{}" class="col-md-6 fp">
               I forgot my password
             </router-link>
@@ -32,8 +39,27 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'login'
+  name: 'login',
+  data () {
+    return {
+      user: {
+        username: '',
+        password: ''
+      },
+      errors: {}
+    }
+  },
+  methods: {
+    ...mapActions('authentication', [
+      'login'
+    ]),
+    async formHandler () {
+      this.errors = await this.login(this.user)
+    }
+  }
 }
 </script>
 
@@ -46,5 +72,8 @@ export default {
 }
 .fp {
   margin: 10px 0px;
+}
+.footer {
+  padding-top: 10px;
 }
 </style>

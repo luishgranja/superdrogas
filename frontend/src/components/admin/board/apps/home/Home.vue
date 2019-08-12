@@ -38,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-6">
+      <div v-if="!isAdmin" class="col-md-4 col-sm-6">
         <div class="box box-widget widget-user">
           <div class="widget-user-header bg-yellow-active module-header">
             <h2 class="widget-user-username text-center">
@@ -99,8 +99,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'home'
+  name: 'home',
+  computed: {
+    ...mapState('app', [
+      'isAdmin'
+    ])
+  }
 }
 </script>
 
