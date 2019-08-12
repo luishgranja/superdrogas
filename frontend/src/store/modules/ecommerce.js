@@ -3,7 +3,7 @@ import router from '@/router'
 
 const state = {
   added: [],
-  all: [
+  products: [
     {
       id: 'cc919e21-ae5b-5e1f-d023-c40ee669520c',
       name: 'COBOL 101 vintage',
@@ -28,11 +28,12 @@ const state = {
 
 // getters
 const getters = {
-  allProducts: state => state.all, // would need action/mutation if data fetched async
-  getNumberOfProducts: state => (state.all) ? state.all.length : 0,
+  allProducts: state => state.products, // would need action/mutation if data fetched async
+  getNumberOfProducts: state => (state.products) ? state.products.length : 0,
+  itemsOnCart: state => (state.added) ? state.added.length : 0,
   cartProducts: state => {
     return state.added.map(({ id, quantity }) => {
-      const product = state.all.find(p => p.id === id)
+      const product = state.products.find(p => p.id === id)
       return {
         name: product.name,
         price: product.price,
@@ -59,7 +60,7 @@ const mutations = {
 
 // actions
 const actions = {
-  addToCart: async ({ commit }, product) => {
+  addToCart: ({ commit }, product) => {
     commit('ADD_TO_CART', {
       id: product.id
     })
@@ -67,10 +68,9 @@ const actions = {
 }
 
 export default {
-    namespaced: true,
-    state,
-    getters,
-    mutations,
-    actions
-  }
-  
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions
+}

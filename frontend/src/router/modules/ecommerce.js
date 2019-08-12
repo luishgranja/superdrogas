@@ -12,7 +12,7 @@ export default {
       component: Product
     },
     {
-      path: '/cart',
+      path: 'cart',
       name: 'cart',
       component: Cart
     }

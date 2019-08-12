@@ -1,11 +1,11 @@
 <template>
   <div class="cart">
       <h1 class="title">Your Cart</h1>
-      <p v-show="!products.length">
+      <p v-show="!itemsOnCart">
           <i>Your cart is empty!</i>
           <router-link to="/">Go shopping</router-link>
       </p>
-      <table class="table is-striped" v-show="products.length">
+      <table class="table is-striped" v-show="itemsOnCart">
           <thead>
               <tr>
                   <td>Name</td>
@@ -14,7 +14,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr v-for="p in products">
+              <tr v-for="(p, index) in cartProducts" :key="index">
                   <td>{{ p.name }}</td>
                   <td>${{ p.price }}</td>
                   <td>{{ p.quantity }}</td>
@@ -27,7 +27,7 @@
           </tbody>
 
       </table>
-      <p><button v-show="products.length" class='button is-primary' @click='checkout'>Checkout</button></p>
+      <p><button v-show="itemsOnCart" class='button is-primary' @click='checkout'>Checkout</button></p>
   </div>
 </template>
 
@@ -35,11 +35,12 @@
 import { mapGetters } from 'vuex'
 export default {
   computed: {
-    ...mapGetters({
-      products: 'cartProducts'
-    }),
+    ...mapGetters('ecommerce', [
+      'cartProducts',
+      'itemsOnCart'
+    ]),
     total () {
-      return this.products.reduce((total, p) => {
+      return this.cartProducts.reduce((total, p) => {
         return total + p.price * p.quantity
       }, 0)
     }
