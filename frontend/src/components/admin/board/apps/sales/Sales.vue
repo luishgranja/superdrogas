@@ -4,13 +4,6 @@
 	  <div class="list-inline">
 		<h1>
 		  Sales
-		  <a
-			class="btn btn-primary btn-raised"
-			data-toggle="modal"
-			data-target="#sale-form"
-		  >
-			Create sale
-		  </a>
 		</h1>
 	  </div>
 	  <ol class="breadcrumb">
@@ -28,10 +21,7 @@
 		<div class="col-sm-6">
 		  <div class="box">
 			<div class="box-body">
-			  <div v-if="isLoading" class="text-center">
-				<spinner-component />
-			  </div>
-			  <table v-else id="table" class="table table-bordered table-striped">
+			  <table id="table" class="table table-bordered table-striped">
 				<thead>
 				  <tr>
 					<th>Name</th>
@@ -41,41 +31,18 @@
 				  </tr>
 				</thead>
 				<tbody>
-				  <tr v-for="(user, index) in users" :key="index">
-					<td>{{ user.first_name }} {{ user.last_name }}</td>
-					<td>{{ user.username }}</td>
-					<td>{{ user.email }}</td>
-					<td class="text-center">
-					  <p
-						:class="`${ user.is_active ? 'bg-green' : 'bg-red' }`"
-						class="badge p-bg"
-					  >
-						{{ user.is_active ? 'Active' : 'Inactive' }}
-					  </p>
-					</td>
+				  <tr v-for="(product, index) in products" :key="index">
+					<td>{{ product.name }}</td>
+					<td>{{ product.brand }}</td>
+					<td>{{ product.price }}</td>
 					<td class="text-center">
 					  <a
+							 @click="addToCart(product)"
 						class="btn.btn-app btn-primary btn-sm action-btn"
 						data-toggle="modal"
-						data-target="#user-form"
+						data-target="#sale-form"
 					  >
-						<i class="fa fa-edit"></i>
-					  </a>
-					  <a
-						class="btn.btn-app btn-info btn-sm action-btn"
-						data-toggle="modal"
-						data-target="#user-detail"
-					  >
-						<i class="fa fa-info-circle"></i>
-					  </a>
-					  <a
-						@click="getUser(user.id)"
-						:class="`${ user.is_active ? 'btn-danger' : 'btn-success' }`"
-						class="btn.btn-app btn-sm action-btn"
-						data-toggle="modal"
-						data-target="#user-status"
-					  >
-						<i :class="`${ user.is_active ? 'fa fa-user-times' : 'fa fa-user-plus' }`"></i>
+						<i class="fa fa-plus-circle"></i>
 					  </a>
 					</td>
 				  </tr>
@@ -88,76 +55,81 @@
 		<div class="col-sm-6">
 		  <div class="box">
 			<div class="box-body">
-			  <div v-if="isLoading" class="text-center">
-				<spinner-component />
-			  </div>
-			  <table v-else id="table-sale" class="table table-bordered table-striped">
+			  <table id="table-sale" class="table table-bordered table-striped">
 				<thead>
 				  <tr>
 					<th>Name</th>
-					<th>Brand</th>
 					<th>Unit Price</th>
 					<th>Quantity</th>
 					<th>Total Price</th>
+					  <th>Actions</th>
 				  </tr>
 				</thead>
 				<tbody>
-				  <tr v-for="(user, index) in users" :key="index">
-					<td>{{ user.first_name }} {{ user.last_name }}</td>
-					<td>{{ user.username }}</td>
-					<td>{{ user.email }}</td>
-					<td class="text-center">
-					  <p
-						:class="`${ user.is_active ? 'bg-green' : 'bg-red' }`"
-						class="badge p-bg"
-					  >
-						{{ user.is_active ? 'Active' : 'Inactive' }}
-					  </p>
-					</td>
+				  <tr v-for="(product, index) in cartProducts" :key="index">
+					<td>{{ product.name }}</td>
+					<td>{{ product.price }}</td>
+					  <td>{{ product.quantity }}</td>
+					  <td>{{ product.quantity * product.price }}</td>
 					<td class="text-center">
 					  <a
-						class="btn.btn-app btn-primary btn-sm action-btn"
-						data-toggle="modal"
-						data-target="#user-form"
+							  @click="deleteFromCart(product)"
+						class="btn.btn-app btn-danger btn-sm action-btn"
 					  >
-						<i class="fa fa-edit"></i>
-					  </a>
-					  <a
-						class="btn.btn-app btn-info btn-sm action-btn"
-						data-toggle="modal"
-						data-target="#user-detail"
-					  >
-						<i class="fa fa-info-circle"></i>
-					  </a>
-					  <a
-						@click="getUser(user.id)"
-						:class="`${ user.is_active ? 'btn-danger' : 'btn-success' }`"
-						class="btn.btn-app btn-sm action-btn"
-						data-toggle="modal"
-						data-target="#user-status"
-					  >
-						<i :class="`${ user.is_active ? 'fa fa-user-times' : 'fa fa-user-plus' }`"></i>
+						<i class="fa fa-minus-circle"></i>
 					  </a>
 					</td>
 				  </tr>
+								  <div class="box-footer">
+					   <a
+							  @click="deleteFromCart(product)"
+						class="btn btn-raised btn-success action-btn"
+					  > Checkout
+						<i class="fa fa-money"></i>
+					  </a>
+            </div>
 				</tbody>
+
 			  </table>
 			</div>
 		  </div>
 		</div>
 		</div>
 	</section>
-	<ProductQuantity />
   </div>
 </template>
 
 <script>
-import ProductQuantity from "./modals/ProductQuantity";
+
+import { mapState, mapActions, mapGetters } from 'vuex'
+import template from '@/utilities/template'
 
 export default {
 	name: 'sales',
-  components: {
-    ProductQuantity,
-  }
+	 methods: {
+    ...mapActions('products', [
+      'getProducts',
+			'getProduct'
+    ]),
+		 ...mapActions('ecommerce', [
+      'addToCart',
+				 'deleteFromCart'
+    ]),
+  },
+  computed: {
+    ...mapState('products', [
+      'products',
+    ]),
+	  ...mapGetters('ecommerce', [
+      'cartProducts',
+      'itemsOnCart',
+      'emptyCart'])
+  },
+  created () {
+    this.getProducts()
+  },
+	updated() {
+		template.refresh()
+	}
 }
 </script>

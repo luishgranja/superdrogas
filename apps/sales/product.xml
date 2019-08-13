@@ -1,0 +1,63 @@
+<fe:InvoiceLine>
+    <cbc:ID>$id</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="NIU">$cantidad</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="COP">$sin_iva</cbc:LineExtensionAmount>
+    <cac:AllowanceCharge>
+      <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+      <cbc:MultiplierFactorNumeric>0.00</cbc:MultiplierFactorNumeric>
+      <cbc:Amount currencyID="COP">0.00</cbc:Amount>
+    </cac:AllowanceCharge>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="COP">$iva</cbc:TaxAmount>
+      <cbc:TaxEvidenceIndicator>false</cbc:TaxEvidenceIndicator>
+      <cac:TaxSubtotal>
+        <cbc:TaxAmount currencyID="COP">$iva</cbc:TaxAmount>
+        <cbc:Percent>0.00</cbc:Percent>
+        <cac:TaxCategory>
+          <cbc:Percent>0.00</cbc:Percent>
+          <cac:TaxScheme>
+            <cbc:ID>01</cbc:ID>
+            <cbc:Name>VALOR TOTAL DE IVA</cbc:Name>
+            <cbc:TaxTypeCode>01</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="COP">0.00</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxAmount currencyID="COP">0.00</cbc:TaxAmount>
+        <cbc:Percent>0.00</cbc:Percent>
+        <cac:TaxCategory>
+          <cbc:Percent>0.00</cbc:Percent>
+          <cac:TaxScheme>
+            <cbc:ID>02</cbc:ID>
+            <cbc:Name>VALOR TOTAL DE IMPUESTO AL CONSUMO</cbc:Name>
+            <cbc:TaxTypeCode>02</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="COP">0.00</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxAmount currencyID="COP">0.00</cbc:TaxAmount>
+        <cbc:Percent>19.00</cbc:Percent>
+        <cac:TaxCategory>
+          <cbc:Percent>19.00</cbc:Percent>
+          <cac:TaxScheme>
+            <cbc:ID>03</cbc:ID>
+            <cbc:Name>VALOR TOTAL DE ICA</cbc:Name>
+            <cbc:TaxTypeCode>03</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <fe:Item>
+      <cbc:Description>$nombre_producto</cbc:Description>
+      <cbc:Name>ES</cbc:Name>
+    </fe:Item>
+    <fe:Price>
+      <cbc:PriceAmount currencyID="COP">$sin_iva</cbc:PriceAmount>
+    </fe:Price>
+  </fe:InvoiceLine>

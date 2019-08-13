@@ -8,3 +8,7 @@ const state = {
   isLoading: false
 }
 
+export default {
+  namespaced: true,
+  state
+}
