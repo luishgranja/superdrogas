@@ -8,6 +8,7 @@ import Brands from '@/components/admin/board/apps/brands/Brands'
 import Categories from '@/components/admin/board/apps/categories/Categories'
 import Tenants from '@/components/admin/board/apps/tenants/Tenants'
 import Products from '@/components/admin/board/apps/products/Products'
+import Sales from '@/components/admin/board/apps/sales/Sales'
 
 export default {
   path: '/admin',
@@ -51,6 +52,11 @@ export default {
           path: 'tenants',
           name: 'tenants',
           component: Tenants
+        },
+        {
+          path: 'sales',
+          name: 'sales',
+          component: Sales
         }
       ]
     },

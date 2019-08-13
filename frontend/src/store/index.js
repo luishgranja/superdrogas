@@ -9,6 +9,7 @@ import categories from './modules/categories'
 import products from './modules/products'
 import tenants from './modules/tenants'
 import ecommerce from './modules/ecommerce'
+import sales from './modules/sales'
 
 Vue.use(Vuex)
 
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     categories,
     products,
     tenants,
-    ecommerce
+    ecommerce,
+    sales
   }
 })
