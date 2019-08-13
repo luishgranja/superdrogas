@@ -11,26 +11,28 @@
           </select2>
         </div>
         <input-component
+          class="col-sm-6"
           v-model="quantity"
           id="quantity"
-          label="Quantity"
-          :erros="errors.quantity"
+          placeholder="Quantity"
+          :inputErrors="errors.quantity"
         />
         <input-component
+          class="col-sm-6"
           v-model="manufacturing_date"
           id="manufacturing_date"
-          label="Manufacturing Date"
+          placeholder="Manufacturing Date"
           type="date"
-          :erros="errors.manufacturing_date"
+          :inputErrors="errors.manufacturing_date"
         />
         <input-component
+          class="col-sm-6"
           v-model="expiration_date"
           id="expiration_date"
-          label="Expiration Date"
+          placeholder="Expiration Date"
           type="date"
-          :erros="errors.expiration_date"
+          :inputErrors="errors.expiration_date"
         />
-
       </div>
       <div class="pull-right">
         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>

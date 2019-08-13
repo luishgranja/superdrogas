@@ -3,18 +3,21 @@
     <form>
       <div class="row">
         <input-component
+          id="username"
           class="col-md-6"
           v-model="username"
           placeholder="Username"
           :inputErrors="errors.username"
         />
         <input-component
+          id="identification_number"
           class="col-md-6"
           v-model="identification_number"
           placeholder="Identification number"
           :inputErrors="errors.identification_number"
         />
         <input-component
+          id="email"
           class="col-md-12"
           v-model="email"
           placeholder="Email"
@@ -22,30 +25,35 @@
           :inputErrors="errors.email"
         />
         <input-component
+          id="first_name"
           class="col-md-6"
           v-model="firstName"
           placeholder="First name"
           :inputErrors="errors.first_name"
         />
         <input-component
+          id="last_name"
           class="col-md-6"
           v-model="lastName"
           placeholder="Last name"
           :inputErrors="errors.last_name"
         />
         <input-component
+          id="phone"
           class="col-md-6"
           v-model="phone"
           placeholder="Phone"
           :inputErrors="errors.phone"
         />
         <input-component
+          id="address"
           class="col-md-6"
           v-model="address"
           placeholder="Address"
           :inputErrors="errors.address"
         />
         <input-component
+          id="password"
           class="col-md-6"
           v-if="isNewUser"
           v-model="password"
@@ -54,6 +62,7 @@
           :inputErrors="errors.password"
         />
         <input-component
+          id="password_confirmation"
           class="col-md-6"
           v-if="isNewUser"
           v-model="passwordConfirmation"

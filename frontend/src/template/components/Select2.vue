@@ -1,5 +1,5 @@
 <template>
-  <select class="form-control select2" style="width: 100%;">
+  <select :id="id" class="form-control" style="width: 100%;">
     <slot></slot>
   </select>
 </template>
@@ -15,12 +15,16 @@ export default {
     value: {
       type: Number,
       default: 0
+    },
+    id: {
+      type: String,
+      default: 'select2'
     }
   },
   mounted: function () {
     var vm = this
     // eslint-disable-next-line
-    $('.select2')
+    $(`#${this.id}`)
       .select2({ data: this.options })
       .val(this.value)
       .trigger('change')
@@ -31,18 +35,18 @@ export default {
   watch: {
     value: function (value) {
       // eslint-disable-next-line
-      $('.select2')
+      $(`#${this.id}`)
         .val(value)
         .trigger('change')
     },
     options: function (options) {
       // eslint-disable-next-line
-      $('.select2').empty().select2({ data: options })
+      $(`#${this.id}`).empty().select2({ data: options })
     }
   },
   destroyed: function () {
     // eslint-disable-next-line
-    $('.select2').off().select2('destroy')
+    $(`#${this.id}`).off().select2('destroy')
   }
 }
 </script>

@@ -63,7 +63,7 @@
               <div class="col-xs-6 border-right">
                 <div class="description-block">
                   <h5 class="description-header module-item">
-                    <router-link :to="{}">
+                    <router-link :to="{ name: 'brands' }">
                       <i class="fa fa-trademark"></i>
                       Brands
                     </router-link>
@@ -73,7 +73,7 @@
               <div class="col-xs-6 border-right">
                 <div class="description-block">
                   <h5 class="description-header module-item">
-                    <router-link :to="{}">
+                    <router-link :to="{ name: 'categories' }">
                       <i class="fa fa-tag"></i>
                       Categories
                     </router-link>

@@ -2,52 +2,60 @@
   <modal-component id="product-form" :title="`${ isNewProduct ? 'Create' : 'Update' } product`">
     <form>
       <div class="row">
-      <input-component
-          v-model="name"
+        <input-component
+          class="col-sm-6"
           id="name"
-          label="Name:"
-          :erros="errors.name"
+          v-model="name"
+          placeholder="Name"
+          :inputErrors="errors.name"
         />
         <input-component
+          class="col-sm-6"
           v-model="description"
           id="description"
-          label="Description:"
-          :erros="errors.description"
+          placeholder="Description"
+          :inputErrors="errors.description"
         />
+      </div>
+      <div class="row">
         <input-component
+          class="col-sm-6"
           v-model="price"
           id="price"
-          label="Price:"
-          :erros="errors.price"
+          type="number"
+          placeholder="Price"
+          :inputErrors="errors.price"
         />
-        <div class="col-sm-6 custom-file">
-          <label for="image-create">Image:</label>
-          <input type="file" ref="file" class="custom-file-input" id="image-create" @change="handleFileUpload()">
+        <div class="col-sm-6 file">
+          <label for="image">Image</label>
+          <input
+            class="form-control"
+            @change="handleFileUpload()"
+            id="image"
+            type="file"
+            ref="file"
+          >
         </div>
-        <input-component
-          v-model="category"
-          id="category"
-          label="Category:"
-          :erros="errors.category"
-        />
-        <input-component
-          v-model="sku"
-          id="Sku"
-          label="Sku:"
-          :erros="errors.sku"
-        />
-          <input-component
-          v-model="weight"
-          id="weight"
-          label="Weight:"
-          :erros="errors.weight"
-        />
-          <input-component
-          v-model="brand"
-          id="brand"
-          label="Brand:"
-          :erros="errors.brand"
-        />
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Category</label>
+          <select2
+            id="category"
+            :options="activeCategories"
+            v-model="category"
+          >
+          </select2>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Brand</label>
+          <select2
+            id="brand"
+            :options="activeBrands"
+            v-model="brand"
+          >
+          </select2>
+        </div>
       </div>
       <div class="pull-right">
         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
@@ -70,6 +78,12 @@ export default {
     ]),
     ...mapGetters('products', [
       'isNewProduct'
+    ]),
+    ...mapGetters('categories', [
+      'activeCategories'
+    ]),
+    ...mapGetters('brands', [
+      'activeBrands'
     ]),
     name: {
       get () {
@@ -111,22 +125,6 @@ export default {
         this.$store.commit('products/SET_CATEGORY', value)
       }
     },
-    sku: {
-      get () {
-        return this.product.sku
-      },
-      set (value) {
-        this.$store.commit('products/SET_SKU', value)
-      }
-    },
-    weight: {
-      get () {
-        return this.product.weight
-      },
-      set (value) {
-        this.$store.commit('products/SET_WEIGHT', value)
-      }
-    },
     brand: {
       get () {
         return this.product.brand
@@ -141,10 +139,27 @@ export default {
       'createProduct',
       'updateProduct'
     ]),
+    ...mapActions('categories', [
+      'getCategories'
+    ]),
+    ...mapActions('brands', [
+      'getBrands'
+    ]),
     handleFileUpload () {
       this.file = this.$refs.file.files[0]
       this.$store.commit('products/SET_IMAGE', this.file)
     }
+  },
+  created () {
+    this.getCategories()
+    this.getBrands()
   }
 }
 </script>
+
+<style scoped>
+.file {
+  padding-bottom: 7px;
+  margin: 28px 0 0 0;
+}
+</style>

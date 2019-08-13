@@ -1,6 +1,10 @@
 <template>
   <div :class="`${ inputErrors ? 'has-error is-focused' : '' }`" class="form-group">
+    <label v-if="label" :for="id">
+      {{ placeholder }}
+    </label>
     <input
+      :id="id"
       :value="value"
       @input="$emit('input', $event.target.value)"
       :placeholder="placeholder"
@@ -19,9 +23,17 @@
 export default {
   name: 'input-component',
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     placeholder: {
       type: String,
       required: true
+    },
+    label: {
+      type: Boolean,
+      default: true
     },
     value: {
       type: [String, Number],

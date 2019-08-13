@@ -68,16 +68,10 @@ const mutations = {
     state.product = { ...state.product, image: newImage }
   },
   SET_CATEGORY: (state, newCategory) => {
-    state.product = { ...state.product, category: newCategory }
-  },
-  SET_SKU: (state, newSku) => {
-    state.product = { ...state.product, sku: newSku }
-  },
-  SET_WEIGHT: (state, newWeight) => {
-    state.product = { ...state.product, weight: newWeight }
+    state.product = { ...state.product, category: parseInt(newCategory) }
   },
   SET_BRAND: (state, newBrand) => {
-    state.product = { ...state.product, brand: newBrand }
+    state.product = { ...state.product, brand: parseInt(newBrand) }
   },
   BUILD_REQUEST (state) {
     if (typeof state.product.image === 'object') {
@@ -86,9 +80,7 @@ const mutations = {
     state.formData.append('name', state.product.name)
     state.formData.append('description', state.product.description)
     state.formData.append('price', state.product.price)
-    state.formData.append('sku', state.product.sku)
     state.formData.append('category', state.product.category)
-    state.formData.append('weight', state.product.weight)
     state.formData.append('brand', state.product.brand)
   }
 }

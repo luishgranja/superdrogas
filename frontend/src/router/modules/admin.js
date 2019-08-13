@@ -1,10 +1,12 @@
 import Admin from '@/components/admin/Admin'
+import Login from '@/components/admin/login/Login'
 import Board from '@/components/admin/board/Board'
 import Home from '@/components/admin/board/apps/home/Home'
 import Users from '@/components/admin/board/apps/users/Users'
 import Batches from '@/components/admin/board/apps/batches/Batches'
+import Brands from '@/components/admin/board/apps/brands/Brands'
+import Categories from '@/components/admin/board/apps/categories/Categories'
 import Products from '@/components/admin/board/apps/products/Products'
-import Login from '@/components/admin/login/Login'
 
 export default {
   path: '/admin',
@@ -30,9 +32,19 @@ export default {
           component: Batches
         },
         {
+          path: 'brands',
+          name: 'brands',
+          component: Brands
+        },
+        {
           path: 'products',
           name: 'products',
           component: Products
+        },
+        {
+          path: 'categories',
+          name: 'categories',
+          component: Categories
         }
       ]
     },

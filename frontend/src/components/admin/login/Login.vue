@@ -7,15 +7,19 @@
         </h1>
         <form @submit.prevent="formHandler()">
           <input-component
+            id="username"
             v-model="user.username"
             placeholder="Username"
+            :label="false"
             :inputErrors="errors.username"
           >
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </input-component>
           <input-component
+            id="password"
             v-model="user.password"
             placeholder="Password"
+            :label="false"
             type="password"
             :inputErrors="errors.password"
           >

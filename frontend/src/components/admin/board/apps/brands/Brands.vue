@@ -3,14 +3,14 @@
     <section class="content-header">
       <div class="list-inline">
         <h1>
-          Products
+          Brands
           <a
-            @click="getProduct()"
+            @click="getBrand()"
             class="btn btn-primary btn-raised"
             data-toggle="modal"
-            data-target="#product-form"
+            data-target="#brand-form"
           >
-            Create Product
+            Create brand
           </a>
         </h1>
       </div>
@@ -19,7 +19,7 @@
           <router-link :to="{ name: 'home' }">Home</router-link>
         </li>
         <li class="active">
-          Products
+          Brands
         </li>
       </ol>
     </section>
@@ -39,52 +39,50 @@
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Brand</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(product, index) in products" :key="index">
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.category_name }}</td>
-                    <td>{{ product.brand_name }}</td>
+                  <tr v-for="(brand, index) in brands" :key="index">
+                    <td>{{ brand.name }} </td>
+                    <td>{{ brand.email }}</td>
+                    <td>{{ brand.phone }}</td>
                     <td class="text-center">
                       <p
-                        :class="`${ product.is_active ? 'bg-green' : 'bg-red' }`"
+                        :class="`${ brand.is_active ? 'bg-green' : 'bg-red' }`"
                         class="badge p-bg"
                       >
-                        {{ product.is_active ? 'Active' : 'Inactive' }}
+                        {{ brand.is_active ? 'Active' : 'Inactive' }}
                       </p>
                     </td>
                     <td class="text-center">
                       <a
-                        @click="getProduct(product.id)"
+                        @click="getBrand(brand.id)"
                         class="btn.btn-app btn-primary btn-sm action-btn"
                         data-toggle="modal"
-                        data-target="#product-form"
+                        data-target="#brand-form"
                       >
                         <i class="fa fa-edit"></i>
                       </a>
                       <a
-                        @click="getProduct(product.id)"
+                        @click="getBrand(brand.id)"
                         class="btn.btn-app btn-info btn-sm action-btn"
                         data-toggle="modal"
-                        data-target="#product-detail"
+                        data-target="#brand-detail"
                       >
                         <i class="fa fa-info-circle"></i>
                       </a>
                       <a
-                        @click="getProduct(product.id)"
-                        :class="`${ product.is_active ? 'btn-danger' : 'btn-success' }`"
+                        @click="getBrand(brand.id)"
+                        :class="`${ brand.is_active ? 'btn-danger' : 'btn-success' }`"
                         class="btn.btn-app btn-sm action-btn"
                         data-toggle="modal"
-                        data-target="#product-status"
+                        data-target="#brand-status"
                       >
-                        <i :class="`${ product.is_active ? 'fa fa-times-circle' : 'fa fa-plus-circle' }`"></i>
+                        <i :class="`${ brand.is_active ? 'fa fa-times-circle' : 'fa fa-plus-circle' }`"></i>
                       </a>
                     </td>
                   </tr>
@@ -95,40 +93,40 @@
         </div>
       </div>
     </section>
-    <product-detail />
-    <product-form />
-    <product-status />
+    <brand-detail />
+    <brand-form />
+    <brand-status />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import template from '@/utilities/template'
-import ProductDetail from './modals/ProductsDetail'
-import ProductForm from './modals/ProductsForm'
-import ProductStatus from './modals/ProductsStatus'
+import BrandDetail from './modals/BrandDetail'
+import BrandForm from './modals/BrandForm'
+import BrandStatus from './modals/BrandStatus'
 
 export default {
-  name: 'products',
+  name: 'brands',
   components: {
-    ProductDetail,
-    ProductForm,
-    ProductStatus
+    BrandDetail,
+    BrandForm,
+    BrandStatus
   },
   computed: {
-    ...mapState('products', [
-      'products',
+    ...mapState('brands', [
+      'brands',
       'isLoading'
     ])
   },
   methods: {
-    ...mapActions('products', [
-      'getProducts',
-      'getProduct'
+    ...mapActions('brands', [
+      'getBrands',
+      'getBrand'
     ])
   },
   created () {
-    this.getProducts()
+    this.getBrands()
   },
   updated () {
     template.refresh()

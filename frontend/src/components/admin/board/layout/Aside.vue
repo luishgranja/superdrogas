@@ -48,13 +48,13 @@
               </router-link>
             </li>
             <li>
-              <router-link :to="{}">
+              <router-link :to="{ name: 'brands' }">
                 <i class="fa fa-trademark"></i>
                 <span>Brands</span>
               </router-link>
             </li>
             <li>
-              <router-link :to="{}">
+              <router-link :to="{ name: 'categories' }">
                 <i class="fa fa-tag"></i>
                 <span>Categories</span>
               </router-link>

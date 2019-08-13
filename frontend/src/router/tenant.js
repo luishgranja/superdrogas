@@ -30,6 +30,8 @@ router.beforeEach((to, from, next) => {
     case 'users':
     case 'products':
     case 'batches':
+    case 'brands':
+    case 'categories':
       logged ? next() : next({ name: 'login' })
       break
     default:

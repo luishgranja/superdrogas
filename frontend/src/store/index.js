@@ -4,6 +4,8 @@ import app from './modules/app'
 import authentication from './modules/authentication'
 import users from './modules/users'
 import batches from './modules/batches'
+import brands from './modules/brands'
+import categories from './modules/categories'
 import products from './modules/products'
 
 Vue.use(Vuex)
@@ -14,6 +16,8 @@ export default new Vuex.Store({
     authentication,
     users,
     batches,
+    brands,
+    categories,
     products
   }
 })

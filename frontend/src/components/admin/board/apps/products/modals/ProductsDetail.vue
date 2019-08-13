@@ -20,19 +20,11 @@
           </li>
           <li>
             <strong>Category:</strong>
-            {{ product.category }}
-          </li>
-          <li>
-            <strong>Sku:</strong>
-            {{ product.sku }}
-          </li>
-          <li>
-            <strong>Weight:</strong>
-            {{ product.weight }}
+            {{ product.category_name }}
           </li>
           <li>
             <strong>Brand:</strong>
-            {{ product.brand }}
+            {{ product.brand_name }}
           </li>
           <li>
             <strong>Status:</strong>
