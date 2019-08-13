@@ -18,6 +18,11 @@ class Pharmacy(TenantMixin):
     A pharmacy is an tenant in the system
     """
     name = models.CharField(max_length=50)
+    prefix = models.CharField(max_length=2)
+    nit = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10)
+    email = models.EmailField()
+    address = models.CharField(max_length=50)
     description = models.TextField(max_length=400)
     is_active = models.BooleanField(default=True)
 

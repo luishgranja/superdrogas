@@ -9,6 +9,12 @@
             <span>Home</span>
           </router-link>
         </li>
+        <li v-if="isAdmin">
+          <router-link :to="{ name: 'tenants' }">
+            <i class="fa fa-medkit"></i>
+            <span>Tenants</span>
+          </router-link>
+        </li>
         <li class="treeview">
           <a>
             <i class="fa fa-users"></i>

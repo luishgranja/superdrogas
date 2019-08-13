@@ -7,6 +7,7 @@ import batches from './modules/batches'
 import brands from './modules/brands'
 import categories from './modules/categories'
 import products from './modules/products'
+import tenants from './modules/tenants'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     batches,
     brands,
     categories,
-    products
+    products,
+    tenants
   }
 })

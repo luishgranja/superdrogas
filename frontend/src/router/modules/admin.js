@@ -6,6 +6,7 @@ import Users from '@/components/admin/board/apps/users/Users'
 import Batches from '@/components/admin/board/apps/batches/Batches'
 import Brands from '@/components/admin/board/apps/brands/Brands'
 import Categories from '@/components/admin/board/apps/categories/Categories'
+import Tenants from '@/components/admin/board/apps/tenants/Tenants'
 import Products from '@/components/admin/board/apps/products/Products'
 
 export default {
@@ -45,6 +46,11 @@ export default {
           path: 'categories',
           name: 'categories',
           component: Categories
+        },
+        {
+          path: 'tenants',
+          name: 'tenants',
+          component: Tenants
         }
       ]
     },

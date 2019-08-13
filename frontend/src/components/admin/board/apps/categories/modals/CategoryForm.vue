@@ -1,5 +1,5 @@
 <template>
-  <modal-component id="category-form" :title="`${ isNewCategory ? 'Create' : 'Update' } brand`">
+  <modal-component id="category-form" :title="`${ isNewCategory ? 'Create' : 'Update' } category`">
     <form>
       <div class="row">
         <input-component
