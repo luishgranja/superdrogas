@@ -13,6 +13,9 @@ from apps.pharmacies.models import (
     Pharmacy
 )
 
+# Accounts utilities
+from apps.accounts.utilities import create_superuser
+
 
 class PharmacySerializer(serializers.ModelSerializer):
     """
@@ -25,14 +28,14 @@ class PharmacySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        pharmacy = Pharmacy(
-            schema_name=validated_data['schema_name'],
-            name=validated_data['name']
-        )
+        pharmacy = Pharmacy(**validated_data)
         pharmacy.save()
         domain = Domain(
             domain=f"{validated_data['schema_name']}.localhost",
             tenant_id=pharmacy.id,
         )
         domain.save()
+
+        create_superuser(schema_name=pharmacy.schema_name)
+
         return pharmacy
