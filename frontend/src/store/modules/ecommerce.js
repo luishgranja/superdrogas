@@ -1,40 +1,21 @@
 import http from '@/utilities/http'
 import router from '@/router'
+import store from '@/store'
 
 const state = {
-  added: [],
-  products: [
-    {
-      id: 'cc919e21-ae5b-5e1f-d023-c40ee669520c',
-      name: 'COBOL 101 vintage',
-      description: 'Learn COBOL with this vintage programming book',
-      price: 399
-    },
-    {
-      id: 'bcd755a6-9a19-94e1-0a5d-426c0303454f',
-      name: 'Sharp C2719 curved TV',
-      description: 'Watch TV like never before with the brand new curved screen technology',
-      price: 1995
-    },
-    {
-      id: '727026b7-7f2f-c5a0-ace9-cc227e686b8e',
-      name: 'Remmington X mechanical keyboard',
-      description: 'Excellent for gaming and typing, this Remmington X keyboard ' +
-        'features tactile, clicky switches for speed and accuracy',
-      price: 595
-    }
-  ]
+  added: []
 }
 
 // getters
-const getters = {
-  allProducts: state => state.products, // would need action/mutation if data fetched async
-  getNumberOfProducts: state => (state.products) ? state.products.length : 0,
+const getters = {    
   itemsOnCart: state => (state.added) ? state.added.length : 0,
+  emptyCart: state => (state.added) ? state.added.length == 0: false,
   cartProducts: state => {
+    var products = store.state.products.products 
     return state.added.map(({ id, quantity }) => {
-      const product = state.products.find(p => p.id === id)
+      const product = products.find(p => p.id === id)
       return {
+        id: product.id,
         name: product.name,
         price: product.price,
         quantity
@@ -45,7 +26,7 @@ const getters = {
 
 // mutations
 const mutations = {
-  ADD_TO_CART: (state, { id }) => {
+  ADD_TO_CART: (state, { id }) => {    
     const record = state.added.find(p => p.id === id)
     if (!record) {
       state.added.push({
@@ -54,6 +35,16 @@ const mutations = {
       })
     } else {
       record.quantity++
+    }     
+  },
+  DELETE_FROM_CART: (state, { id }) => {    
+    var record = state.added.find(p => p.id === id)
+    if (record.quantity == 1) {
+      state.added = [
+      ...state.added.filter(p => p.id !== id)
+      ]
+    } else {
+      record.quantity--
     }
   }
 }
@@ -62,6 +53,11 @@ const mutations = {
 const actions = {
   addToCart: ({ commit }, product) => {
     commit('ADD_TO_CART', {
+      id: product.id
+    })
+  },
+  deleteFromCart: ({ commit }, product) => {
+    commit('DELETE_FROM_CART', {
       id: product.id
     })
   }

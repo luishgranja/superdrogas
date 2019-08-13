@@ -1,43 +1,99 @@
 <template>
   <div class="cart">
-      <h1 class="title">Your Cart</h1>
-      <p v-show="!itemsOnCart">
-          <i>Your cart is empty!</i>
-          <router-link to="/">Go shopping</router-link>
-      </p>
-      <table class="table is-striped" v-show="itemsOnCart">
-          <thead>
-              <tr>
-                  <td>Name</td>
-                  <td>Price</td>
-                  <td>Quantity</td>
-              </tr>
-          </thead>
-          <tbody>
-              <tr v-for="(p, index) in cartProducts" :key="index">
-                  <td>{{ p.name }}</td>
-                  <td>${{ p.price }}</td>
-                  <td>{{ p.quantity }}</td>
-              </tr>
-              <tr>
-                  <td><b>Total:</b></td>
-                  <td></td>
-                  <td><b>${{ total }}</b></td>
-                  </tr>
-          </tbody>
-
-      </table>
-      <p><button v-show="itemsOnCart" class='button is-primary' @click='checkout'>Checkout</button></p>
+    <section class="content-header">
+      <div class="list-inline">
+        <h1>
+          Your Shopping Cart
+        </h1>
+      </div>
+      <!--<ol class="breadcrumb">
+        <li>
+          <router-link :to="{ name: 'home' }">Home</router-link>
+        </li>
+        <li class="active">
+          Products
+        </li>
+      </ol> -->
+    </section>
+    <div v-if='emptyCart'>
+      <div class="box box-default">          
+          <div class="box-body">                        
+            <img class="img-responsive" 
+            src="/static/images/empty-cart.png" alt="Empty Cart"
+            width="100%" height="100%">
+          </div>
+          <!-- /.box-body -->
+        </div>
+    </div>    
+    <div v-else>
+      <section class="content">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="box">
+              <div class="box-body">
+                <table id="table" class="table table-bordered table-striped" v-show="itemsOnCart">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(p, index) in cartProducts" :key="index">
+                      <td>{{ p.name }}</td>
+                      <td>${{ p.price }}</td>
+                      <td>{{ p.quantity }}</td>
+                      <td class="text-center">
+                        <a
+                        @click="getProduct(p.id)"
+                        class="btn.btn-app btn-primary btn-sm action-btn"
+                        data-toggle="modal"
+                        data-target="#product-detail"
+                      >
+                        <i class="fa fa-info-circle"></i>
+                      </a>
+                        <a
+                          @click="deleteFromCart(p)"
+                          class="btn.btn-app btn-danger btn-sm action-btn"                                                    
+                        >
+                          <i class="fa fa-minus-square"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td><b>Total:</b></td>
+                      <td></td>
+                      <td><b>${{ total }}</b></td>
+                      </tr>
+                  </tbody>
+                </table>
+                <p><button v-show="itemsOnCart" class='button is-primary' @click='checkout'>Checkout</button></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <product-detail/> 
+    </div>      
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import template from '@/utilities/template'
+import ProductDetail from '@/components/admin/board/apps/products/modals/ProductsDetail'
 export default {
+  name: 'cart',
+  components: {
+    ProductDetail    
+  },
   computed: {
     ...mapGetters('ecommerce', [
       'cartProducts',
-      'itemsOnCart'
+      'itemsOnCart',
+      'emptyCart'
     ]),
     total () {
       return this.cartProducts.reduce((total, p) => {
@@ -46,9 +102,18 @@ export default {
     }
   },
   methods: {
+    ...mapActions('ecommerce', [
+      'deleteFromCart'
+    ]),
+    ...mapActions('products', [      
+      'getProduct'
+    ]),
     checkout () {
       alert('Pay us $' + this.total)
     }
-  }
+  }/*,
+  updated () {
+    template.refresh()
+  }*/
 }
 </script>

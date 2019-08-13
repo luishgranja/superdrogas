@@ -5,17 +5,17 @@
         <h1>
           Products
         </h1>
+        <span class="badge bg-blue">{{numberProducts}} products</span>
       </div>
-      <ol class="breadcrumb">
+      <!--<ol class="breadcrumb">
         <li>
           <router-link :to="{ name: 'home' }">Home</router-link>
         </li>
         <li class="active">
           Products
         </li>
-      </ol>
+      </ol> -->
     </section>
-    <p>{{getNumberOfProducts}} products</p>
     <section class="content">
       <div class="row">
         <div class="col-sm-12">
@@ -28,24 +28,29 @@
                     <th>Brand</th>
                     <th>Price</th>            
                     <th>Image</th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(product, index) in activeProducts" :key="index">
-                    <td>{{product.name}}</td>
-                    <td>{{product.brand}}</td>
-                    <td>${{product.price}}</td>
+                  <tr v-for="(product, index) in activeProductsCatalogue" :key="index">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.brand }}</td>
+                    <td>${{ product.price}}</td>
                     <td class="text-center">
                       <a
                         @click="getProduct(product.id)"
-                        class="btn.btn-app btn-info btn-sm action-btn"
+                        class="btn.btn-app btn-primary btn-sm action-btn"
                         data-toggle="modal"
                         data-target="#product-detail"
                       >
                         <i class="fa fa-info-circle"></i>
                       </a>
-                    <td><button @click='addToCart(product)' class='button is-info'>Add to cart</button></td>
+                      <button 
+                        @click='addToCart(product)' 
+                        class='btn.btn-app btn-primary action-btn'>
+                        <i class="fa fa-fw fa-plus"></i>
+                        Add to cart
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -60,6 +65,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import template from '@/utilities/template'
 import ProductDetail from '@/components/admin/board/apps/products/modals/ProductsDetail'
 export default {
   name: 'product',
@@ -71,17 +77,24 @@ export default {
     //  'products'
     //]),
     ...mapGetters('products', [
-      'activeProducts',
+      'activeProductsCatalogue',
       'numberProducts'
     ])
   },
   methods: {
     ...mapActions('ecommerce', [
       'addToCart'
+    ]),
+    ...mapActions('products', [
+      'getProducts',
+      'getProduct'
     ])
   },
   created () {
     this.getProducts()
   },
+  updated () {
+    template.refresh()
+  }
 }
 </script>

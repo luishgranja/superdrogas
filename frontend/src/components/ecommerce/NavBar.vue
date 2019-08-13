@@ -1,34 +1,23 @@
 <template>
    <nav class="nav has-shadow" style='box-shadow: 0 1px 0 rgba(219,219,219,.3);'>
 
-      <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-      <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-      <span class="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-
       <!-- This "nav-menu" is hidden on mobile -->
       <!-- Add the modifier "is-active" to display it on mobile -->
-      <div class="nav-right nav-menu">
-        <router-link :to="{ name: 'product' }" class="nav-item is-tab" exact-active-class="is-active">
-           Shop
-        </router-link>
-
-        <div class="nav-item is-tab" :class="{ 'active-bottom-border': $route.path === '/cart' }">
-          <div class="field is-grouped">
-            <p class="control">
-              <router-link :to="{ name: 'cart' }" class="button is-info">
-                <span class="icon">
-                  <i class="fa fa-shopping-cart"></i>
-                </span>
-                <span>Checkout ({{itemsOnCart}})</span>
-              </router-link>
-            </p>
-          </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <router-link :to="{ name: 'product' }" 
+            class="btn btn-block btn-primary btn-lg"> Shop
+          </router-link>
         </div>
-      </div>
+        <div class="col-sm-6">
+          <router-link :to="{ name: 'cart' }"                          
+            class="btn btn-block btn-primary btn-lg">
+            <span class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </span> Checkout ({{itemsOnCart}})
+          </router-link>
+        </div>          
+      </div>                    
    </nav>
 </template>
 

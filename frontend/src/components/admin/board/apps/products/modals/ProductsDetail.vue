@@ -15,7 +15,7 @@
             {{ product.description }}
           </li>
           <li>
-            <strong>Price:</strong>
+            <strong>Price: $</strong>
             {{ product.price }}
           </li>
           <li>
