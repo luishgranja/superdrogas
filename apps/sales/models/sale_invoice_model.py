@@ -19,7 +19,7 @@ class SaleInvoice(models.Model):
     user_id = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     client_id = models.ForeignKey(User, related_name='client', on_delete=models.CASCADE)
     sale_type = models.CharField(max_length=50)
-    date = models.DateField()
+    date = models.DateField(auto_now=True)
     total_amount = models.IntegerField()
     is_active = models.BooleanField(default=True)
 

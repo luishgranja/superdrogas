@@ -26,3 +26,23 @@ class ProductOnSaleInvoice(models.Model):
 
     def __str__(self):
         return f'{self.product_id.name} {self.quantity}'
+
+    def product_name(self):
+        """
+        product_name return the name of the product category
+        """
+        return self.product_id.name
+
+    def product_description(self):
+        """
+        product_name return the name of the product category
+        """
+        return self.product_id.description
+
+    def product_subtotal(self):
+        """
+        product_name return the name of the product category
+        """
+        subtotal = self.quantity * self.total_price
+        return subtotal
+

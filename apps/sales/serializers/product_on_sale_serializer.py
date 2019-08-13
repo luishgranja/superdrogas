@@ -22,6 +22,9 @@ class ProductOnSaleInvoiceSerializer(serializers.ModelSerializer):
         fields = (
             'sale_invoice_id',
             'product_id',
+            'product_name',
+            'product_description',
+            'product_subtotal',
             'quantity',
             'total_price',
             'is_active',

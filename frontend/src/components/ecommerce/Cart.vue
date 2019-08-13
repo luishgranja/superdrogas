@@ -19,7 +19,7 @@
       <div class="box box-default">          
           <div class="box-body">                        
             <img class="img-responsive" 
-            src="/static/images/empty-cart.png" alt="Empty Cart"
+            src="@/static/images/cart-empty.jpg" alt="Empty Cart"
             width="100%" height="100%">
           </div>
           <!-- /.box-body -->
@@ -69,7 +69,14 @@
                       </tr>
                   </tbody>
                 </table>
-                <p><button v-show="itemsOnCart" class='button is-primary' @click='checkout'>Checkout</button></p>
+                <button
+                  v-show="itemsOnCart"                    
+                  type="submit"
+                  @click='checkout($event)' 
+                  class="btn btn-primary btn-flat">
+                  <i class="fa fa-credit-card"></i>
+                  Checkout
+                </button>
               </div>
             </div>
           </div>
@@ -103,14 +110,12 @@ export default {
   },
   methods: {
     ...mapActions('ecommerce', [
-      'deleteFromCart'
+      'deleteFromCart',
+      'checkout'
     ]),
     ...mapActions('products', [      
       'getProduct'
     ]),
-    checkout () {
-      alert('Pay us $' + this.total)
-    }
   }/*,
   updated () {
     template.refresh()

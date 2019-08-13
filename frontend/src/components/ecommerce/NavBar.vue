@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-sm-6">
           <router-link :to="{ name: 'product' }" 
-            class="btn btn-block btn-primary btn-lg"> Shop
+            class="btn btn-block btn-primary btn-lg"> Products Catalogue
           </router-link>
         </div>
         <div class="col-sm-6">
@@ -14,7 +14,7 @@
             class="btn btn-block btn-primary btn-lg">
             <span class="icon">
               <i class="fa fa-shopping-cart"></i>
-            </span> Checkout ({{itemsOnCart}})
+            </span> Your Cart ({{itemsOnCart}})
           </router-link>
         </div>          
       </div>                    

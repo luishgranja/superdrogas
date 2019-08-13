@@ -21,7 +21,7 @@
         <div class="col-sm-12">
           <div class="box">
             <div class="box-body">
-              <table id="table" class="table table-bordered table-striped" >
+              <table id="table" class=" table-responsive table table-bordered table-striped" >
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -43,10 +43,11 @@
                         data-target="#product-detail"
                       >
                         <i class="fa fa-info-circle"></i>
-                      </a>
+                      </a>                      
                       <button 
+                        type="button"
                         @click='addToCart(product)' 
-                        class='btn.btn-app btn-primary action-btn'>
+                        class="btn btn-primary btn-flat">
                         <i class="fa fa-fw fa-plus"></i>
                         Add to cart
                       </button>
