@@ -2,7 +2,7 @@ import axios from 'axios'
 import host from './host'
 
 var http = axios.create({
-  baseURL: `http://${host.isAdmin() ? '' : host.getSubdomain() + '.'}localhost:8000/`
+  baseURL: `http://${host.isAdmin() ? '' : host.getSubdomain() + '.'}localhost:8000/api/`
 })
 
 const CONNECTION_ERROR = {

@@ -4,5 +4,7 @@ module.exports = {
       poll: true
     },
     disableHostCheck: true
-  }
+  },
+  outputDir: './dist/',
+  assetsDir: 'static'
 }
