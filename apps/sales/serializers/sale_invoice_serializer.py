@@ -25,6 +25,5 @@ class SaleInvoiceSerializer(serializers.ModelSerializer):
             'client_id',
             'sale_type',
             'date',
-            'total_amount',
-            #'is_active',
+            'total_amount'
         )

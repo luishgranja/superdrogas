@@ -5,22 +5,22 @@ import Checkout from '@/components/ecommerce/Checkout'
 import Shopping from '@/components/ecommerce/Shopping'
 
 export default {
-  path: '/ecommerce',
+  path: '',
   component: ECommerce,
   children: [
     {
-      path: '',      
+      path: '',
       component: Shopping,
       children: [
         {
           path: '',
-          name: 'product',
+          name: 'landing',
           component: Product
         },
         {
           path: 'cart',
           name: 'cart',
-          component: Cart,
+          component: Cart
         }
       ]
     },

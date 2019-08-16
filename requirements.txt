@@ -10,4 +10,3 @@ pytz==2019.1
 sqlparse==0.3.0
 reportlab==3.5.23
 xhtml2pdf==0.2.3
-

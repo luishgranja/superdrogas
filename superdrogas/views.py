@@ -1,14 +1,16 @@
 """
-Project views
+Vue project
 
-Vue project built
+Vue project index built
 """
 
-from django.shortcuts import render
+# from django.shortcuts import render
+from django.http import HttpResponse
 
 
-def index(request):
+def vue(request):
     """
-    index return the Vue index
+    vue return the Vue index
     """
-    return render(request, template_name='index.html')
+    # return render(request, template_name='index.html')
+    return HttpResponse('Vue project')

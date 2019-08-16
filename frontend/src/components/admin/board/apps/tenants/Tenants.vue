@@ -131,7 +131,7 @@ export default {
     this.getTenants()
   },
   updated () {
-    template.refresh()
+    template.reload()
   }
 }
 </script>

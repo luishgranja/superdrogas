@@ -127,7 +127,7 @@ export default {
     this.getCategories()
   },
   updated () {
-    template.refresh()
+    this.$nextTick(() => { template.reload() })
   }
 }
 </script>

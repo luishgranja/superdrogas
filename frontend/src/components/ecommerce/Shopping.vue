@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class='container'>
+  <div class="container">
     <nav-bar></nav-bar>
     <router-view></router-view>
   </div>
@@ -7,6 +7,7 @@
 
 <script>
 import NavBar from '@/components/ecommerce/NavBar.vue'
+
 export default {
   name: 'shopping',
   components: {

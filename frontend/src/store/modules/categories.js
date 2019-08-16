@@ -79,6 +79,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.post('inventory/categories/', state.category)
     if (!response.error) {
+      template.destroy()
       commit('ADD_CATEGORY', response.data)
       template.hideModal('#category-form')
       commit('GET_CATEGORY')

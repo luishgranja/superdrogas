@@ -8,7 +8,7 @@ from django.core.management.base import (
     CommandError
 )
 
-# Offices models
+# Pharmacies models
 from apps.pharmacies.models import (
     Domain,
     Pharmacy

@@ -125,7 +125,7 @@ export default {
     this.getUsers()
   },
   updated () {
-    template.refresh()
+    template.reload()
   }
 }
 </script>

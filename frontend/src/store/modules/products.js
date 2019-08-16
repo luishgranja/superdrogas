@@ -23,7 +23,7 @@ const getters = {
     })
     return products
   },
-  activeProductsCatalogue: state => { 
+  activeProductsCatalogue: state => {
     var products = []
     state.products.forEach(product => {
       if (product.is_active) {
@@ -32,6 +32,7 @@ const getters = {
           name: product.name,
           brand: product.brand_name,
           price: product.price,
+          image: product.image
         })
       }
     })

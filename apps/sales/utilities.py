@@ -1,9 +1,21 @@
+"""
+Sales utilities
+"""
+
+# String
 from string import Template
+
+# Django
 from django.core import signing
+
+# XHTML2PDF
 from xhtml2pdf import pisa
 
 
 def generar_factura_xml(name):
+    """
+    generar_factura_xml
+    """
     template_name = 'invoice_template.xml'
     src = Template(open(template_name).read())
 
@@ -12,7 +24,7 @@ def generar_factura_xml(name):
     product_list = []
     products = ['a']
 
-    for product in products:
+    for _ in products:
         data = {
             'nombre_producto': 'Doloran',
             'id': '1',
@@ -28,41 +40,38 @@ def generar_factura_xml(name):
     file = open(filename, "w+")
 
     data = {
+        # Invoice data
+        'prefijo': 'CR',
+        'consecutivo': 'CR1',
+        'consec_desde': '000000',
+        'consec_hasta': '999999',
+        'CUFE': signing.dumps(str('hola'), key='3U8A#XFG,,u@Z)', compress=True),
 
-            # Invoice data
-            'prefijo': 'CR',
-            'consecutivo': 'CR1',
-            'consec_desde': '000000',
-            'consec_hasta': '999999',
-            'CUFE': signing.dumps(str('hola'), key='3U8A#XFG,,u@Z)', compress=True),
+        # Pharmacy data
+        'nombre_empresa': 'Adidas Co.',
+        'NIT': '80526145',
+        'departamento_empresa': 'DC',
+        'ciudad_empresa': 'Bogotá',
+        'direccion_empresa': 'Cra 80B 20-9',
+        'pais_empresa': 'CO',
 
-            # Pharmacy data
-            'nombre_empresa': 'Adidas Co.',
-            'NIT': '80526145',
-            'departamento_empresa': 'DC',
-            'ciudad_empresa': 'Bogotá',
-            'direccion_empresa': 'Cra 80B 20-9',
-            'pais_empresa': 'CO',
+        # Client data
+        'departamento_cliente': 'VAC',
+        'ciudad_cliente': 'Cali',
+        'direccion_cliente': 'El Jordan calle 25',
+        'pais_cliente': 'CO',
+        'nombre_cliente': 'Luis Granja',
+        'cedula_cliente': '1144091237',
 
-            # Client data
-            'departamento_cliente': 'VAC',
-            'ciudad_cliente': 'Cali',
-            'direccion_cliente': 'El Jordan calle 25',
-            'pais_cliente': 'CO',
-            'nombre_cliente': 'Luis Granja',
-            'cedula_cliente': '1144091237',
+        # Sale data
+        'valor_final': '25000',
+        'fecha_compra': '2019-12-15',
+        'iva': f'{25000*0.19}',
+        'sin_iva': f'{25000*0.81}',
+        'productos': '\n'.join(product_list),
 
-            # Sale data
-            'valor_final': '25000',
-            'fecha_compra': '2019-12-15',
-            'iva': f'{25000*0.19}',
-            'sin_iva': f'{25000*0.81}',
-            'productos': '\n'.join(product_list),
-
-
-            # Crypto data
-
-            }
+        # Crypto data
+    }
 
     result = src.substitute(data)
 
@@ -71,6 +80,9 @@ def generar_factura_xml(name):
 
 
 def generar_factura_pdf(name):
+    """
+    generar_factura_pdf
+    """
     template_name = 'invoice_template.html'
     src = Template(open(template_name).read())
 
@@ -79,7 +91,7 @@ def generar_factura_pdf(name):
     product_list = []
     products = ['a']
 
-    for product in products:
+    for _ in products:
         data = {
             'nombre_producto': 'Doloran',
             'id': '1',
@@ -95,10 +107,8 @@ def generar_factura_pdf(name):
     file = open(filename, "w+b")
 
     data = {
-
         # Invoice data
         'consecutivo': 'CR1',
-        # 'CUFE': signing.dumps(str('hola'), key='3U8A#XFG,,u@Z)', compress=True),
 
         # Pharmacy data
         'nombre_empresa': 'Adidas Co.',
@@ -126,9 +136,9 @@ def generar_factura_pdf(name):
         'productos': ''.join(product_list),
 
         # Crypto data
-
     }
+
     result = src.substitute(data)
-    pisaStatus = pisa.CreatePDF(result, dest=file)
+    pisa_status = pisa.CreatePDF(result, dest=file)
     file.close()
-    return pisaStatus.err
+    return pisa_status.err

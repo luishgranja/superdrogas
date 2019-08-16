@@ -9,7 +9,7 @@
     <nav class="navbar navbar-static-top" role="navigation">
       <a class="sidebar-toggle" data-toggle="push-menu" role="button"></a>
       <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav nav-item">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="@/static/images/user.png" class="user-image" alt="User">
@@ -59,3 +59,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.nav-item {
+  margin-bottom: 0px !important;
+}
+</style>

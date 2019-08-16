@@ -1,137 +1,109 @@
 <template>
-<section class="invoice">
-      <!-- title row -->
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            <i class="fa fa-globe"></i> Superdrogas, Inc.
-            <small class="pull-right">Date: {{ sale_invoice.date }}</small>
-          </h2>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- info row -->
-      <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
-          From
-          <address>
-            <strong>Admin, Inc.</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (804) 123-5432<br>
-            Email: info@almasaeedstudio.com
-          </address>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-          To
-          <address>
-            <strong>John Doe</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (555) 539-1037<br>
-            Email: john.doe@example.com
-          </address>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-          <b>Invoice #{{ sale_invoice.id }}</b><br>
-          <br>          
-          <b>Account:</b> 968-34567
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <!-- Table row -->
-      <div class="row">
-        <div class="col-xs-12 table-responsive">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>Qty</th>
-              <th>Product</th>
-              <th>Description</th>
-              <th>Unit Price</th>
-              <th>Subtotal</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(product, index) in products_invoice" :key="index">
-              <td>{{ product.quantity }}</td>
-              <td>{{ product.product_name }}</td>
-              <td>{{ product.product_description }}</td>
-              <td>{{ product.total_price }}</td>
-              <td>{{ product.product_subtotal }}</td>
-            </tr>            
-            </tbody>
-          </table>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <div class="row">
-        <!-- accepted payments column -->
-        <div class="col-xs-6">          
-          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
-            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-          </p>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-6">
-          <p class="lead">Amount Due {{ sale_invoice.date }}</p>
-
-          <div class="table-responsive">
-            <table class="table">
-              <tbody>
-              <tr>
-                <th style="width:50%">Subtotal:</th>
-                <td>${{ noIva }}</td>
-              </tr>
-              <tr>
-                <th>Tax (19%)</th>
-                <td>${{ iva }}</td>
-              </tr>
-              <tr>
-                <th>Total:</th>
-                <td>${{ sale_invoice.total_amount }}</td>
-              </tr>
-            </tbody></table>
-          </div>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <!-- this row will not appear when printing -->
-      <div class="row no-print">
-        <div class="col-xs-12">
-          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
-          </button>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-            <i class="fa fa-download"></i> Generate PDF
-          </button>
-        </div>
+  <div class="cart">
+    <section class="content-header">
+      <div class="list-inline">
+        <h1>
+          Your Shopping Cart
+        </h1>
       </div>
     </section>
-  </template>
+    <div v-if='emptyCart'>
+      <div class="box box-default">
+        <div class="box-body">
+          <img
+            class="img-responsive"
+            src="@/static/images/cart-empty.jpg"
+            alt="Empty Cart"
+            width="100%"
+            height="100%"
+          >
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <section class="content">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="box">
+              <div class="box-body">
+                <table
+                  id="table"
+                  class="table table-bordered table-striped"
+                  v-show="itemsOnCart"
+                >
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(p, index) in cartProducts"
+                      :key="index"
+                    >
+                      <td>{{ p.name }}</td>
+                      <td>${{ p.price }}</td>
+                      <td>{{ p.quantity }}</td>
+                      <td class="text-center">
+                        <a
+                          @click="getProduct(p.id)"
+                          class="btn.btn-app btn-primary btn-sm action-btn"
+                          data-toggle="modal"
+                          data-target="#product-detail"
+                        >
+                          <i class="fa fa-info-circle"></i>
+                        </a>
+                        <a
+                          @click="deleteFromCart(p)"
+                          class="btn.btn-app btn-danger btn-sm action-btn"
+                        >
+                          <i class="fa fa-minus-square"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>Total:</b></td>
+                      <td></td>
+                      <td><b>${{ total }}</b></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button
+                  v-show="itemsOnCart"
+                  type="submit"
+                  @click='checkout($event)'
+                  class="btn btn-primary btn-flat"
+                >
+                  <i class="fa fa-credit-card"></i>
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <product-detail />
+    </div>
+  </div>
+</template>
 
 <script>
-import { mapGetters, mapActions, mapState } from 'vuex'
-import template from '@/utilities/template'
+import { mapGetters, mapActions } from 'vuex'
+import ProductDetail from '@/components/admin/board/apps/products/modals/ProductsDetail'
+
 export default {
-  name: 'checkout',  
+  name: 'cart',
+  components: {
+    ProductDetail
+  },
   computed: {
-      ...mapState('ecommerce', [
-      'sale_invoice',
-      'products_invoice'
-    ]),
     ...mapGetters('ecommerce', [
-      'noIva',
-      'iva'      
+      'cartProducts',
+      'itemsOnCart',
+      'emptyCart'
     ]),
     total () {
       return this.cartProducts.reduce((total, p) => {
@@ -141,14 +113,12 @@ export default {
   },
   methods: {
     ...mapActions('ecommerce', [
-      'deleteFromCart'
+      'deleteFromCart',
+      'checkout'
     ]),
-    ...mapActions('products', [      
+    ...mapActions('products', [
       'getProduct'
-    ]),
-    checkout () {
-      alert('Pay us $' + this.total)
-    }
+    ])
   }
 }
 </script>

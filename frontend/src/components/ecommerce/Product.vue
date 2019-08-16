@@ -7,34 +7,42 @@
         </h1>
         <span class="badge bg-blue">{{numberProducts}} products</span>
       </div>
-      <!--<ol class="breadcrumb">
-        <li>
-          <router-link :to="{ name: 'home' }">Home</router-link>
-        </li>
-        <li class="active">
-          Products
-        </li>
-      </ol> -->
     </section>
     <section class="content">
       <div class="row">
         <div class="col-sm-12">
           <div class="box">
             <div class="box-body">
-              <table id="table" class=" table-responsive table table-bordered table-striped" >
+              <table
+                id="table"
+                class=" table-responsive table table-bordered table-striped"
+              >
                 <thead>
                   <tr>
                     <th>Name</th>
                     <th>Brand</th>
-                    <th>Price</th>            
+                    <th>Price</th>
                     <th>Image</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(product, index) in activeProductsCatalogue" :key="index">
+                  <tr
+                    v-for="(product, index) in activeProductsCatalogue"
+                    :key="index"
+                  >
                     <td>{{ product.name }}</td>
                     <td>{{ product.brand }}</td>
                     <td>${{ product.price}}</td>
+                    <td>
+                      <img
+                        class="image"
+                        :src="product.image"
+                        alt="Product image"
+                        width="100%"
+                        height="100%"
+                      >
+                    </td>
                     <td class="text-center">
                       <a
                         @click="getProduct(product.id)"
@@ -43,11 +51,12 @@
                         data-target="#product-detail"
                       >
                         <i class="fa fa-info-circle"></i>
-                      </a>                      
-                      <button 
+                      </a>
+                      <button
                         type="button"
-                        @click='addToCart(product)' 
-                        class="btn btn-primary btn-flat">
+                        @click='addToCart(product)'
+                        class="btn btn-primary btn-flat"
+                      >
                         <i class="fa fa-fw fa-plus"></i>
                         Add to cart
                       </button>
@@ -60,23 +69,21 @@
         </div>
       </div>
     </section>
-    <product-detail />      
+    <product-detail />
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import template from '@/utilities/template'
 import ProductDetail from '@/components/admin/board/apps/products/modals/ProductsDetail'
+
 export default {
   name: 'product',
   components: {
-    ProductDetail    
+    ProductDetail
   },
   computed: {
-    //...mapState('products', [
-    //  'products'
-    //]),
     ...mapGetters('products', [
       'activeProductsCatalogue',
       'numberProducts'
@@ -95,7 +102,14 @@ export default {
     this.getProducts()
   },
   updated () {
-    template.refresh()
+    template.reload()
   }
 }
 </script>
+
+<style scoped>
+.image {
+  width: 100px !important;
+  height: 100px !important;
+}
+</style>

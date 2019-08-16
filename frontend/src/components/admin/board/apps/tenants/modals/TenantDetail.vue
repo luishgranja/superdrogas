@@ -1,4 +1,4 @@
-.0<template>
+<template>
   <modal-component id="tenant-detail" title="Tenant detail">
     <div class="row">
       <div class="col-sm-12">

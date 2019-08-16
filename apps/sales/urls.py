@@ -7,7 +7,7 @@ The 'urlpatterns' list routes URLs to viewsets
 # Django Rest Framework
 from rest_framework import routers
 
-#Sales viewsets
+# Sales viewsets
 from .viewsets.sale_invoice_viewset import SaleInvoiceViewSet
 from .viewsets.product_on_sale_viewset import ProductOnSaleInvoiceViewSet
 

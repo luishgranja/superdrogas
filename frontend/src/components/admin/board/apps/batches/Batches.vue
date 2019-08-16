@@ -131,7 +131,7 @@ export default {
     this.getBatches()
   },
   updated () {
-    template.refresh()
+    template.reload()
   }
 }
 </script>

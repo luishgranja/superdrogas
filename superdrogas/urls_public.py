@@ -10,8 +10,8 @@ from django.conf.urls import url, include
 # Rest Auth
 from rest_auth.views import PasswordResetConfirmView
 
-# Project views
-from .views import index
+# Vue project
+from .views import vue
 
 
 urlpatterns = [
@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^api/rest-auth/', include('rest_auth.urls')),
 
     # Vue project
-    url(r'^.*$', index, name='index'),
+    url(r'^.*$', vue, name='vue'),
 ]

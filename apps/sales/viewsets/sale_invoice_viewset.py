@@ -22,12 +22,3 @@ class SaleInvoiceViewSet(viewsets.ModelViewSet):
     """
     queryset = SaleInvoice.objects.all()
     serializer_class = SaleInvoiceSerializer
-
-    """
-    def perform_destroy(self, instance):
-        
-        perform_destroy is used to performance a logic delete
-        
-        instance.is_active = not instance.is_active
-        instance.save()
-        """

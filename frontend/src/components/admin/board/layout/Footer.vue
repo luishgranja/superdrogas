@@ -1,7 +1,7 @@
 <template>
   <footer class="main-footer">
     <strong>Copyright &copy; 2019 | <a>Super Drogas</a></strong>.
-    Todos los derechos reservados.
+    All rights reserved.
     <div class="pull-right hidden-xs">
       Universidad del Valle
     </div>

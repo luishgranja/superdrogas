@@ -6,32 +6,31 @@
           Your Shopping Cart
         </h1>
       </div>
-      <!--<ol class="breadcrumb">
-        <li>
-          <router-link :to="{ name: 'home' }">Home</router-link>
-        </li>
-        <li class="active">
-          Products
-        </li>
-      </ol> -->
     </section>
     <div v-if='emptyCart'>
-      <div class="box box-default">          
-          <div class="box-body">                        
-            <img class="img-responsive" 
-            src="@/static/images/cart-empty.jpg" alt="Empty Cart"
-            width="100%" height="100%">
-          </div>
-          <!-- /.box-body -->
+      <div class="box box-default">
+        <div class="box-body">
+          <img
+            class="img-responsive"
+            src="@/static/images/cart-empty.jpg"
+            alt="Empty Cart"
+            width="100%"
+            height="100%"
+          >
         </div>
-    </div>    
+      </div>
+    </div>
     <div v-else>
       <section class="content">
         <div class="row">
           <div class="col-sm-12">
             <div class="box">
               <div class="box-body">
-                <table id="table" class="table table-bordered table-striped" v-show="itemsOnCart">
+                <table
+                  id="table"
+                  class="table table-bordered table-striped"
+                  v-show="itemsOnCart"
+                >
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -41,39 +40,43 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(p, index) in cartProducts" :key="index">
+                    <tr
+                      v-for="(p, index) in cartProducts"
+                      :key="index"
+                    >
                       <td>{{ p.name }}</td>
                       <td>${{ p.price }}</td>
                       <td>{{ p.quantity }}</td>
                       <td class="text-center">
                         <a
-                        @click="getProduct(p.id)"
-                        class="btn.btn-app btn-primary btn-sm action-btn"
-                        data-toggle="modal"
-                        data-target="#product-detail"
-                      >
-                        <i class="fa fa-info-circle"></i>
-                      </a>
+                          @click="getProduct(p.id)"
+                          class="btn.btn-app btn-primary btn-sm action-btn"
+                          data-toggle="modal"
+                          data-target="#product-detail"
+                        >
+                          <i class="fa fa-info-circle"></i>
+                        </a>
                         <a
                           @click="deleteFromCart(p)"
-                          class="btn.btn-app btn-danger btn-sm action-btn"                                                    
+                          class="btn.btn-app btn-danger btn-sm action-btn"
                         >
                           <i class="fa fa-minus-square"></i>
                         </a>
                       </td>
                     </tr>
-                    <tr>  
+                    <tr>
                       <td><b>Total:</b></td>
                       <td></td>
                       <td><b>${{ total }}</b></td>
-                      </tr>
+                    </tr>
                   </tbody>
                 </table>
                 <button
-                  v-show="itemsOnCart"                    
+                  v-show="itemsOnCart"
                   type="submit"
-                  @click='checkout($event)' 
-                  class="btn btn-primary btn-flat">
+                  @click='checkout($event)'
+                  class="btn btn-primary btn-flat"
+                >
                   <i class="fa fa-credit-card"></i>
                   Checkout
                 </button>
@@ -82,19 +85,19 @@
           </div>
         </div>
       </section>
-      <product-detail/> 
-    </div>      
+      <product-detail />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import template from '@/utilities/template'
 import ProductDetail from '@/components/admin/board/apps/products/modals/ProductsDetail'
+
 export default {
   name: 'cart',
   components: {
-    ProductDetail    
+    ProductDetail
   },
   computed: {
     ...mapGetters('ecommerce', [
@@ -113,12 +116,9 @@ export default {
       'deleteFromCart',
       'checkout'
     ]),
-    ...mapActions('products', [      
+    ...mapActions('products', [
       'getProduct'
-    ]),
-  }/*,
-  updated () {
-    template.refresh()
-  }*/
+    ])
+  }
 }
 </script>

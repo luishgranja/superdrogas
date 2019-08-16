@@ -131,7 +131,7 @@ export default {
     this.getProducts()
   },
   updated () {
-    template.refresh()
+    template.reload()
   }
 }
 </script>
