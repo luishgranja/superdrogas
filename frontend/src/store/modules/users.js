@@ -88,6 +88,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.post('accounts/users/', state.user)
     if (!response.error) {
+      template.destroy()
       commit('ADD_USER', response.data)
       template.hideModal('#user-form')
       commit('GET_USER')
@@ -100,6 +101,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.patch(`accounts/users/${state.user.id}/`, state.user)
     if (!response.error) {
+      template.destroy()
       commit('SET_USER', response.data)
       template.hideModal('#user-form')
     } else {

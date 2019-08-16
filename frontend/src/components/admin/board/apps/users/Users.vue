@@ -125,7 +125,7 @@ export default {
     this.getUsers()
   },
   updated () {
-    template.reload()
+    this.$nextTick(() => { template.reload() })
   }
 }
 </script>
