@@ -64,4 +64,7 @@ export default {
 .nav-item {
   margin-bottom: 0px !important;
 }
+.nav-item img {
+  max-height: max-content;
+}
 </style>
