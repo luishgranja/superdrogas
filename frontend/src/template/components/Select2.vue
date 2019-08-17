@@ -31,6 +31,11 @@ export default {
       .on('change', function () {
         vm.$emit('input', this.value)
       })
+
+    vm.$nextTick(() => {
+      // eslint-disable-next-line
+      $(`#${this.id}`).val(0).trigger('change')
+    })
   },
   watch: {
     value: function (value) {

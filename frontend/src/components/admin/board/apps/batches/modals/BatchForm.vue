@@ -9,6 +9,9 @@
             v-model="product"
           >
           </select2>
+          <span v-for="(error, index) in errors.product" :key="index" class="help-block error-block">
+            {{ error }}
+          </span>
         </div>
         <input-component
           class="col-sm-6"
