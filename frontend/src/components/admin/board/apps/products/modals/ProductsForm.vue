@@ -35,6 +35,9 @@
             type="file"
             ref="file"
           >
+          <span v-if="errors.image" class="help-block error-block">
+            This field is required.
+          </span>
         </div>
       </div>
       <div class="row">
@@ -46,6 +49,9 @@
             v-model="category"
           >
           </select2>
+          <span v-if="errors.category" class="help-block error-block">
+            This field is required.
+          </span>
         </div>
         <div class="form-group col-sm-6">
           <label>Brand</label>
@@ -55,9 +61,12 @@
             v-model="brand"
           >
           </select2>
+          <span v-if="errors.brand" class="help-block error-block">
+            This field is required.
+          </span>
         </div>
       </div>
-      <div class="pull-right">
+      <div class="mt-10 pull-right">
         <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
         <button v-if="isNewProduct" @click="createProduct($event)" type="submit" class="btn btn-success">Create</button>
         <button v-else @click="updateProduct($event)" type="submit" class="btn btn-primary">Update</button>
