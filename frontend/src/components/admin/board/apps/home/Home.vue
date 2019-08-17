@@ -27,7 +27,7 @@
               <div class="col-xs-6 border-right">
                 <div class="description-block">
                   <h5 class="description-header module-item">
-                    <router-link :to="{}">
+                    <router-link :to="{ name: 'customers' }">
                       <i class="fa fa-child"></i>
                       Customers
                     </router-link>
@@ -35,6 +35,34 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-red-active module-header">
+            <h2 class="widget-user-username text-center">
+              <router-link :to="{ name: 'tenants' }">
+                <strong>
+                  <i class="fa fa-medkit"></i>
+                  Tenants
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div v-if="isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-yellow-active module-header">
+            <h2 class="widget-user-username text-center">
+              <router-link :to="{ name: 'metrics' }">
+                <strong>
+                  <i class="fa fa-area-chart"></i>
+                  Metrics
+                </strong>
+              </router-link>
+            </h2>
           </div>
         </div>
       </div>
@@ -94,6 +122,48 @@
           </div>
         </div>
       </div>
+      <div v-if="!isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-red-active module-header">
+            <h2 class="widget-user-username text-center">
+              <router-link :to="{ name: 'reports' }">
+                <strong>
+                  <i class="fa fa-bar-chart"></i>
+                  Reports
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div v-if="!isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-green-active module-header">
+            <h2 class="widget-user-username text-center">
+              <router-link :to="{ name: 'sales' }">
+                <strong>
+                  <i class="fa fa-money"></i>
+                  Sales
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div v-if="!isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-orange-active module-header">
+            <h2 class="widget-user-username text-center">
+              <router-link :to="{ name: 'configurations' }">
+                <strong>
+                  <i class="fa fa-cog"></i>
+                  Configurations
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -114,6 +184,9 @@ export default {
 <style scoped>
 a {
   color: #333 !important;
+}
+strong {
+  color: white;
 }
 .module-header {
   height: auto;

@@ -34,6 +34,7 @@ router.beforeEach((to, from, next) => {
     case 'batches':
     case 'brands':
     case 'categories':
+      next({ name: 'home' })
       break
     default:
       next()

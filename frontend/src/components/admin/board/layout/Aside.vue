@@ -9,12 +9,6 @@
             <span>Home</span>
           </router-link>
         </li>
-        <li v-if="isAdmin">
-          <router-link :to="{ name: 'tenants' }">
-            <i class="fa fa-medkit"></i>
-            <span>Tenants</span>
-          </router-link>
-        </li>
         <li class="treeview">
           <a>
             <i class="fa fa-users"></i>
@@ -31,12 +25,24 @@
               </router-link>
             </li>
             <li>
-              <router-link :to="{}">
+              <router-link :to="{ name: 'customers' }">
                 <i class="fa fa-child"></i>
-                <span>Customer</span>
+                <span>Customers</span>
               </router-link>
             </li>
           </ul>
+        </li>
+        <li v-if="isAdmin">
+          <router-link :to="{ name: 'tenants' }">
+            <i class="fa fa-medkit"></i>
+            <span>Tenants</span>
+          </router-link>
+        </li>
+        <li v-if="isAdmin">
+          <router-link :to="{ name: 'metrics' }">
+            <i class="fa fa-area-chart"></i>
+            <span>Metrics</span>
+          </router-link>
         </li>
         <li v-if="!isAdmin" class="treeview">
           <a>
@@ -72,6 +78,24 @@
               </router-link>
             </li>
           </ul>
+        </li>
+        <li v-if="!isAdmin">
+          <router-link :to="{ name: 'reports' }">
+            <i class="fa fa-bar-chart"></i>
+            <span>Reports</span>
+          </router-link>
+        </li>
+        <li v-if="!isAdmin">
+          <router-link :to="{ name: 'sales' }">
+            <i class="fa fa-money"></i>
+            <span>Sales</span>
+          </router-link>
+        </li>
+        <li v-if="!isAdmin">
+          <router-link :to="{ name: 'configurations' }">
+            <i class="fa fa-cog"></i>
+            <span>Configurations</span>
+          </router-link>
         </li>
       </ul>
     </section>

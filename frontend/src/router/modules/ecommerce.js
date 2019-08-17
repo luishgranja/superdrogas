@@ -1,8 +1,8 @@
 import ECommerce from '@/components/ecommerce/ECommerce'
+import Shopping from '@/components/ecommerce/Shopping'
 import Product from '@/components/ecommerce/Product'
 import Cart from '@/components/ecommerce/Cart'
 import Checkout from '@/components/ecommerce/Checkout'
-import Shopping from '@/components/ecommerce/Shopping'
 
 export default {
   path: '',
