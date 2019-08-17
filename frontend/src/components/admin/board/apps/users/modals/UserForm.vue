@@ -16,9 +16,20 @@
           placeholder="Identification number"
           :inputErrors="errors.identification_number"
         />
+        <div class="form-group col-sm-6">
+          <label>Rol</label>
+          <select2
+            :options="roles"
+            v-model="rol"
+          >
+          </select2>
+          <span v-if="errors.rol" class="help-block error-block">
+            This field is required.
+          </span>
+        </div>
         <input-component
           id="email"
-          class="col-md-12"
+          class="col-md-6"
           v-model="email"
           placeholder="Email"
           type="email"
@@ -88,7 +99,8 @@ export default {
   computed: {
     ...mapState('users', [
       'user',
-      'errors'
+      'errors',
+      'roles'
     ]),
     ...mapGetters('users', [
       'isNewUser'
@@ -115,6 +127,14 @@ export default {
       },
       set (value) {
         this.$store.commit('users/SET_LAST_NAME', value)
+      }
+    },
+    rol: {
+      get () {
+        return this.user.rol
+      },
+      set (value) {
+        this.$store.commit('users/SET_ROL', value)
       }
     },
     email: {

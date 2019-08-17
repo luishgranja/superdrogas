@@ -36,6 +36,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Username</th>
+                    <th>Rol</th>
                     <th>Email</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -45,6 +46,7 @@
                   <tr v-for="(user, index) in users" :key="index">
                     <td>{{ user.first_name }} {{ user.last_name }}</td>
                     <td>{{ user.username }}</td>
+                    <td>{{ user.rol_name }}</td>
                     <td>{{ user.email }}</td>
                     <td class="text-center">
                       <p

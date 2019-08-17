@@ -4,6 +4,10 @@ import template from '@/utilities/template'
 const state = {
   users: [],
   user: {},
+  roles: [
+    { id: 'AD', text: 'Administrator' },
+    { id: 'SL', text: 'Seller' }
+  ],
   errors: {},
   isLoading: false
 }
@@ -43,6 +47,9 @@ const mutations = {
   },
   SET_USERNAME: (state, newUsername) => {
     state.user = { ...state.user, username: newUsername }
+  },
+  SET_ROL: (state, newRol) => {
+    state.user = { ...state.user, rol: newRol }
   },
   SET_EMAIL: (state, newEmail) => {
     state.user = { ...state.user, email: newEmail }

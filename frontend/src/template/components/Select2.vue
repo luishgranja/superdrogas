@@ -13,7 +13,7 @@ export default {
       default: () => []
     },
     value: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     id: {
