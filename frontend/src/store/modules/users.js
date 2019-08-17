@@ -13,7 +13,25 @@ const state = {
 }
 
 const getters = {
-  isNewUser: state => state.user.id === undefined
+  isNewUser: state => state.user.id === undefined,
+  users: state => {
+    var users = []
+    state.users.forEach(user => {
+      if (user.rol !== 'CM') {
+        users.push(user)
+      }
+    })
+    return users
+  },
+  customers: state => {
+    var customers = []
+    state.users.forEach(customer => {
+      if (customer.rol === 'CM') {
+        customers.push(customer)
+      }
+    })
+    return customers
+  }
 }
 
 const mutations = {

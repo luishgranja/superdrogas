@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import template from '@/utilities/template'
 import UserDetail from './modals/UserDetail'
 import UserForm from './modals/UserForm'
@@ -113,8 +113,10 @@ export default {
   },
   computed: {
     ...mapState('users', [
-      'users',
       'isLoading'
+    ]),
+    ...mapGetters('users', [
+      'users'
     ])
   },
   methods: {
