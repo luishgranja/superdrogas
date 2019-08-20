@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^api/rest-auth/', include('rest_auth.urls')),
 
     # Vue project
-    url(r'^.*$', vue, name='vue'),
+    # url(r'^.*$', vue, name='vue'),
 ]
