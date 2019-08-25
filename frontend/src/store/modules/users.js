@@ -4,12 +4,34 @@ import template from '@/utilities/template'
 const state = {
   users: [],
   user: {},
+  roles: [
+    { id: 'AD', text: 'Administrator' },
+    { id: 'SL', text: 'Seller' }
+  ],
   errors: {},
   isLoading: false
 }
 
 const getters = {
-  isNewUser: state => state.user.id === undefined
+  isNewUser: state => state.user.id === undefined,
+  users: state => {
+    var users = []
+    state.users.forEach(user => {
+      if (user.rol !== 'CM') {
+        users.push(user)
+      }
+    })
+    return users
+  },
+  customers: state => {
+    var customers = []
+    state.users.forEach(customer => {
+      if (customer.rol === 'CM') {
+        customers.push(customer)
+      }
+    })
+    return customers
+  }
 }
 
 const mutations = {
@@ -43,6 +65,9 @@ const mutations = {
   },
   SET_USERNAME: (state, newUsername) => {
     state.user = { ...state.user, username: newUsername }
+  },
+  SET_ROL: (state, newRol) => {
+    state.user = { ...state.user, rol: newRol }
   },
   SET_EMAIL: (state, newEmail) => {
     state.user = { ...state.user, email: newEmail }
@@ -88,6 +113,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.post('accounts/users/', state.user)
     if (!response.error) {
+      template.destroy()
       commit('ADD_USER', response.data)
       template.hideModal('#user-form')
       commit('GET_USER')
@@ -100,6 +126,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.patch(`accounts/users/${state.user.id}/`, state.user)
     if (!response.error) {
+      template.destroy()
       commit('SET_USER', response.data)
       template.hideModal('#user-form')
     } else {

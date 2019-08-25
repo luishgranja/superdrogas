@@ -92,6 +92,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.patch(`inventory/categories/${state.category.id}/`, state.category)
     if (!response.error) {
+      template.destroy()
       commit('SET_CATEGORY', response.data)
       template.hideModal('#category-form')
     } else {

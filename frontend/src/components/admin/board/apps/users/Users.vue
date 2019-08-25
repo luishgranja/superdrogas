@@ -36,6 +36,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Username</th>
+                    <th>Rol</th>
                     <th>Email</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -45,6 +46,7 @@
                   <tr v-for="(user, index) in users" :key="index">
                     <td>{{ user.first_name }} {{ user.last_name }}</td>
                     <td>{{ user.username }}</td>
+                    <td>{{ user.rol_name }}</td>
                     <td>{{ user.email }}</td>
                     <td class="text-center">
                       <p
@@ -96,7 +98,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import template from '@/utilities/template'
 import UserDetail from './modals/UserDetail'
 import UserForm from './modals/UserForm'
@@ -111,8 +113,10 @@ export default {
   },
   computed: {
     ...mapState('users', [
-      'users',
       'isLoading'
+    ]),
+    ...mapGetters('users', [
+      'users'
     ])
   },
   methods: {
@@ -125,7 +129,7 @@ export default {
     this.getUsers()
   },
   updated () {
-    template.reload()
+    this.$nextTick(() => { template.reload() })
   }
 }
 </script>

@@ -9,6 +9,9 @@
             v-model="product"
           >
           </select2>
+          <span v-if="errors.product" class="help-block error-block">
+            This field is required.
+          </span>
         </div>
         <input-component
           class="col-sm-6"

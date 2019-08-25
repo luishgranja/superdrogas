@@ -83,6 +83,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.post('inventory/brands/', state.brand)
     if (!response.error) {
+      template.destroy()
       commit('ADD_BRAND', response.data)
       template.hideModal('#brand-form')
       commit('GET_BRAND')
@@ -95,6 +96,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.patch(`inventory/brands/${state.brand.id}/`, state.brand)
     if (!response.error) {
+      template.destroy()
       commit('SET_BRAND', response.data)
       template.hideModal('#brand-form')
     } else {
