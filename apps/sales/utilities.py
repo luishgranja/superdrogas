@@ -166,9 +166,9 @@ def generar_factura_pdf(request):
     result = src.substitute(data)
     pisa_status = pisa.CreatePDF(result, dest=file)
 
-    # file.close()
+    file.close()
 
-    fs = FileSystemStorage("/")
+    fs = FileSystemStorage("")
     with fs.open(filename) as pdf:
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="'+filename+'"'

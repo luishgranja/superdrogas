@@ -1,514 +1,430 @@
 <head>
-  <style>
-    section {
-      display: block;
-    }
-
-    a {
-      background-color: transparent;
-    }
-
-    a:active,
-    a:hover {
-      outline: 0;
-    }
-
-    b,
-    strong {
-      font-weight: 700;
-    }
-
-    small {
-      font-size: 80%;
-    }
-
-    img {
-      border: 0;
-    }
-
-    button {
-      margin: 0;
-      font: inherit;
-      color: inherit;
-    }
-
-    button {
-      overflow: visible;
-    }
-
-    button {
-      text-transform: none;
-    }
-
-    button {
-      -webkit-appearance: button;
-      cursor: pointer;
-    }
-
-    button::-moz-focus-inner {
-      padding: 0;
-      border: 0;
-    }
-
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-    }
-
-    td,
-    th {
-      padding: 0;
-    }
-
-    *,
-    :after,
-    :before {
-      color: #000 !important;
-      text-shadow: none !important;
-      background: 0 0 !important;
-      -webkit-box-shadow: none !important;
-      box-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-      text-decoration: underline;
-    }
-
-    a[href]:after {
-      content: " ("attr(href) ")";
-    }
-
-    thead {
-      display: table-header-group;
-    }
-
-    img,
-    tr {
-      page-break-inside: avoid;
-    }
-
-    img {
-      max-width: 100% !important;
-    }
-
-    h2,
-    p {
-      orphans: 3;
-      widows: 3;
-    }
-
-    h2 {
-      page-break-after: avoid;
-    }
-
-    .table {
-      border-collapse: collapse !important;
-    }
-
-    .table td,
-    .table th {
-      background-color: #fff !important;
-    }
-
-    * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-    :after,
-    :before {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-    button {
-      font-family: inherit;
-      font-size: inherit;
-      line-height: inherit;
-    }
-
-    a {
-      color: #337ab7;
-      text-decoration: none;
-    }
-
-    a:focus,
-    a:hover {
-      color: #23527c;
-      text-decoration: underline;
-    }
-
-    a:focus {
-      outline: 5px auto -webkit-focus-ring-color;
-      outline-offset: -2px;
-    }
-
-    img {
-      vertical-align: middle;
-    }
-
-    h2 {
-      font-family: inherit;
-      font-weight: 500;
-      line-height: 1.1;
-      color: inherit;
-    }
-
-    h2 small {
-      font-weight: 400;
-      line-height: 1;
-      color: #777;
-    }
-
-    h2 {
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-
-    h2 small {
-      font-size: 65%;
-    }
-
-    h2 {
-      font-size: 30px;
-    }
-
-    p {
-      margin: 0 0 10px;
-    }
-
-    .lead {
-      margin-bottom: 20px;
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.4;
-    }
-
-    .lead {
-      font-size: 21px;
-    }
-
-    small {
-      font-size: 85%;
-    }
-
-    .page-header {
-      padding-bottom: 9px;
-      margin: 40px 0 20px;
-      border-bottom: 1px solid #eee;
-    }
-
-    address {
-      margin-bottom: 20px;
-      font-style: normal;
-      line-height: 1.42857143;
-    }
-
-    .row {
-      margin-right: -15px;
-      margin-left: -15px;
-    }
-
-    .col-sm-4,
-    .col-xs-12,
-    .col-xs-6 {
-      position: relative;
-      min-height: 1px;
-      padding-right: 15px;
-      padding-left: 15px;
-    }
-
-    .col-xs-12,
-    .col-xs-6 {
-      float: left;
-    }
-
-    .col-xs-12 {
-      width: 100%;
-    }
-
-    .col-xs-6 {
-      width: 50%;
-    }
-
-    .col-sm-4 {
-      width: 33.33333333%;
-      float: left;
-    }
-
-    table {
-      background-color: transparent;
-    }
-
-    th {
-      text-align: left;
-    }
-
-    .table {
-      width: 100%;
-      max-width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .table>tbody>tr>td,
-    .table>tbody>tr>th,
-    .table>thead>tr>th {
-      padding: 8px;
-      line-height: 1.42857143;
-      vertical-align: top;
-      border-top: 1px solid #ddd;
-    }
-
-    .table>thead>tr>th {
-      vertical-align: bottom;
-      border-bottom: 2px solid #ddd;
-    }
-
-    .table>thead:first-child>tr:first-child>th {
-      border-top: 0;
-    }
-
-    .table-striped>tbody>tr:nth-of-type(odd) {
-      background-color: #f9f9f9;
-    }
-
-    .table-responsive {
-      min-height: .01%;
-      overflow-x: auto;
-    }
-
-    .table-responsive {
-      width: 100%;
-      margin-bottom: 15px;
-      overflow-y: hidden;
-      -ms-overflow-style: -ms-autohiding-scrollbar;
-      border: 1px solid #ddd;
-    }
-
-    .table-responsive>.table {
-      margin-bottom: 0;
-    }
-
-    .table-responsive>.table>tbody>tr>td,
-    .table-responsive>.table>tbody>tr>th,
-    .table-responsive>.table>thead>tr>th {
-      white-space: nowrap;
-    }
-
-    .row:after,
-    .row:before {
-      display: table;
-      content: " ";
-    }
-
-    .row:after {
-      clear: both;
-    }
-
-    .pull-right {
-      float: right !important;
-    }
-
-    .fa {
-      display: inline-block;
-      font: normal normal normal 14px/1 FontAwesome;
-      font-size: inherit;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .pull-right {
-      float: right;
-    }
-
-    .fa-globe:before {
-      content: "\f0ac";
-    }
-
-    h2 {
-      font-family: 'Source Sans Pro', sans-serif;
-    }
-
-    a {
-      color: #3c8dbc;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-      outline: none;
-      text-decoration: none;
-      color: #72afd2;
-    }
-
-    .page-header {
-      margin: 10px 0 20px 0;
-      font-size: 22px;
-    }
-
-    .page-header>small {
-      color: #666;
-      display: block;
-      margin-top: 5px;
-    }
-
-    .table>thead>tr>th,
-    .table>tbody>tr>th,
-    .table>tbody>tr>td {
-      border-top: 1px solid #f4f4f4;
-    }
-
-    .table>thead>tr>th {
-      border-bottom: 2px solid #f4f4f4;
-    }
-
-    .invoice {
-      position: relative;
-      background: #fff;
-      border: 1px solid #f4f4f4;
-      padding: 20px;
-      margin: 10px 25px;
-    }
-
-    .no-print {
-      display: none !important;
-    }
-
-    .invoice {
-      width: 100%;
-      border: 0;
-      margin: 0;
-      padding: 0;
-    }
-
-    .invoice-col {
-      float: left;
-      width: 33.3333333%;
-    }
-
-    .table-responsive {
-      overflow: auto;
-    }
-
-    .table-responsive>.table tr th,
-    .table-responsive>.table tr td {
-      white-space: normal !important;
-    }
-
-    h2 {
-      font-family: Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 300;
-    }
-
-    a,
-    a:focus,
-    a:hover {
-      color: #009688;
-    }
-
-    * {
-      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    :focus {
-      outline: 0;
-    }
-
-    .skin-blue a,
-    .skin-blue a:hover,
-    .skin-blue a:focus {
-      color: #2196f3;
-    }
-  </style>
+    <style>
+        section {
+            display: block;
+        }
+
+        a {
+            background-color: transparent;
+        }
+
+        a:active,
+        a:hover {
+            outline: 0;
+        }
+
+        b,
+        strong {
+            font-weight: 700;
+        }
+
+        small {
+            font-size: 80%;
+        }
+
+        img {
+            border: 0;
+        }
+
+        button {
+            margin: 0;
+            font: inherit;
+            color: inherit;
+        }
+
+        button {
+            overflow: visible;
+        }
+
+        button {
+            text-transform: none;
+        }
+
+        button {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+        button::-moz-focus-inner {
+            padding: 0;
+            border: 0;
+        }
+
+
+        *,
+        :after,
+        :before {
+            color: #000 !important;
+            text-shadow: none !important;
+            background: 0 0 !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+        }
+
+        a,
+        a:visited {
+            text-decoration: underline;
+        }
+
+        a[href]:after {
+            content: " ("attr(href) ")";
+        }
+
+        img,
+        tr {
+            page-break-inside: avoid;
+        }
+
+        img {
+            max-width: 100% !important;
+        }
+
+        h2,
+        p {
+            orphans: 3;
+            widows: 3;
+        }
+
+        h2 {
+            page-break-after: avoid;
+        }
+
+        .table td,
+        .table th {
+            background-color: #fff !important;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        :after,
+        :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:focus,
+        a:hover {
+            color: #23527c;
+            text-decoration: underline;
+        }
+
+        a:focus {
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        h2 {
+            font-family: inherit;
+            font-weight: 500;
+            line-height: 1.1;
+            color: inherit;
+        }
+
+        h2 small {
+            font-weight: 400;
+            line-height: 1;
+            color: #777;
+        }
+
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        h2 small {
+            font-size: 65%;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        p {
+            margin: 0 0 10px;
+        }
+
+        .lead {
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .lead {
+            font-size: 21px;
+        }
+
+        small {
+            font-size: 85%;
+        }
+
+        .page-header {
+            padding-bottom: 9px;
+            margin: 40px 0 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        address {
+            margin-bottom: 20px;
+            font-style: normal;
+            line-height: 1.42857143;
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-sm-4,
+        .col-xs-12,
+        .col-xs-6 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .col-xs-12,
+        .col-xs-6 {
+            float: left;
+        }
+
+        .col-xs-12 {
+            width: 100%;
+        }
+
+        .col-xs-6 {
+            width: 50%;
+        }
+
+        .col-sm-4 {
+            width: 33.33333333%;
+            float: left;
+        }
+
+        table {
+            background-color: transparent;
+        }
+
+        .row:after,
+        .row:before {
+            display: table;
+            content: " ";
+        }
+
+        .row:after {
+            clear: both;
+        }
+
+        .pull-right {
+            float: right !important;
+        }
+
+        .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .pull-right {
+            float: right;
+        }
+
+        .fa-globe:before {
+            content: "\f0ac";
+        }
+
+        h2 {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        a {
+            color: #3c8dbc;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            outline: none;
+            text-decoration: none;
+            color: #72afd2;
+        }
+
+        .page-header {
+            margin: 10px 0 20px 0;
+            font-size: 22px;
+        }
+
+        .page-header>small {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .invoice {
+            position: relative;
+            background: #fff;
+            border: 1px solid #f4f4f4;
+            padding: 20px;
+            margin: 10px 25px;
+        }
+
+        .invoice {
+            width: 100%;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .invoice-col {
+            float: left;
+            width: 33.3333333%;
+        }
+
+        h2 {
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 300;
+        }
+
+        a,
+        a:focus,
+        a:hover {
+            color: #009688;
+        }
+
+        * {
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus {
+            outline: 0;
+        }
+
+        .skin-blue a,
+        .skin-blue a:hover,
+        .skin-blue a:focus {
+            color: #2196f3;
+        }
+
+    </style>
+
 </head>
 <section class="invoice">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2 class="page-header">
-        <i class="fa fa-globe"></i> $nombre_empresa
-        <small class="pull-right">Date: $fecha_compra</small>
-      </h2>
+
+    <div class="row">
+        <h2 class="col-xs-6"> $nombre_empresa</h2>
+        <h5 class="pull-right col-xs-6">Date: $fecha_compra</h5>
     </div>
-  </div>
-  <div class="row invoice-info">
-    <div class="col-sm-4 invoice-col">
-      From
-      <address>
-        <strong>$nombre_empresa</strong> - NIT: $NIT<br>
-        $direccion_empresa<br>
-        $departamento_empresa - $ciudad_empresa<br>
-        Phone: $telefono_empresa<br>
-        Email: $correo_empresa
-      </address>
-    </div>
-    <div class="col-sm-4 invoice-col">
-      To
-      <address>
-        <strong>$nombre_cliente</strong><br>
-        $direccion_cliente<br>
-        $departamento_cliente - $ciudad_cliente<br>
-        Phone: $telefono_cliente<br>
-        Email: $correo_cliente
-      </address>
-    </div>
-    <div class="col-sm-4 invoice-col">
-      <b>Invoice $consecutivo</b><br>
-      <br>
-      <b>Account:</b> $cedula_cliente
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Qty</th>
-            <th>Product</th>
-            <th>Unit Price</th>
-            <th>Total Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          $productos
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-6">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in felis in elit
-        efficitur tempus eu vel metus. Aliquam in lorem ligula. Donec nec odio justo.
-        Duis dignissim congue faucibus. Donec lacinia pulvinar nisl, sed consectetur ex
-        iaculis ac. Integer laoreet maximus nunc, nec varius risus placerat ut. Curabitur
-        ut pellentesque massa. Vestibulum porta nunc eu dui semper vulputate.
-      </p>
-    </div>
-    <div class="col-xs-6">
-      <p class="lead">Sale Description</p>
-      <div class="table-responsive">
-        <table class="table">
-          <tbody>
+
+    <div class="col-xs-12 row invoice-info">
+        <table>
             <tr>
-              <th style="width:50%">Subtotal:</th>
-              <td>$sin_iva</td>
+                <td>
+                    From
+                    <address>
+                        <strong>$nombre_empresa</strong> - NIT: $NIT<br>
+                        $direccion_empresa<br>
+                        $departamento_empresa - $ciudad_empresa<br>
+                        Phone: $telefono_empresa<br>
+                        Email: $correo_empresa
+                    </address>
+                </td>
+                <td>
+                    To
+                    <address>
+                        <strong>$nombre_cliente</strong><br>
+                        $direccion_cliente<br>
+                        $departamento_cliente - $ciudad_cliente<br>
+                        Phone: $telefono_cliente<br>
+                        Email: $correo_cliente
+                    </address>
+                </td>
             </tr>
-            <tr>
-              <th>Tax (19%)</th>
-              <td>$iva</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td>$valor_final</td>
-            </tr>
-          </tbody>
         </table>
-      </div>
     </div>
-  </div>
+
+    <div class="col-sm-4 invoice-col" style="margin-top: 20px; margin-bottom: 10px">
+        <b>Invoice $consecutivo</b><br>
+        <b>Account:</b> $cedula_cliente
+    </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <table width="100%" border="1" cellspacing="0" cellpadding="5">
+                <tr>
+                    <td><strong>Qty</strong></td>
+                    <td><strong>Product</strong></td>
+                    <td><strong>Unit Price</strong></td>
+                    <td><strong>Total Value</strong></td>
+                </tr>
+                $productos
+            </table>
+
+            <p style="padding-top: 20px">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in felis in elit
+                efficitur tempus eu vel metus. Aliquam in lorem ligula. Donec nec odio justo.
+                Duis dignissim congue faucibus. Donec lacinia pulvinar nisl, sed consectetur ex
+                iaculis ac. Integer laoreet maximus nunc, nec varius risus placerat ut. Curabitur
+                ut pellentesque massa. Vestibulum porta nunc eu dui semper vulputate.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-6">
+            <p class="lead">Sale Description</p>
+            <div>
+                <table width="100%" border="1" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td style="width:50%"><strong>Subtotal:</strong></td>
+                        <td>$sin_iva</td>
+                    <tr>
+                        <td><strong>Tax (19%)</strong></td>
+                        <td>$iva</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total:</strong></td>
+                        <td>$valor_final</td>
+                    </tr>
+                    <tr>
+                        <td>
+                             <img  width="200" height="200" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAL3klEQVR4Xu2d0XbjOA4FO///0dmT9GzasWWRKAMwJdW+hqDIi1sEyPROPj4/Pz//+D8VUIFNBT4ERGeowHMFBER3qMCOAgKiPVRAQPSACjAFrCBMN6MuooCAXCTRbpMpICBMN6MuooCAXCTRbpMpICBMN6MuooCAXCTRbpMpICBMN6MuokAYkI+Pj8NLs/fPz/b2d4Y4mryz5/2ZLgJyp4yAbFtFQCaPlrMLJSACcquAFcQKMnU0nv1gtMW6UeAMdwla6aZo2BgkIJPKnV0oaryjxE2m+WHY2fNuBbGCUDa+4wRkUj56Uk5OnzasYp3dJqn4f0NTXWhcWkInJ8peZ+olvSKhk7qEWgK6TgHZzgbVk+Z2L05AJlXNFuodbUaF8aguNG4yXWnDstdpBQmkxgpiBRnaJZvQ4QfhgIp1CoiADO1YYbzhR8GAinUKiIAMrVhhvOFHwYCKdQqIgAytSI1XYa7u34gPxXkygF62KzTb28MZ9KT+fKZL2yW9ItlnSCh9sqSwCkhMOQG506sbZAGJGfZrdMXBaAW5UYAKHE/l3whbLKpc/M5ji5VgdAHpM153RRYQAck9jk+mp4CcLKHeQeK80w6AtLpe0t98SactSKdJviSiJzPdX/drm5f0hMoTP+vGl3RqIAHZzgYFWUAEpOxFjcLafeDYYt0oTk8SeqJXtAQVcxKT2GIFUD6D8Y5y4glI33O0LZYtli0W+IPOvmL5ijXVP5y9c7CCJFSQiv6dtlEVvz+hrSeNmyJzYxD9HsmfFSRQQYjAowuugMQxEZBJzSqEoq1E94ne/T2qy0qvguSAs4JYQX4U6D5wJs/Bh2EV6/QO4h1k6McK41lBEow3zNyTAd0JJSXaO0j+H1yqyLsVJAFkAcn9xd1KB+PbAaFi0Dh6qaz4Hn2pou1JxQnbrWdFHsgB13ZJpxumcd0J7TZzBXQVYNH80bjsvAsIzUTg9avCzBVzCsijqgIiIKXPvEnyTk9jBZmUKluo0WdtsUYK9fw8O+9WkKS8CUiSkC9OIyCTAmYLNfqsgIwU6vl5dt5TK0iPBK9/peIyShNzhrjXM9Izw9ufeXu2+fpXBGRbQ6rL6xnpmUFAJnWmRjBuUuBFhwnIZGI0uhVk0ip/vIPcKXWGO0H3ATBrtnePs4JMZqDbQGf/3qTsbx8mIJMpOLthu/c3Kfvbh7UA8vZdLrqAo7Rmi8q37LLCd5Bld/LmhQnImxNQ9HkBSRJWQJKEXGwaAUlKiIAkCbnYNAKSlBABSRJysWkEJCkhApIk5GLTCEhSQgQkScjFpgkDQv9ZN903ebv++tZKhq3Ye8X+9tZZkYeVdHm2FgG5U6bbeNSU3esUkEmcrSDbQlXostJvxAVEQL4V6D6ZrSCTxrsZVnFw2GIVC2wFOXZlFRABGVZIWs324o5ycAiIgAjIu/9GIT2BKvr+zj71SHcXetrTS3r8hjGOoH4Zz/w4ou2Zt8KwVCgaV2Gu7hakYg/EeK/EVOTv7S2WgKxxiRWQGJpWkDu9aCtBTzUrSMywr7Sz8S/96fuPNlhBrCDEoFsx9DAi37eCWEF+FOg0HjHr/2M61ykgAiIgO7SGAaHkd1I/6lPpHrrjVmpL6eWealaxd7IWASGqNcVUmKTioOp+aKjYQ9ozL/VG56asIJ9P01SRBwGhVNzEVSSmu+wnyBCawgoSf/mjz/RWkJA11xgsIALyrUA29bZYtlhZR5yX9CwlC+axgpysgtB7Br3kVVSeinsNXWe3ngWM73YHR8h7agXpTig1HjVCd0K79aS67MXRKkjnzN6DgAQUFZCAWP8NFZCEp9xu48XT/Deie51WkO1MdXYOVpAALQISEMsK8ihW94nXeZJYQeJwjJ7wuw8csgMrSEC17oR2HzgBKaaHXu4OQk0yrejdwAqB6QsJ3XvFHuictOqeHdZnnghXEGoSAdlWgOopIHFHkcNBQBoqFjVzRaUjJhndvyr2F7f/OILsXUAEZOysxf6bxVML3hgkIFS5m7iK03ClOYlJrCABY9GeOfCJX0MrzFXRuhxlTgGJOdEWyxZryjG+Yk3JtD+oW0R6GtKtHmV/tMqvVK27c5T2zLu38KMYqFv8CsPSPHS3gvR73TkSEKr4TdxRDoAKIOmcAnJAA1FWBIQqtx1X0SLTHFlBEnJLxaenLzVQxffonFYQK8i3AhUXXAGJn2r0ELOCxLV+iKDi09NXQOJJozl6OyDxrY4j6KldEUdflehaKlqXbHONMth9cIzWs/Xz8C8KqRHI4kYx1FwVcVQXuhYBGbkj5+cCcqdjxSlK5+w+Yek6qRW790fWKSAC8qOAgDwiJCACIiA7pUVABERABOS3AvRiXPHsStfiJZ3cKOIx4QpS0aeudFmrWMtKmlGwVtKlQs+034NULK5C/PhZ8TeiYi0raSYgMWdYQQJ3kApzVbRtMQv8G93d7tGDg8YRXQREQH4UEJCEZ94KeivaGnJa2GKxv0zVXVkrPOgdZJKYClgrEkrXWWHmijlpNaMtq4AIyFABakoBGUr72oDuE7bCCEcxSUXleS37udFvryC52xk/rdINU+gqDESB7I6ryG33nNQvaS1WxYapmffWQucUkIoM980pIJNaC8i2UBUHwGRKWoYJyKTMAiIgk1bZHRb+RWHGR+/noGa2xdpWgN5dKnLbPacVZFJxCl1FC0IN2x03Ke3Sw04JyEqKdwNSsXe6h2xzfe2NrqVCF7K/JVqsCjHonBUJJYmh63/FlBXrrNCTakP2JyB3alcklCSGmkBAnitH8iAgAvKjADHQCOSKA2f0zWc/J/sTEAERkB3iBERABERA5otyRUtASvv8ih9H0j1UrJOu5ZX9v7XFWmnDVMRuI9DvUa27f3/S/b3OvIdbLJo0uqmKOGrYvbXQX0zSOffiug3b/T3qCZJ3AaFqB+4uJDFVz7UU5JXiaMpIHgSEqi0gU5f7CrBoygRkUjki1GhqagRbrG0FKlp5kncryMj5kz8XkLjR6d1lMiUPwwRkUjki1GhqARGQbwUqjDAyH/l59zppS1BxitI5j3JwED/QmNQWq0JgvLGPj6ehFesUkNwKQvOeHScgSYoKiIDYYu3AJCACIiACEq633XfB8AIHAbZYSYpaQawgVhArSPg4sYLcSEafF8Oq/xdAv0dfsbqTvVJVojmicd25fbbOthaLJntP4G4RBYTaPR7XnVsBmax0e6kUkLjRaYSAUOUmjV5h5oo5KZAVlTUhJWlTCEiClN0iCkhC0ian6M6tLdZk5aEnOr340+9ZQbYVyM6Dl/TJE+1rmBUkINaLQ60gLwr4FV4hIoWAxiXIEJqCrrP7FbK7stpiTbZYFQbKLvshIu4GV+yProfqQmEl37PFajAQSQw13ShOQEYK/f65gAjIjwK0ZY1Z7t9oenBYQSYVpwldKW5yq2nDrCAxKa0gVhAryA4zAiIgAiIgvxU4Q4tFW6VYg/FvNP0ejaPPvPRe4zPvyZ55K4xXYcqKdVbMKSACQovHdxw1JY2rgJUI4B3koHeQCuNVmLJinRVzWkGsIOQA/YmhpqRxFbASAawgVpAp31Cj0zgBmUrL/qCVXqMqjLCKSbyDBMzabYTA0n4NpeukcdTMdH97cfSps2LvFbrQ/RGt21ossrhXYmiyaVyFEej+qYEq9l6hC90f0VNAku4gFUYgCf2KoQYSkEfFBURAXn6poiB3/qtcvMbP4HHTfcrgjcE/f1CxP2oEuvdgSgVkR2griBVEQATktwIVz8PeQeL1jlZWWiHjK/zzJ7WCkAW8I6YCkCMk+xWtr9p6CkhSiyUgcfyoZvEv/Y0glUdABGTKb1aQKZn2/9nz5BRvH2aLFU+BgExq1l0WJ5cVGiYgIbm+BwvIpGYCsi0U1YX0xZOpSh0mIJNyUiNMTt8yzAoSl1lA4poZoQKnVyD8inV6RdygCtwoICDaQQV2FBAQ7aECAqIHVIApYAVhuhl1EQUE5CKJdptMAQFhuhl1EQUE5CKJdptMAQFhuhl1EQUE5CKJdptMAQFhuhl1EQUE5CKJdptMgf8BVDT7mSME00UAAAAASUVORK5CYII=
+"  >
+                        </td>
+                        <td>
+                            ESTA FACTURA DE VENTA ES UN TITULO VALOR SEGUN LEY 1231 DE JULIO 17 DE 2008.
+"Con la aceptación de ésta factura y el recibo a satisfacción de los productos, el cliente reconoce que los mismos cumplen con las normas sobre etiquetado vigente para los productos importados".
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </section>
