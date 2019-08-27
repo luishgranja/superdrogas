@@ -24,19 +24,19 @@
         >
           <ul class="nav navbar-nav nav-item">
             <li>
-              <a href="#funcionalidad">
+              <a>
                 Medicamentos
               </a>
             </li>
             <li>
-              <a href="#pricing">
+              <a>
                 Naturales
               </a>
             </li>
           </ul>
         </div>
         <div class="navbar-custom-menu">
-          <router-link :to="{}">
+          <router-link :to="{ name: 'login' }">
             <ul class="nav navbar-nav nav-item">
               <li>
                 <button class="btn btn-success btn-raised">
