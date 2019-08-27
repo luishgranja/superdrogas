@@ -7,19 +7,33 @@ from string import Template
 
 # Django
 from django.core import signing
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+
 
 # XHTML2PDF
 from xhtml2pdf import pisa
 
+import os
 
-def generar_factura_xml(name):
+
+def generar_factura_xml(request):
+
+    if request.method == 'GET':
+        print(request.GET)
+
     """
     generar_factura_xml
     """
-    template_name = 'invoice_template.xml'
-    src = Template(open(template_name).read())
+    folder = os.path.dirname(os.path.abspath(__file__))
 
-    product_template_name = 'product.xml'
+    invoice_template = os.path.join(folder, 'invoice_template.xml')
+
+    # template_name = r'invoice_template.xml'
+    src = Template(open(invoice_template).read())
+
+    # product_template_name = 'product.xml'
+    product_template_name = os.path.join(folder, 'product.xml')
     src_p = Template(open(product_template_name).read())
     product_list = []
     products = ['a']
@@ -36,8 +50,8 @@ def generar_factura_xml(name):
         result = src_p.substitute(data)
         product_list.append(result)
 
-    filename = f'{name}.xml'
-    file = open(filename, "w+")
+    # filename = f'{name}.xml'
+    # file = open(filename, "w+")
 
     data = {
         # Invoice data
@@ -75,18 +89,27 @@ def generar_factura_xml(name):
 
     result = src.substitute(data)
 
-    file.write(result)
-    file.close()
+    # file.write(result)
+    response = HttpResponse(result, content_type='text/xml')
+    response['Content-Disposition'] = 'attachment'
+    response['Content-Disposition'] = 'filename="somefilename.xml"'
+    return response
+    # file.close()
 
 
-def generar_factura_pdf(name):
+def generar_factura_pdf(request):
     """
     generar_factura_pdf
     """
-    template_name = 'invoice_template.html'
-    src = Template(open(template_name).read())
 
-    product_template_name = 'product.html'
+    folder = os.path.dirname(os.path.abspath(__file__))
+
+    invoice_template = os.path.join(folder, 'invoice_template.html')
+    product_template_name = os.path.join(folder, 'product.html')
+    # template_name = 'invoice_template.html'
+    src = Template(open(invoice_template).read())
+
+    # product_template_name = 'product.html'
     src_p = Template(open(product_template_name).read())
     product_list = []
     products = ['a']
@@ -102,6 +125,8 @@ def generar_factura_pdf(name):
 
         result = src_p.substitute(data)
         product_list.append(result)
+
+    name = 'hola'
 
     filename = f'{name}.pdf'
     file = open(filename, "w+b")
@@ -140,5 +165,13 @@ def generar_factura_pdf(name):
 
     result = src.substitute(data)
     pisa_status = pisa.CreatePDF(result, dest=file)
-    file.close()
-    return pisa_status.err
+
+    # file.close()
+
+    fs = FileSystemStorage("/")
+    with fs.open(filename) as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="'+filename+'"'
+        return response
+
+
