@@ -9,6 +9,7 @@ from string import Template
 from django.core import signing
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
+from django.views.decorators.csrf import csrf_exempt
 
 
 # XHTML2PDF
@@ -17,6 +18,7 @@ from xhtml2pdf import pisa
 import os
 
 
+@csrf_exempt
 def generar_factura_xml(request):
 
     if request.method == 'GET':
@@ -97,6 +99,7 @@ def generar_factura_xml(request):
     # file.close()
 
 
+@csrf_exempt
 def generar_factura_pdf(request):
     """
     generar_factura_pdf
