@@ -13,7 +13,7 @@ from django.conf import settings
 from rest_auth.views import PasswordResetConfirmView
 
 # Vue project
-from .views import vue
+# from .views import vue
 
 
 # Media files
@@ -30,5 +30,5 @@ urlpatterns += [
     url(r'^api/rest-auth/', include('rest_auth.urls')),
 
     # Vue project
-    url(r'^.*$', vue, name='vue'),
+    # url(r'^.*$', vue, name='vue'),
 ]

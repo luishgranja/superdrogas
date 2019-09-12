@@ -11,7 +11,7 @@ from django.conf.urls import url, include
 from rest_auth.views import PasswordResetConfirmView
 
 # Vue project
-from .views import vue
+# from .views import vue
 
 
 urlpatterns = [
