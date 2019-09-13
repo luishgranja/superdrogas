@@ -131,7 +131,7 @@ export default {
     this.getProducts()
   },
   updated () {
-    template.reload()
+    this.$nextTick(() => { template.reload() })
   }
 }
 </script>

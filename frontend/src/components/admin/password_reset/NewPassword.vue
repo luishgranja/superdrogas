@@ -3,37 +3,39 @@
     <div class="login-box">
       <div class="login-box-body">
         <h1 class="text-center">
-          Login
+          New password
         </h1>
         <form @submit.prevent="formHandler()">
           <input-component
             id="username"
             v-model="user.username"
-            placeholder="Username"
+            placeholder="New password"
             :label="false"
             :inputErrors="errors.username"
           >
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </input-component>
           <input-component
-            id="password"
-            v-model="user.password"
-            placeholder="Password"
+            id="username"
+            v-model="user.username"
+            placeholder="Confirm new password"
             :label="false"
-            type="password"
-            :inputErrors="errors.password"
+            :inputErrors="errors.username"
           >
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </input-component>
           <div class="row footer">
-            <router-link :to="{ name: 'password-reset-email' }" class="col-md-6 fp">
-              I forgot my password
-            </router-link>
             <div class="col-md-6 pull-right">
-              <button type="submit" class="btn bg-navy btn-block">
-                Login
+              <!-- <button type="submit" class="btn bg-navy btn-block">
+                Send
                 <i class="fa fa-sign-in"></i>
-              </button>
+              </button> -->
+              <router-link
+                :to="{ name: 'password-reset-done' }"
+                class="btn bg-navy btn-block"
+              >
+                Send
+              </router-link>
             </div>
           </div>
         </form>

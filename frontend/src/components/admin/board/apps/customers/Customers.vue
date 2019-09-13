@@ -3,14 +3,14 @@
     <section class="content-header">
       <div class="list-inline">
         <h1>
-          Batches
+          Customers
           <a
-            @click="getBatch()"
+            @click="getUser()"
             class="btn btn-primary btn-raised"
             data-toggle="modal"
-            data-target="#batch-form"
+            data-target="#user-form"
           >
-            Create batch
+            Create customer
           </a>
         </h1>
       </div>
@@ -19,7 +19,7 @@
           <router-link :to="{ name: 'home' }">Home</router-link>
         </li>
         <li class="active">
-          Batches
+          Customers
         </li>
       </ol>
     </section>
@@ -31,60 +31,54 @@
               <div v-if="isLoading" class="text-center">
                 <spinner-component />
               </div>
-              <table
-                v-else
-                id="table"
-                class="table table-bordered table-striped"
-              >
+              <table v-else id="table" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Manufacturing Date</th>
-                    <th>Expiration Date</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(batch, index) in batches" :key="index">
-                    <td>{{ batch.product_name }} </td>
-                    <td>{{ batch.quantity }}</td>
-                    <td>{{ batch.manufacturing_date }}</td>
-                    <td>{{ batch.expiration_date }}</td>
+                  <tr v-for="(customer, index) in customers" :key="index">
+                    <td>{{ customer.first_name }} {{ customer.last_name }}</td>
+                    <td>{{ customer.username }}</td>
+                    <td>{{ customer.email }}</td>
                     <td class="text-center">
                       <p
-                        :class="`${ batch.is_active ? 'bg-green' : 'bg-red' }`"
+                        :class="`${ customer.is_active ? 'bg-green' : 'bg-red' }`"
                         class="badge p-bg"
                       >
-                        {{ batch.is_active ? 'Active' : 'Inactive' }}
+                        {{ customer.is_active ? 'Active' : 'Inactive' }}
                       </p>
                     </td>
                     <td class="text-center">
                       <a
-                        @click="getBatch(batch.id)"
+                        @click="getUser(customer.id)"
                         class="btn.btn-app btn-primary btn-sm action-btn"
                         data-toggle="modal"
-                        data-target="#batch-form"
+                        data-target="#user-form"
                       >
                         <i class="fa fa-edit"></i>
                       </a>
                       <a
-                        @click="getBatch(batch.id)"
+                        @click="getUser(customer.id)"
                         class="btn.btn-app btn-info btn-sm action-btn"
                         data-toggle="modal"
-                        data-target="#batch-detail"
+                        data-target="#user-detail"
                       >
                         <i class="fa fa-info-circle"></i>
                       </a>
                       <a
-                        @click="getBatch(batch.id)"
-                        :class="`${ batch.is_active ? 'btn-danger' : 'btn-success' }`"
+                        @click="getUser(customer.id)"
+                        :class="`${ customer.is_active ? 'btn-danger' : 'btn-success' }`"
                         class="btn.btn-app btn-sm action-btn"
                         data-toggle="modal"
-                        data-target="#batch-status"
+                        data-target="#user-status"
                       >
-                        <i :class="`${ batch.is_active ? 'fa fa-times-circle' : 'fa fa-plus-circle' }`"></i>
+                        <i :class="`${ customer.is_active ? 'fa fa-user-times' : 'fa fa-user-plus' }`"></i>
                       </a>
                     </td>
                   </tr>
@@ -95,40 +89,42 @@
         </div>
       </div>
     </section>
-    <batch-detail />
-    <batch-form />
-    <batch-status />
+    <customer-detail />
+    <customer-form />
+    <customer-status />
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import template from '@/utilities/template'
-import BatchDetail from './modals/BatchDetail'
-import BatchForm from './modals/BatchForm'
-import BatchStatus from './modals/BatchStatus'
+import CustomerDetail from './modals/CustomerDetail'
+import CustomerForm from './modals/CustomerForm'
+import CustomerStatus from './modals/CustomerStatus'
 
 export default {
-  name: 'batches',
+  name: 'customers',
   components: {
-    BatchDetail,
-    BatchForm,
-    BatchStatus
+    CustomerDetail,
+    CustomerForm,
+    CustomerStatus
   },
   computed: {
-    ...mapState('batches', [
-      'batches',
+    ...mapState('users', [
       'isLoading'
+    ]),
+    ...mapGetters('users', [
+      'customers'
     ])
   },
   methods: {
-    ...mapActions('batches', [
-      'getBatches',
-      'getBatch'
+    ...mapActions('users', [
+      'getUsers',
+      'getUser'
     ])
   },
   created () {
-    this.getBatches()
+    this.getUsers()
   },
   updated () {
     this.$nextTick(() => { template.reload() })

@@ -1,31 +1,85 @@
 <template>
-  <body class="hold-transition layout-top-nav fixed">
-    <div class="wrapper bg-color">
-      <header-component></header-component>
-      <router-view></router-view>
-      <footer-component></footer-component>
-    </div>
-  </body>
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a
+            href=""
+            class="navbar-brand"
+          >
+            <strong>Cruz Azul</strong>
+          </a>
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar-collapse"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+        <div
+          class="collapse navbar-collapse pull-left"
+          id="navbar-collapse"
+        >
+          <ul class="nav navbar-nav nav-item">
+            <li>
+              <a>
+                Medicamentos
+              </a>
+            </li>
+            <li>
+              <a>
+                Naturales
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-custom-menu">
+          <router-link :to="{ name: 'login' }">
+            <ul class="nav navbar-nav nav-item">
+              <li>
+                <button class="btn btn-success btn-raised">
+                  Login
+                </button>
+              </li>
+            </ul>
+          </router-link>
+        </div>
+      </div>
+    </nav>
+  </header>
 </template>
 
+<style>
+.nav {
+  height: auto;
+  margin-bottom: 2rem;
+}
+.nav-item img {
+  max-height: 3.5rem;
+}
+.active-bottom-border {
+  border-bottom: 3px solid #00d1b2;
+  color: #00d1b2;
+  padding-bottom: calc(0.75rem - 8px);
+}
+</style>
+
 <script>
-import HeaderComponent from '@/components/ecommerce/layout/Header'
-import FooterComponent from '@/components/ecommerce/layout/Footer'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'ecommerce',
-  components: {
-    HeaderComponent,
-    FooterComponent
+  computed: {
+    ...mapGetters('ecommerce', [
+      'itemsOnCart'
+    ])
   }
 }
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800");
-.bg-color {
-  background-color: #EEE;
-}
 .nav-item {
   margin-bottom: 0px !important;
 }
