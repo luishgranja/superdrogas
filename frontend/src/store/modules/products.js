@@ -120,6 +120,7 @@ const actions = {
     commit('BUILD_REQUEST')
     const response = await http.post('inventory/products/', state.formData)
     if (!response.error) {
+      template.destroy()
       commit('ADD_PRODUCT', response.data)
       template.hideModal('#product-form')
       commit('GET_PRODUCT')
@@ -133,6 +134,7 @@ const actions = {
     commit('BUILD_REQUEST')
     const response = await http.patch(`inventory/products/${state.product.id}/`, state.formData)
     if (!response.error) {
+      template.destroy()
       commit('SET_PRODUCT', response.data)
       template.hideModal('#product-form')
     } else {

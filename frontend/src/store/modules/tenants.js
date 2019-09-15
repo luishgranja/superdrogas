@@ -85,6 +85,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.post('pharmacies/', state.tenant)
     if (!response.error) {
+      template.destroy()
       commit('ADD_TENANT', response.data)
       template.hideModal('#tenant-form')
       commit('GET_TENANT')
@@ -97,6 +98,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.patch(`pharmacies/${state.tenant.id}/`, state.tenant)
     if (!response.error) {
+      template.destroy()
       commit('SET_TENANT', response.data)
       template.hideModal('#tenant-form')
     } else {

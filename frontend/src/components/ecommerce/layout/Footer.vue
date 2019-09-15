@@ -1,31 +1,23 @@
 <template>
-  <body class="hold-transition layout-top-nav fixed">
-    <div class="wrapper bg-color">
-      <header-component></header-component>
-      <router-view></router-view>
-      <footer-component></footer-component>
+  <footer class="main-footer">
+    <div class="container">
+      <strong>Copyright &copy; 2019 | <a>Super Drogas</a></strong>.
+      All rights reserved.
+      <div class="pull-right hidden-xs">
+        Universidad del Valle
+      </div>
     </div>
-  </body>
+  </footer>
 </template>
 
 <script>
-import HeaderComponent from '@/components/ecommerce/layout/Header'
-import FooterComponent from '@/components/ecommerce/layout/Footer'
-
 export default {
-  name: 'ecommerce',
-  components: {
-    HeaderComponent,
-    FooterComponent
-  }
+  name: 'footer-component'
 }
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800");
-.bg-color {
-  background-color: #EEE;
-}
 .nav-item {
   margin-bottom: 0px !important;
 }

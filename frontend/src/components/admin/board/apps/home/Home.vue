@@ -16,7 +16,10 @@
             <div class="row">
               <div class="col-xs-6 border-right">
                 <div class="description-block">
-                  <h5 class="description-header module-item">
+                  <h5
+                    @click="updateApp('users')"
+                    class="description-header module-item"
+                  >
                     <router-link :to="{ name: 'users' }">
                       <i class="fa fa-user"></i>
                       Users
@@ -26,8 +29,11 @@
               </div>
               <div class="col-xs-6 border-right">
                 <div class="description-block">
-                  <h5 class="description-header module-item">
-                    <router-link :to="{}">
+                  <h5
+                    @click="updateApp('customers')"
+                    class="description-header module-item"
+                  >
+                    <router-link :to="{ name: 'customers' }">
                       <i class="fa fa-child"></i>
                       Customers
                     </router-link>
@@ -35,6 +41,40 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-red-active module-header">
+            <h2
+              @click="updateApp('tenants')"
+              class="widget-user-username text-center"
+            >
+              <router-link :to="{ name: 'tenants' }">
+                <strong>
+                  <i class="fa fa-medkit"></i>
+                  Tenants
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div v-if="isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-yellow-active module-header">
+            <h2
+              @click="updateApp('metrics')"
+              class="widget-user-username text-center"
+            >
+              <router-link :to="{ name: 'metrics' }">
+                <strong>
+                  <i class="fa fa-area-chart"></i>
+                  Metrics
+                </strong>
+              </router-link>
+            </h2>
           </div>
         </div>
       </div>
@@ -52,7 +92,10 @@
             <div class="row">
               <div class="col-xs-6 border-right">
                 <div class="description-block">
-                  <h5 class="description-header module-item">
+                  <h5
+                    @click="updateApp('batches')"
+                    class="description-header module-item"
+                  >
                     <router-link :to="{ name: 'batches' }">
                       <i class="fa fa-building"></i>
                       Batches
@@ -62,7 +105,10 @@
               </div>
               <div class="col-xs-6 border-right">
                 <div class="description-block">
-                  <h5 class="description-header module-item">
+                  <h5
+                    @click="updateApp('brands')"
+                    class="description-header module-item"
+                  >
                     <router-link :to="{ name: 'brands' }">
                       <i class="fa fa-trademark"></i>
                       Brands
@@ -72,7 +118,10 @@
               </div>
               <div class="col-xs-6 border-right">
                 <div class="description-block">
-                  <h5 class="description-header module-item">
+                  <h5
+                    @click="updateApp('categories')"
+                    class="description-header module-item"
+                  >
                     <router-link :to="{ name: 'categories' }">
                       <i class="fa fa-tag"></i>
                       Categories
@@ -82,7 +131,10 @@
               </div>
               <div class="col-xs-6 border-right">
                 <div class="description-block">
-                  <h5 class="description-header module-item">
+                  <h5
+                    @click="updateApp('products')"
+                    class="description-header module-item"
+                  >
                     <router-link :to="{ name: 'products' }">
                       <i class="fa fa-cube"></i>
                       Products
@@ -94,18 +146,74 @@
           </div>
         </div>
       </div>
+      <div v-if="!isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-red-active module-header">
+            <h2
+              @click="updateApp('reports')"
+              class="widget-user-username text-center"
+            >
+              <router-link :to="{ name: 'reports' }">
+                <strong>
+                  <i class="fa fa-bar-chart"></i>
+                  Reports
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div v-if="!isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-green-active module-header">
+            <h2
+              @click="updateApp('sales')"
+              class="widget-user-username text-center"
+            >
+              <router-link :to="{ name: 'sales' }">
+                <strong>
+                  <i class="fa fa-money"></i>
+                  Sales
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div v-if="!isAdmin" class="col-md-4 col-sm-6">
+        <div class="box box-widget widget-user">
+          <div class="widget-user-header bg-orange-active module-header">
+            <h2
+              @click="updateApp('configurations')"
+              class="widget-user-username text-center"
+            >
+              <router-link :to="{ name: 'configurations' }">
+                <strong>
+                  <i class="fa fa-cog"></i>
+                  Configurations
+                </strong>
+              </router-link>
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'home',
   computed: {
     ...mapState('app', [
       'isAdmin'
+    ])
+  },
+  methods: {
+    ...mapActions('app', [
+      'updateApp'
     ])
   }
 }
@@ -114,6 +222,9 @@ export default {
 <style scoped>
 a {
   color: #333 !important;
+}
+strong {
+  color: white;
 }
 .module-header {
   height: auto;

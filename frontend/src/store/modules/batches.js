@@ -73,6 +73,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.post('inventory/batches/', state.batch)
     if (!response.error) {
+      template.destroy()
       commit('ADD_BATCH', response.data)
       template.hideModal('#batch-form')
       commit('GET_BATCH')
@@ -85,6 +86,7 @@ const actions = {
     commit('SET_ERRORS')
     const response = await http.patch(`inventory/batches/${state.batch.id}/`, state.batch)
     if (!response.error) {
+      template.destroy()
       commit('SET_BATCH', response.data)
       template.hideModal('#batch-form')
     } else {

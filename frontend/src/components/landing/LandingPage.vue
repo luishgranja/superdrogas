@@ -1,5 +1,5 @@
 <template>
-  <body class="hold-transition skin-black-light layout-top-nav fixed">
+  <body class="hold-transition layout-top-nav fixed">
     <div class="wrapper">
       <header class="main-header">
         <nav class="navbar navbar-static-top">

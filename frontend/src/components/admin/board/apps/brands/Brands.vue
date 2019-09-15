@@ -129,7 +129,7 @@ export default {
     this.getBrands()
   },
   updated () {
-    template.reload()
+    this.$nextTick(() => { template.reload() })
   }
 }
 </script>

@@ -1,14 +1,21 @@
 import Admin from '@/components/admin/Admin'
 import Login from '@/components/admin/login/Login'
+import Email from '@/components/admin/password_reset/Email'
+import NewPassword from '@/components/admin/password_reset/NewPassword'
+import ResetDone from '@/components/admin/password_reset/ResetDone'
 import Board from '@/components/admin/board/Board'
 import Home from '@/components/admin/board/apps/home/Home'
-import Users from '@/components/admin/board/apps/users/Users'
 import Batches from '@/components/admin/board/apps/batches/Batches'
 import Brands from '@/components/admin/board/apps/brands/Brands'
 import Categories from '@/components/admin/board/apps/categories/Categories'
-import Tenants from '@/components/admin/board/apps/tenants/Tenants'
+import Configurations from '@/components/admin/board/apps/configurations/Configurations'
+import Customers from '@/components/admin/board/apps/customers/Customers'
+import Metrics from '@/components/admin/board/apps/metrics/Metrics'
 import Products from '@/components/admin/board/apps/products/Products'
+import Reports from '@/components/admin/board/apps/reports/Reports'
 import Sales from '@/components/admin/board/apps/sales/Sales'
+import Tenants from '@/components/admin/board/apps/tenants/Tenants'
+import Users from '@/components/admin/board/apps/users/Users'
 
 export default {
   path: '/admin',
@@ -24,11 +31,6 @@ export default {
           component: Home
         },
         {
-          path: 'users',
-          name: 'users',
-          component: Users
-        },
-        {
           path: 'batches',
           name: 'batches',
           component: Batches
@@ -39,14 +41,39 @@ export default {
           component: Brands
         },
         {
+          path: 'categories',
+          name: 'categories',
+          component: Categories
+        },
+        {
+          path: 'configurations',
+          name: 'configurations',
+          component: Configurations
+        },
+        {
+          path: 'customers',
+          name: 'customers',
+          component: Customers
+        },
+        {
+          path: 'metrics',
+          name: 'metrics',
+          component: Metrics
+        },
+        {
           path: 'products',
           name: 'products',
           component: Products
         },
         {
-          path: 'categories',
-          name: 'categories',
-          component: Categories
+          path: 'reports',
+          name: 'reports',
+          component: Reports
+        },
+        {
+          path: 'sales',
+          name: 'sales',
+          component: Sales
         },
         {
           path: 'tenants',
@@ -54,9 +81,9 @@ export default {
           component: Tenants
         },
         {
-          path: 'sales',
-          name: 'sales',
-          component: Sales
+          path: 'users',
+          name: 'users',
+          component: Users
         }
       ]
     },
@@ -64,6 +91,21 @@ export default {
       path: 'login',
       name: 'login',
       component: Login
+    },
+    {
+      path: 'password-rest/',
+      name: 'password-reset-email',
+      component: Email
+    },
+    {
+      path: 'password-reset/:uid/:token',
+      name: 'password-reset-new-password',
+      component: NewPassword
+    },
+    {
+      path: 'password-reset/done',
+      name: 'password-reset-done',
+      component: ResetDone
     }
   ]
 }

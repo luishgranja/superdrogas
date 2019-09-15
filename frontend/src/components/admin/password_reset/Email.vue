@@ -3,37 +3,30 @@
     <div class="login-box">
       <div class="login-box-body">
         <h1 class="text-center">
-          Login
+          Enter your email
         </h1>
         <form @submit.prevent="formHandler()">
           <input-component
             id="username"
             v-model="user.username"
-            placeholder="Username"
+            placeholder="Email"
             :label="false"
             :inputErrors="errors.username"
           >
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </input-component>
-          <input-component
-            id="password"
-            v-model="user.password"
-            placeholder="Password"
-            :label="false"
-            type="password"
-            :inputErrors="errors.password"
-          >
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </input-component>
           <div class="row footer">
-            <router-link :to="{ name: 'password-reset-email' }" class="col-md-6 fp">
-              I forgot my password
-            </router-link>
             <div class="col-md-6 pull-right">
-              <button type="submit" class="btn bg-navy btn-block">
-                Login
+              <!-- <button type="submit" class="btn bg-navy btn-block">
+                Send
                 <i class="fa fa-sign-in"></i>
-              </button>
+              </button> -->
+              <router-link
+                :to="{ name: 'password-reset-new-password', params: { uid: '1', token: '2' } }"
+                class="btn bg-navy btn-block"
+              >
+                Send
+              </router-link>
             </div>
           </div>
         </form>
