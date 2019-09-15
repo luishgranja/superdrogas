@@ -31,10 +31,7 @@
           I forgot my password
         </router-link>
         <div class="col-md-6 pull-right">
-          <button
-            type="submit"
-            class="btn bg-navy btn-block"
-          >
+          <button type="submit" class="btn bg-navy btn-block">
             Login
             <i class="fa fa-sign-in"></i>
           </button>

@@ -56,9 +56,18 @@ const actions = {
       tenant.push({ name: 'login' })
     }
   },
-  passwordRestEmail: async (context, email) => {
-    const response = await http.post('rest-auth/password/reset/', { email })
-    if (response.error) {
+  passwordRestEmail: async (_, email) => {
+    await http.post('rest-auth/password/reset/', { email })
+  },
+  passwordRestNewPassword: async (_, form) => {
+    const response = await http.post(`password-reset/confirm/${form.uid}/${form.token}/`, form)
+    if (!response.error) {
+      if (host.isAdmin()) {
+        admin.push({ name: 'password-reset-done' })
+      } else {
+        tenant.push({ name: 'password-reset-done' })
+      }
+    } else {
       return response.data
     }
 

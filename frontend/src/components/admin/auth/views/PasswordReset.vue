@@ -46,7 +46,7 @@ export default {
       'passwordRestEmail'
     ]),
     async formHandler () {
-      this.errors = await this.passwordRestEmail(this.email)
+      await this.passwordRestEmail(this.email)
       this.sent = true
     }
   }
