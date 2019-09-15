@@ -1,29 +1,31 @@
 <template>
   <div>
     <h1 class="text-center">
-      Enter your email
+      Password reset
     </h1>
-    <form @submit.prevent="formHandler()">
+    <form v-if="!sent" @submit.prevent="formHandler()">
       <input-component
-        id="username"
-        v-model="user.username"
+        id="email"
+        v-model="email"
         placeholder="Email"
+        type="email"
         :label="false"
-        :inputErrors="errors.username"
+        :inputErrors="errors.email"
       >
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </input-component>
       <div class="row footer">
         <div class="col-md-6 pull-right">
-          <router-link
-            :to="{ name: 'password-reset-new-password', params: { uid: '1', token: '2' } }"
-            class="btn bg-navy btn-block"
-          >
+          <button type="submit" class="btn bg-navy btn-block">
             Send
-          </router-link>
+            <i class="fa fa-sign-in"></i>
+          </button>
         </div>
       </div>
     </form>
+    <p v-else>
+      The email was sent. Please check your inbox.
+    </p>
   </div>
 </template>
 
@@ -34,19 +36,18 @@ export default {
   name: 'password-reset',
   data () {
     return {
-      user: {
-        username: '',
-        password: ''
-      },
+      email: '',
+      sent: false,
       errors: {}
     }
   },
   methods: {
     ...mapActions('authentication', [
-      'login'
+      'passwordRestEmail'
     ]),
     async formHandler () {
-      this.errors = await this.login(this.user)
+      this.errors = await this.passwordRestEmail(this.email)
+      this.sent = true
     }
   }
 }

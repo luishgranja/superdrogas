@@ -55,6 +55,14 @@ const actions = {
     } else {
       tenant.push({ name: 'login' })
     }
+  },
+  passwordRestEmail: async (context, email) => {
+    const response = await http.post('rest-auth/password/reset/', { email })
+    if (response.error) {
+      return response.data
+    }
+
+    return {}
   }
 }
 
