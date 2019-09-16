@@ -42,7 +42,7 @@
               </li>
             </ul>
           </router-link>
-          <router-link :to="{ name: 'login-ecommerce' }">
+          <router-link :to="{ name: 'login-signup-ecommerce' }">
             <ul class="nav navbar-nav nav-item">
               <li>
                 <button class="btn btn-success btn-raised">

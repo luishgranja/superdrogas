@@ -1,6 +1,6 @@
 import ECommerce from '@/components/ecommerce/ECommerce'
 import LandingPage from '@/components/ecommerce/views/LandingPage'
-import Login from '@/components/ecommerce/views/Login'
+import LoginSignup from '@/components/ecommerce/views/LoginSignup'
 import ShoppingCart from '@/components/ecommerce/views/ShoppingCart'
 import Checkout from '@/components/ecommerce/views/Checkout'
 
@@ -14,9 +14,9 @@ export default {
       component: LandingPage
     },
     {
-      path: 'login',
-      name: 'login-ecommerce',
-      component: Login
+      path: 'login-signup',
+      name: 'login-signup-ecommerce',
+      component: LoginSignup
     },
     {
       path: 'shopping-cart',
