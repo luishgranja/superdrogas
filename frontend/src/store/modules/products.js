@@ -33,7 +33,7 @@ const getters = {
     return products
   },
   mostSelledProducts: state => {
-    return state.products.slice(0, 6)
+    return state.products.slice(0, 12)
   },
   numberProducts: state => (state.products) ? state.products.length : 0,
   formData: state => state.formData

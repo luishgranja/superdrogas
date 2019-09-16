@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid mt">
+  <div>
     <carousel></carousel>
     <div class="row">
       <h2 class="text-center section-title">
@@ -40,8 +40,9 @@ export default {
 </script>
 
 <style scoped>
-.mt {
+.mtb {
   margin-top: 70px;
+  margin-bottom: 70px;
 }
 .section-title {
   margin: 40px 0px;

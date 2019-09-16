@@ -3,9 +3,11 @@
     <nav class="navbar navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand">
-            <strong class="title">{{ tenant.name }}</strong>
-          </a>
+          <router-link :to="{ name: 'landing' }" class="navbar-brand">
+            <strong class="title">
+              {{ tenant.name }}
+            </strong>
+          </router-link>
           <button
             type="button"
             class="navbar-toggle collapsed"
@@ -28,7 +30,7 @@
           </ul>
         </div>
         <div class="navbar-custom-menu">
-          <router-link :to="{ name: 'login' }">
+          <router-link :to="{ name: 'shopping-cart' }">
             <ul class="nav navbar-nav nav-item">
               <li>
                 <button class="btn btn-success btn-raised">
@@ -40,7 +42,7 @@
               </li>
             </ul>
           </router-link>
-          <router-link :to="{ name: 'login' }">
+          <router-link :to="{ name: 'login-ecommerce' }">
             <ul class="nav navbar-nav nav-item">
               <li>
                 <button class="btn btn-success btn-raised">

@@ -1,4 +1,4 @@
-import http from '@/utilities/http'
+// import http from '@/utilities/http'
 import admin from '@/router/admin'
 import tenant from '@/router/tenant'
 import store from '@/store'
@@ -20,12 +20,7 @@ const getters = {
     var products = store.state.products.products
     return state.added.map(({ id, quantity }) => {
       const product = products.find(p => p.id === id)
-      return {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        quantity
-      }
+      return { ...product, quantity }
     })
   },
   pagoTotal: (state, getters) => {
@@ -98,20 +93,20 @@ const actions = {
   },
   checkout: async ({ state, commit, getters }, event) => {
     if (event) event.preventDefault()
-    commit('BUILD_REQUEST', getters)
-    const response = await http.post('sales/sales_invoice/', state.formData)
-    const saleId = response.data.id
-    if (!response.error) {
-      commit('SET_SALE', response.data)
-      for (var i = 0; i < getters.cartProducts.length; i++) {
-        commit('BUILD_REQUEST_PRODUCTS', { getters, i, saleId })
-        var responseProduct = await http.post('sales/product_on_sale/', state.formData)
-        if (!responseProduct.error) {
-          commit('ADD_PRODUCT_SALE', responseProduct.data)
-        }
-      }
-      router.push({ name: 'checkout' })
-    }
+    // commit('BUILD_REQUEST', getters)
+    // const response = await http.post('sales/sales_invoice/', state.formData)
+    // const saleId = response.data.id
+    // if (!response.error) {
+    //   commit('SET_SALE', response.data)
+    //   for (var i = 0; i < getters.cartProducts.length; i++) {
+    //     commit('BUILD_REQUEST_PRODUCTS', { getters, i, saleId })
+    //     var responseProduct = await http.post('sales/product_on_sale/', state.formData)
+    //     if (!responseProduct.error) {
+    //       commit('ADD_PRODUCT_SALE', responseProduct.data)
+    //     }
+    //   }
+    router.push({ name: 'checkout' })
+    // }
   },
   deleteFromCart: ({ commit }, product) => {
     commit('DELETE_FROM_CART', {
