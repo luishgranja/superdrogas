@@ -35,25 +35,15 @@
                           <img class="product-img" :src="product.image" alt="Product">
                         </td>
                         <td class="text-center">
-                          <a
-                            @click="deleteFromCart(product)"
-                            class="btn.btn-app btn-danger btn-sm action-btn"
-                          >
+                          <a @click="deleteFromCart(product)" class="btn.btn-app btn-danger btn-sm action-btn">
                             <i class="fa fa-minus-square"></i>
                           </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <b>Total:</b>
-                        </td>
-                        <td>
-                          <b>${{ total }}</b>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                   <div class="pull-right">
+                    Total: <strong>${{ total }}</strong>
                     <button @click="checkout($event)" class="btn btn-primary btn-flat pull-rigth">
                       <i class="fa fa-credit-card"></i>
                       Checkout
@@ -71,6 +61,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import template from '@/utilities/template'
 
 export default {
   name: 'shopping-cart',
@@ -90,6 +81,12 @@ export default {
       'deleteFromCart',
       'checkout'
     ])
+  },
+  mounted () {
+    template.reload()
+  },
+  updated () {
+    this.$nextTick(() => { template.reload() })
   }
 }
 </script>
