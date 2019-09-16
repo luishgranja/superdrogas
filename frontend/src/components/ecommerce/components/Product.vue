@@ -1,11 +1,11 @@
 <template>
   <div class="thumbnail">
-    <img src="http://placehold.it/250x250/39CCCC/ffffff&text=Acetaminofen" alt="Acetaminofen">
+    <img :src="product.image" :alt="product.name">
     <div class="caption">
-      <h3>Acetaminofen</h3>
-      <h5 class="text-aqua">$5.000</h5>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum necessitatibus.
+      <h3>{{ product.name }}</h3>
+      <h5 class="text-aqua">${{ product.price }}</h5>
+      <p class="description">
+        {{ product.description }}
       </p>
       <div class="text-center">
         <a href="" class="btn btn-primary">
@@ -19,6 +19,22 @@
 
 <script>
 export default {
-  name: 'product'
+  name: 'product',
+  props: {
+    product: {
+      type: Object,
+      default: () => {}
+    }
+  }
 }
 </script>
+
+<style scoped>
+img {
+  max-height: 200px;
+  overflow: hidden;
+}
+.description {
+  height: 30px;
+}
+</style>
