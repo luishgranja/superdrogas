@@ -40,6 +40,15 @@
             <ul class="nav navbar-nav nav-item">
               <li>
                 <button class="btn btn-success btn-raised">
+                  <i class="fa fa-shopping-cart"></i>
+                </button>
+              </li>
+            </ul>
+          </router-link>
+          <router-link :to="{ name: 'login' }">
+            <ul class="nav navbar-nav nav-item">
+              <li>
+                <button class="btn btn-success btn-raised">
                   Login
                 </button>
               </li>
@@ -82,6 +91,9 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800");
 .nav-item {
   margin-bottom: 0px !important;
+}
+.navbar-custom-menu ul {
+  margin: 0px 5px;
 }
 .planContainer {
   display: flex;
