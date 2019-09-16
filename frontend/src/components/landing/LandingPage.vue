@@ -61,7 +61,7 @@
                 </p>
               </div>
               <div class="col-md-6">
-                <img src="@/static/images/farmacia.svg" alt="Pharmacy" style="width:100%; height: 100%;">
+                <img src="@/static/images/landing-01.svg" alt="Pharmacy" style="width:100%; height: 100%;">
               </div>
             </div>
           </section>
@@ -71,7 +71,7 @@
                 See how we are redesigning SUPERDROGAS Cloud Software
               </h2>
               <div class="col-md-6">
-                <img src="@/static/images/bg.png" alt="" height="100%" width="100%">
+                <img src="@/static/images/landing-02.png" alt="" height="100%" width="100%">
               </div>
               <div class="col-md-6">
                 <h1>

@@ -10,13 +10,7 @@
     <div v-if='emptyCart'>
       <div class="box box-default">
         <div class="box-body">
-          <img
-            class="img-responsive"
-            src="@/static/images/cart-empty.jpg"
-            alt="Empty Cart"
-            width="100%"
-            height="100%"
-          >
+          <p>Cart empty</p>
         </div>
       </div>
     </div>

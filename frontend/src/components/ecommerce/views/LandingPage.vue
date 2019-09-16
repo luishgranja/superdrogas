@@ -29,9 +29,6 @@ export default {
     ])
   },
   methods: {
-    ...mapActions('ecommerce', [
-      'addToCart'
-    ]),
     ...mapActions('products', [
       'getProducts'
     ])
