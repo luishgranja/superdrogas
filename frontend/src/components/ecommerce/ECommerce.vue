@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import HeaderComponent from '@/components/ecommerce/layout/Header'
 import FooterComponent from '@/components/ecommerce/layout/Footer'
 
@@ -17,6 +18,14 @@ export default {
   components: {
     HeaderComponent,
     FooterComponent
+  },
+  methods: {
+    ...mapActions('app', [
+      'getTenantInformation'
+    ])
+  },
+  mounted () {
+    this.getTenantInformation()
   }
 }
 </script>

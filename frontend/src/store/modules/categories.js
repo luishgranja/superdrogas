@@ -21,6 +21,9 @@ const getters = {
       }
     })
     return categories
+  },
+  firstSixCategories: state => {
+    return state.categories.slice(0, 6)
   }
 }
 

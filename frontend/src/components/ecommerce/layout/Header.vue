@@ -3,11 +3,8 @@
     <nav class="navbar navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a
-            href=""
-            class="navbar-brand"
-          >
-            <strong>Cruz Azul</strong>
+          <a class="navbar-brand">
+            <strong class="title">{{ tenant.name }}</strong>
           </a>
           <button
             type="button"
@@ -23,14 +20,9 @@
           id="navbar-collapse"
         >
           <ul class="nav navbar-nav nav-item">
-            <li>
+            <li v-for="(category, index) in firstSixCategories" :key="index">
               <a>
-                Medicamentos
-              </a>
-            </li>
-            <li>
-              <a>
-                Naturales
+                {{ category.name }}
               </a>
             </li>
           </ul>
@@ -60,7 +52,36 @@
   </header>
 </template>
 
-<style>
+<script>
+import { mapState, mapGetters, mapActions } from 'vuex'
+
+export default {
+  name: 'header-ecommerce',
+  computed: {
+    ...mapState('app', [
+      'tenant'
+    ]),
+    ...mapGetters('categories', [
+      'firstSixCategories'
+    ])
+  },
+  methods: {
+    ...mapActions('categories', [
+      'getCategories'
+    ])
+  },
+  mounted () {
+    this.getCategories()
+  }
+}
+</script>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800");
+.title {
+  font-size: 30px;
+  color: white;
+}
 .nav {
   height: auto;
   margin-bottom: 2rem;
@@ -73,22 +94,6 @@
   color: #00d1b2;
   padding-bottom: calc(0.75rem - 8px);
 }
-</style>
-
-<script>
-import { mapGetters } from 'vuex'
-
-export default {
-  computed: {
-    ...mapGetters('ecommerce', [
-      'itemsOnCart'
-    ])
-  }
-}
-</script>
-
-<style scoped>
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800");
 .nav-item {
   margin-bottom: 0px !important;
 }
