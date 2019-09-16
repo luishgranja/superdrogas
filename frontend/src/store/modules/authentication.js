@@ -32,12 +32,18 @@ const actions = {
   login: async ({ commit }, user) => {
     const response = await http.post('accounts/login/', user)
     if (!response.error) {
-      commit('SET_USER', response.data.user)
-      commit('SET_TOKEN', response.data.token)
-      if (host.isAdmin()) {
-        admin.push({ name: 'home' })
+      if (user.isStaff) {
+        commit('SET_USER', response.data.user)
+        commit('SET_TOKEN', response.data.token)
+        if (host.isAdmin()) {
+          admin.push({ name: 'home' })
+        } else {
+          tenant.push({ name: 'home' })
+        }
       } else {
-        tenant.push({ name: 'home' })
+        commit('SET_USER', response.data.user)
+        commit('SET_TOKEN', response.data.token)
+        tenant.push({ name: 'landing' })
       }
     } else {
       return response.data
