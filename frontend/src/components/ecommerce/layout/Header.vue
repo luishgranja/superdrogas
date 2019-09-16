@@ -33,6 +33,9 @@
               <li>
                 <button class="btn btn-success btn-raised">
                   <i class="fa fa-shopping-cart"></i>
+                  <span v-if="itemsOnCart != 0" class="badge bg-teal">
+                    {{ itemsOnCart }}
+                  </span>
                 </button>
               </li>
             </ul>
@@ -63,6 +66,9 @@ export default {
     ]),
     ...mapGetters('categories', [
       'firstSixCategories'
+    ]),
+    ...mapGetters('ecommerce', [
+      'itemsOnCart'
     ])
   },
   methods: {

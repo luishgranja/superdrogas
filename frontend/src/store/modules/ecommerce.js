@@ -50,11 +50,11 @@ const getters = {
 }
 
 const mutations = {
-  ADD_TO_CART: (state, { id }) => {
-    const record = state.added.find(p => p.id === id)
+  ADD_TO_CART: (state, productId) => {
+    const record = state.added.find(p => p.id === productId)
     if (!record) {
       state.added.push({
-        id,
+        id: productId,
         quantity: 1
       })
     } else {
@@ -93,10 +93,8 @@ const mutations = {
 }
 
 const actions = {
-  addToCart: ({ commit }, product) => {
-    commit('ADD_TO_CART', {
-      id: product.id
-    })
+  addToCart: ({ commit }, productId) => {
+    commit('ADD_TO_CART', productId)
   },
   checkout: async ({ state, commit, getters }, event) => {
     if (event) event.preventDefault()

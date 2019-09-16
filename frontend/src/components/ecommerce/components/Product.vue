@@ -8,7 +8,7 @@
         {{ product.description }}
       </p>
       <div class="text-center">
-        <a href="" class="btn btn-primary">
+        <a @click="addToCart(product.id)" class="btn btn-primary">
           <i class="fa fa-cart-plus"></i>
           Add
         </a>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'product',
   props: {
@@ -25,6 +27,11 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+  methods: {
+    ...mapActions('ecommerce', [
+      'addToCart'
+    ])
   }
 }
 </script>
