@@ -4,6 +4,7 @@ Pharmacy viewset
 Viewset to pharmacy serializer
 """
 
+from datetime import date
 # Django Rest Framework
 from rest_framework import viewsets
 
@@ -29,8 +30,14 @@ class PharmacyViewSet(viewsets.ModelViewSet):
     def perform_destroy(self, instance):
         """
         perform_destroy is used to performance a logic delete
-        """
+        """        
         instance.is_active = not instance.is_active
+
+        if not instance.is_active:
+            instance.date_inactive = date.today()
+        else:
+            instance.date_inactive = None
+        
         instance.save()
 
     def perform_update(self, serializer):

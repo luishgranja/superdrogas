@@ -4,12 +4,49 @@ import template from '@/utilities/template'
 const state = {
   tenants: [],
   tenant: {},
-  errors: {},
-  isLoading: false
+  errors: {},  
+  isLoading: false,
+  inactiveTenants: [],
+  churn: 0.0
 }
 
 const getters = {
-  isNewTenant: state => state.tenant.id === undefined
+  isNewTenant: state => state.tenant.id === undefined,
+  inactiveTenants: state => {
+    
+    state.inactiveTenants = [0,0,0,0,0,0,0,0,0]
+    for (var month = 1; month <= 9; month++) {   
+      state.tenants.forEach(tenant => {
+        var dateCheck = tenant.date_inactive
+        if(dateCheck !== null ){
+          var dateFrom = "0" + month + "/01/2019"
+        var dateTo = "0" + month + "/27/2019"        
+        
+        var d1 = dateFrom.split("/")
+        var d2 = dateTo.split("/")
+        var c = dateCheck.split("-")
+  
+        var from = new Date(d1[2], parseInt(d1[0])-1, d1[1])
+        var to   = new Date(d2[2], parseInt(d2[0])-1, d2[1])
+        var check = new Date(c[0], parseInt(c[1])-1, c[2])
+
+        if (check > from && check < to){
+          state.inactiveTenants[month-1]++
+        }
+      }
+    })
+  }
+  return state.inactiveTenants
+  },
+  activeTenants: state => {
+    var tenants = []
+    state.tenants.forEach(tenant => {
+      if (tenant.is_active) {
+        tenants.push(tenant)
+      }
+    })
+    return tenants
+  }  
 }
 
 const mutations = {
@@ -24,6 +61,14 @@ const mutations = {
   },
   SET_ERRORS: (state, newErrors) => {
     state.errors = newErrors || {}
+  },
+  SET_INACTIVE_TENANTS: (state, getters) => {
+    state.inactiveTenants = getters.inactiveTenants
+    state.churn = state.inactiveTenants[8]/getters.activeTenants.length-1
+    console.log(state.inactiveTenants[8])
+    console.log(getters.activeTenants.length-1)
+    console.log(state.inactiveTenants[8]/getters.activeTenants.length-1)
+
   },
   ADD_TENANT: (state, newTenant) => {
     state.tenants.unshift(newTenant)
@@ -92,6 +137,9 @@ const actions = {
     } else {
       commit('SET_ERRORS', response.data)
     }
+  },
+  getInactiveTenants: async ({ commit, getters }) => {
+    commit('SET_INACTIVE_TENANTS', getters)
   },
   updateTenant: async ({ state, commit }, event) => {
     if (event) event.preventDefault()
