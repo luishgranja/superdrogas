@@ -100,6 +100,22 @@ const actions = {
 
       router.push({ name: 'checkout' })
     }
+  },
+  downloadXML: async ({ state }) => {
+    const response = await http.get(`sales/xml?sale_id=${state.saleInvoice.id}`)
+    var data = 'data:text/json;charset=utf-8,' + encodeURIComponent(response.data)
+    var download = document.getElementById('download')
+    download.setAttribute('href', data)
+    download.setAttribute('download', `${host.getSubdomain()}.xml`)
+    download.click()
+  },
+  downloadPDF: async ({ state }) => {
+    const response = await http.get(`sales/pdf?sale_id=${state.saleInvoice.id}`)
+    var blob = new Blob([response.data])
+    var download = document.getElementById('download')
+    download.href = window.URL.createObjectURL(blob)
+    download.download = `${host.getSubdomain()}.pdf`
+    download.click()
   }
 }
 
