@@ -45,10 +45,10 @@ def get_backup(request):
     os.system(f'{manage} {command} --schema={schema_name} --indent=4 > {path}')
     output.close()
 
-    fs = FileSystemStorage("")
+    fs = FileSystemStorage('')
     with fs.open(path) as json:
         response = HttpResponse(json, content_type='application/json')
-        response['Content-Disposition'] = 'attachment; filename="'+schema_name+'.json''"'
+        response['Content-Disposition'] = 'attachment; filename="' + schema_name + '.json"'
         return response
 
 
@@ -68,7 +68,7 @@ def get_tenant_report(request):
         online_sales = SaleInvoice.objects.filter(sale_type='online').count()
         response.update({'online_sales': online_sales})
 
-        online_sales_total_amount = SaleInvoice.objects.filter(sale_type='online').aggregate(Sum('total_amount'))
+        online_sales_total_amount = SaleInvoice.objects.filter(sale_type='OL').aggregate(Sum('total_amount'))
         response.update({'online_sales_total_amount': online_sales_total_amount['total_amount__sum']})
 
     return JsonResponse(response)

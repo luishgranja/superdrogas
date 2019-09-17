@@ -22,7 +22,7 @@ const getters = {
         return ''
     }
   },
-  tenantExist: state => state.tenant.is_active
+  tenantExist: state => state.tenant.is_active || false
 }
 
 const mutations = {
