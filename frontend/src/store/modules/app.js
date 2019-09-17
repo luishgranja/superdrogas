@@ -41,6 +41,14 @@ const actions = {
   getTenantInformation: async ({ commit }) => {
     const response = await http.get(`tenant-info/${host.getSubdomain()}/`)
     commit('SET_TENANT', response.data)
+  },
+  downloadData: async (context) => {
+    const response = await http.get(`accounts/tenant_backup?schema_name=${host.getSubdomain()}`)
+    var data = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(response.data))
+    var download = document.getElementById('download')
+    download.setAttribute('href', data)
+    download.setAttribute('download', 'data.json')
+    download.click()
   }
 }
 
