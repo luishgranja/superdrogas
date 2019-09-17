@@ -14,6 +14,7 @@ from .viewsets.product_on_sale_viewset import ProductOnSaleInvoiceViewSet
 # Invoices
 from .utilities import generar_factura_xml, generar_factura_pdf, sales_report, general_pdf_report
 from django.conf.urls import url
+from .reports import get_sales_report
 
 ROUTER = routers.DefaultRouter()
 
@@ -25,6 +26,7 @@ urlpatterns = [
     url('general_pdf_report', general_pdf_report, name='general_pdf_report'),
     url('pdf', generar_factura_pdf, name='pdf'),
     url('sales_report/', sales_report, name='sales_report'),
+    url('get_sales_report', get_sales_report, name='get_sales_report'),
 
 ]
 
