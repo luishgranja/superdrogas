@@ -5,7 +5,8 @@ const state = {
   isAdmin: host.isAdmin(),
   app: '',
   tenant: {},
-  report: {}
+  report: {},
+  sales: {}
 }
 
 const getters = {
@@ -35,6 +36,9 @@ const mutations = {
   },
   SET_REPORT: (state, newReport) => {
     state.report = newReport
+  },
+  SET_SALES: (state, newReport) => {
+    state.sales = newReport
   }
 }
 
@@ -42,6 +46,9 @@ const actions = {
   getTopProducts: async ({ commit }) => {
     const response = await http.get(`sales/products_report?schema_name=${host.getSubdomain()}`)
     commit('SET_REPORT', response.data)
+
+    const response2 = await http.get(`sales/get_sales_report?schema_name=${host.getSubdomain()}`)
+    commit('SET_SALES', response2.data)
   },
   updateApp: ({ commit }, newApp) => {
     commit('SET_APP', newApp)

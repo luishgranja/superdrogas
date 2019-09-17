@@ -30,6 +30,16 @@
                   height="400"
                 >
               </div>
+              <span>
+                <br><br><br><br>
+              </span>
+              <div>
+                <img
+                  :src="`https://chart.googleapis.com/chart?cht=lc&chs=800x300&chd=t:${sales.valores}&chl=1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31&chtt=Compras totales diarias`"
+                  alt="Report"
+                  height="400"
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -46,7 +56,8 @@ export default {
   name: 'reports',
   computed: {
     ...mapState('app', [
-      'report'
+      'report',
+      'sales'
     ])
   },
   methods: {
