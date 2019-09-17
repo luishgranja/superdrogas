@@ -62,17 +62,16 @@ def get_tenant_report(request):
         clients = User.objects.filter(rol='CM').count()
         response.update({'clients': clients})
 
-        clients = User.objects.filter(rol='SL').count()
-        response.update({'sellers': clients})
+        sellers = User.objects.filter(rol='SL').count()
+        response.update({'sellers': sellers})
 
-        online_sales = SaleInvoice.objects.filter(sale_type='online').count()
+        admins = User.objects.filter(rol='AD').count()
+        response.update({'admins': admins})
+
+        online_sales = SaleInvoice.objects.filter(sale_type='OL').count()
         response.update({'online_sales': online_sales})
 
-        online_sales_total_amount = SaleInvoice.objects.filter(sale_type='online').aggregate(Sum('total_amount'))
+        online_sales_total_amount = SaleInvoice.objects.filter(sale_type='OL').aggregate(Sum('total_amount'))
         response.update({'online_sales_total_amount': online_sales_total_amount['total_amount__sum']})
 
     return JsonResponse(response)
-
-
-
-
