@@ -5,7 +5,8 @@ const state = {
   tenants: [],
   tenant: {},
   errors: {},
-  isLoading: false
+  isLoading: false,
+  tenantCreated: false
 }
 
 const getters = {
@@ -92,6 +93,7 @@ const actions = {
       commit('ADD_TENANT', response.data)
       template.hideModal('#tenant-form')
       commit('GET_TENANT')
+      state.tenantCreated = true
     } else {
       commit('SET_ERRORS', response.data)
     }

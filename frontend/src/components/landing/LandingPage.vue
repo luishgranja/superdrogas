@@ -101,7 +101,11 @@
                     <li>Reports (text only)</li>
                     <li>Security and access</li>
                   </ul>
-                  <button class="btn btn-raised btn-success">Select package</button>
+                  <router-link :to="{ name: 'tenant-form' }">
+                    <button class="btn btn-raised btn-success">
+                      Select package
+                    </button>
+                  </router-link>
                 </div>
               </div>
               <div class="plan">
@@ -121,7 +125,11 @@
                     <li>Customization</li>
                     <li>Reports</li>
                   </ul>
-                  <button class="btn btn-raised btn-success">Select package</button>
+                  <router-link :to="{ name: 'tenant-form' }">
+                    <button class="btn btn-raised btn-success">
+                      Select package
+                    </button>
+                  </router-link>
                 </div>
               </div>
               <div class="plan">
@@ -140,14 +148,18 @@
                     <li>Ecommerce</li>
                     <li>Online sales</li>
                   </ul>
-                  <button class="btn btn-raised btn-success">Select package</button>
+                  <router-link :to="{ name: 'tenant-form' }">
+                    <button class="btn btn-raised btn-success">
+                      Select package
+                    </button>
+                  </router-link>
                 </div>
               </div>
             </div>
           </section>
         </div>
       </div>
-      <footer class="main-footer">
+      <footer class="main-footer navbar-fixed-bottom">
         <div class="container">
           <strong>Copyright &copy; 2019 | <a>Super Drogas</a></strong>.
           All rights reserved.
