@@ -14,7 +14,10 @@ const getters = {
     var categories = []
     state.categories.forEach(category => {
       if (category.is_active) {
-        categories.push(category)
+        categories.push({
+          ...category,
+          text: category.name
+        })
       }
     })
     return categories

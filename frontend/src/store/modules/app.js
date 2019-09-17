@@ -4,7 +4,8 @@ import host from '@/utilities/host'
 const state = {
   isAdmin: host.isAdmin(),
   app: '',
-  tenant: {}
+  tenant: {},
+  report: {}
 }
 
 const getters = {
@@ -31,10 +32,17 @@ const mutations = {
   },
   SET_TENANT: (state, newTenant) => {
     state.tenant = newTenant
+  },
+  SET_REPORT: (state, newReport) => {
+    state.report = newReport
   }
 }
 
 const actions = {
+  getTopProducts: async ({ commit }) => {
+    const response = await http.get(`sales/products_report?schema_name=${host.getSubdomain()}`)
+    commit('SET_REPORT', response.data)
+  },
   updateApp: ({ commit }, newApp) => {
     commit('SET_APP', newApp)
   },
@@ -50,6 +58,14 @@ const actions = {
     var download = document.getElementById('download')
     download.setAttribute('href', data)
     download.setAttribute('download', `${host.getSubdomain()}.json`)
+    download.click()
+  },
+  downloadGeneralReport: async ({ state }) => {
+    const response = await http.get(`sales/general_pdf_report?schema_name=${host.getSubdomain()}`)
+    var blob = new Blob([response.data])
+    var download = document.getElementById('download')
+    download.href = window.URL.createObjectURL(blob)
+    download.download = `${host.getSubdomain()}-report.pdf`
     download.click()
   }
 }

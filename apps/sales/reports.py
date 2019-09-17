@@ -17,14 +17,13 @@ def get_products_report(request):
     cantidades = []
 
     with schema_context(schema_name):
-        products = ProductOnSaleInvoice.objects.all().values('product_id').annotate(counter=Sum('quantity')). \
-                   order_by('-counter')[:5]
+        products = ProductOnSaleInvoice.objects.all().values('product_id').annotate(counter=Sum('quantity')).order_by('-counter')[:5]
 
         for product in products:
             product_name = Product.objects.get(id=product['product_id']).name
             cantidad = product['counter']
-            nombres.append(product_name)
-            cantidades.append(cantidad)
+            nombres.append(str(product_name))
+            cantidades.append(str(cantidad))
         response.update({'nombres': '|'.join(nombres), 'cantidad': ','.join(cantidades)})
 
     return JsonResponse(response)
