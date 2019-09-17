@@ -29,6 +29,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const logged = store.getters['authentication/logged']
+  const customerLogged = store.getters['authentication/customerLogged']
   switch (to.name) {
     case 'login':
       logged ? next({ name: 'home' }) : next()
@@ -40,6 +41,12 @@ router.beforeEach((to, from, next) => {
     case 'brands':
     case 'categories':
       logged ? next() : next({ name: 'login' })
+      break
+    case 'checkout':
+      customerLogged ? next() : next({ name: 'login-signup-ecommerce' })
+      break
+    case 'login-signup-ecommerce':
+      customerLogged ? next({ name: 'landing' }) : next()
       break
     default:
       next()

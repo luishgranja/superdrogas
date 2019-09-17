@@ -47,7 +47,7 @@ const actions = {
     var data = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(response.data))
     var download = document.getElementById('download')
     download.setAttribute('href', data)
-    download.setAttribute('download', 'data.json')
+    download.setAttribute('download', `${host.getSubdomain()}.json`)
     download.click()
   }
 }

@@ -48,7 +48,14 @@
                     <div class="total">
                       Total: <strong>${{ total }}</strong>
                     </div>
-                    <button @click="checkout($event)" class="btn btn-raised btn-success action-btn margin-btn">
+                    <router-link
+                      v-if="!customerLogged"
+                      :to="{ name: 'login-signup-ecommerce' }"
+                      class="btn btn-raised btn-success action-btn margin-btn"
+                    >
+                      Login / Signup
+                    </router-link>
+                    <button v-else @click="checkout($event)" class="btn btn-raised btn-success action-btn margin-btn">
                       <i class="fa fa-money"></i>
                       Checkout
                     </button>
@@ -76,6 +83,9 @@ export default {
     ...mapGetters('ecommerce', [
       'isCartEmpty',
       'total'
+    ]),
+    ...mapGetters('authentication', [
+      'customerLogged'
     ])
   },
   methods: {
