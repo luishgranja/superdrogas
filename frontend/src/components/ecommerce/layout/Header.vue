@@ -42,15 +42,24 @@
               </li>
             </ul>
           </router-link>
-          <router-link :to="{ name: 'login-signup-ecommerce' }">
+          <router-link v-if="!customerLogged" :to="{ name: 'login-signup-ecommerce' }">
             <ul class="nav navbar-nav nav-item">
               <li>
                 <button class="btn btn-success btn-raised">
-                  Login
+                  Login / Signup
                 </button>
               </li>
             </ul>
           </router-link>
+          <a v-else @click="logout({ isStaff: false })">
+            <ul class="nav navbar-nav nav-item">
+              <li>
+                <button class="btn btn-success btn-raised">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </a>
         </div>
       </div>
     </nav>
@@ -71,11 +80,17 @@ export default {
     ]),
     ...mapGetters('ecommerce', [
       'itemsOnCart'
+    ]),
+    ...mapGetters('authentication', [
+      'customerLogged'
     ])
   },
   methods: {
     ...mapActions('categories', [
       'getCategories'
+    ]),
+    ...mapActions('authentication', [
+      'logout'
     ])
   },
   mounted () {

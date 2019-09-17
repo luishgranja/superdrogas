@@ -38,7 +38,7 @@ const mutations = {
   },
   SET_CUSTOMER_TOKEN: (state, newCustomerToken) => {
     let customerToken = newCustomerToken || null
-    state.customer_token = customerToken
+    state.customerToken = customerToken
     localStorage.setItem(CUSTOMER_TOKEN, customerToken)
   }
 }
