@@ -64,6 +64,9 @@ const mutations = {
   },
   SET_DESCRIPTION: (state, newDescription) => {
     state.tenant = { ...state.tenant, description: newDescription }
+  },
+  SET_PACKAGE: (state, newPackage) => {
+    state.tenant = { ...state.tenant, package: newPackage }
   }
 }
 
