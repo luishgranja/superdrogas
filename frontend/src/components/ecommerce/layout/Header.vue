@@ -30,6 +30,15 @@
           </ul>
         </div>
         <div class="navbar-custom-menu">
+          <a v-if="customerLogged">
+            <ul class="nav navbar-nav nav-item">
+              <li>
+                <button class="btn username">
+                  {{ customer.first_name }} {{ customer.last_name }}
+                </button>
+              </li>
+            </ul>
+          </a>
           <router-link :to="{ name: 'shopping-cart' }">
             <ul class="nav navbar-nav nav-item">
               <li>
@@ -54,7 +63,7 @@
           <a v-else @click="logout({ isStaff: false })">
             <ul class="nav navbar-nav nav-item">
               <li>
-                <button class="btn btn-success btn-raised">
+                <button class="btn btn-danger btn-raised">
                   Logout
                 </button>
               </li>
@@ -74,6 +83,9 @@ export default {
   computed: {
     ...mapState('app', [
       'tenant'
+    ]),
+    ...mapState('authentication', [
+      'customer'
     ]),
     ...mapGetters('categories', [
       'firstSixCategories'
@@ -101,6 +113,9 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800");
+.username {
+  color: white;
+}
 .title {
   font-size: 30px;
   color: white;
