@@ -19,7 +19,8 @@ const state = {
 
 const getters = {
   logged: state => !!state.token,
-  customerLogged: state => !!state.customerToken
+  customerLogged: state => !!state.customerToken,
+  customerId: state => state.customer.id
 }
 
 const mutations = {

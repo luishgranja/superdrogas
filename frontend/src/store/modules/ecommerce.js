@@ -1,8 +1,9 @@
-// import http from '@/utilities/http'
+import http from '@/utilities/http'
 import admin from '@/router/admin'
 import tenant from '@/router/tenant'
 import host from '@/utilities/host'
 import template from '@/utilities/template'
+import store from '@/store'
 
 const router = host.isAdmin() ? admin : tenant
 
@@ -56,17 +57,20 @@ const mutations = {
   ADD_PRODUCT_INVOICE: (state, newProductInvoice) => {
     state.productsInvoice.unshift(newProductInvoice)
   },
-  BUILD_REQUEST (state, getters) {
-    state.formData.append('user_id', '1')
-    state.formData.append('client_id', '1')
-    state.formData.append('sale_type', 'online')
-    state.formData.append('total_amount', getters.pagoTotal)
+  BUILD_REQUEST (state, { getters, saleType }) {
+    if (saleType === 'OS') {
+      state.formData.append('user_id', '1010059777')
+    }
+    state.formData.append('client_id', store.getters['authentication/customerId'])
+    state.formData.append('sale_type', saleType)
+    state.formData.append('total_amount', getters.total)
+    state.formData.append('is_active', true)
   },
-  BUILD_REQUEST_PRODUCTS (state, { getters, i, saleId }) {
+  BUILD_REQUEST_PRODUCTS (state, { i, saleId }) {
     state.formData.append('sale_invoice_id', saleId)
-    state.formData.append('product_id', getters.cartProducts[i].id)
-    state.formData.append('quantity', getters.cartProducts[i].quantity)
-    state.formData.append('total_price', getters.cartProducts[i].price)
+    state.formData.append('product_id', state.cartProducts[i].id)
+    state.formData.append('quantity', state.cartProducts[i].quantity)
+    state.formData.append('unit_price', state.cartProducts[i].price)
     state.formData.append('is_active', true)
   }
 }
@@ -79,22 +83,23 @@ const actions = {
     template.destroy()
     commit('DELETE_FROM_CART', product)
   },
-  checkout: async ({ state, commit, getters }, event) => {
+  checkout: async ({ state, commit, getters }, { event, saleType }) => {
     if (event) event.preventDefault()
-    // commit('BUILD_REQUEST', getters)
-    // const response = await http.post('sales/sales_invoice/', state.formData)
-    // const saleId = response.data.id
-    // if (!response.error) {
-    //   commit('SET_SALE', response.data)
-    //   for (var i = 0; i < getters.cartProducts.length; i++) {
-    //     commit('BUILD_REQUEST_PRODUCTS', { getters, i, saleId })
-    //     var responseProduct = await http.post('sales/product_on_sale/', state.formData)
-    //     if (!responseProduct.error) {
-    //       commit('ADD_PRODUCT_SALE', responseProduct.data)
-    //     }
-    //   }
-    router.push({ name: 'checkout' })
-    // }
+    commit('BUILD_REQUEST', { getters, saleType })
+    const response = await http.post('sales/sales_invoice/', state.formData)
+    const saleId = response.data.id
+    if (!response.error) {
+      commit('SET_SALE_INVOICE', response.data)
+      for (var i = 0; i < getters.itemsOnCart; i++) {
+        commit('BUILD_REQUEST_PRODUCTS', { i, saleId })
+        var responseProduct = await http.post('sales/product_on_sale/', state.formData)
+        if (!responseProduct.error) {
+          commit('ADD_PRODUCT_INVOICE', responseProduct.data)
+        }
+      }
+
+      router.push({ name: 'checkout' })
+    }
   }
 }
 

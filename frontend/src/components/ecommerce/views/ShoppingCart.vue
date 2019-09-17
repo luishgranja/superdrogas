@@ -55,7 +55,7 @@
                     >
                       Login / Signup
                     </router-link>
-                    <button v-else @click="checkout($event)" class="btn btn-raised btn-success action-btn margin-btn">
+                    <button v-else @click="checkout({ $event, saleType: 'OL' })" class="btn btn-raised btn-success action-btn margin-btn">
                       <i class="fa fa-money"></i>
                       Checkout
                     </button>
