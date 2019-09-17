@@ -20,8 +20,9 @@
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Price</th>
+                        <th>Unit price</th>
                         <th>Quantity</th>
+                        <th>Total price</th>
                         <th>Image</th>
                         <th>Actions</th>
                       </tr>
@@ -31,6 +32,7 @@
                         <td>{{ product.name }}</td>
                         <td>${{ product.price }}</td>
                         <td>{{ product.quantity }}</td>
+                        <td>${{ product.quantity * product.price }}</td>
                         <td class="text-center">
                           <img class="product-img" :src="product.image" alt="Product">
                         </td>
@@ -43,9 +45,11 @@
                     </tbody>
                   </table>
                   <div class="pull-right">
-                    Total: <strong>${{ total }}</strong>
-                    <button @click="checkout($event)" class="btn btn-primary btn-flat pull-rigth">
-                      <i class="fa fa-credit-card"></i>
+                    <div class="total">
+                      Total: <strong>${{ total }}</strong>
+                    </div>
+                    <button @click="checkout($event)" class="btn btn-raised btn-success action-btn margin-btn">
+                      <i class="fa fa-money"></i>
                       Checkout
                     </button>
                   </div>
@@ -90,6 +94,13 @@ export default {
 </script>
 
 <style scoped>
+.total {
+  font-size: 20px;
+  display: inline;
+}
+.margin-btn {
+  margin: 10px 5px 10px 20px;
+}
 .cart-empty-img {
   height: 250px;
 }
