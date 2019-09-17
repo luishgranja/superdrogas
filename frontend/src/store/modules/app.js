@@ -21,7 +21,8 @@ const getters = {
       default:
         return ''
     }
-  }
+  },
+  tenantExist: state => state.tenant.is_active
 }
 
 const mutations = {
