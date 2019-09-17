@@ -60,7 +60,7 @@ export default {
       'login'
     ]),
     async formHandler () {
-      this.errors = await this.login({ ...this.user, isStaff: true })
+      this.errors = await this.login({ ...this.user, is_staff: true })
     }
   }
 }

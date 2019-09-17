@@ -266,7 +266,7 @@ export default {
       'createUser'
     ]),
     async formHandler () {
-      this.errors_login = await this.login({ ...this.user_login, isStaff: false })
+      this.errors_login = await this.login({ ...this.user_login, is_staff: false })
     },
     createCustomer (event) {
       this.$store.commit('users/SET_ROL', 'CM')
