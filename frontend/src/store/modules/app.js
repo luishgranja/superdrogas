@@ -1,8 +1,10 @@
+import http from '@/utilities/http'
 import host from '@/utilities/host'
 
 const state = {
   isAdmin: host.isAdmin(),
-  app: ''
+  app: '',
+  tenant: {}
 }
 
 const getters = {
@@ -25,12 +27,19 @@ const getters = {
 const mutations = {
   SET_APP: (state, newApp) => {
     state.app = newApp
+  },
+  SET_TENANT: (state, newTenant) => {
+    state.tenant = newTenant
   }
 }
 
 const actions = {
   updateApp: ({ commit }, newApp) => {
     commit('SET_APP', newApp)
+  },
+  getTenantInformation: async ({ commit }) => {
+    const response = await http.get(`tenant-info/${host.getSubdomain()}/`)
+    commit('SET_TENANT', response.data)
   }
 }
 

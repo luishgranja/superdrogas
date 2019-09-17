@@ -53,7 +53,7 @@
                 </p>
               </div>
               <div class="col-md-6">
-                <img src="@/static/images/farmacia.svg" alt="Pharmacy" style="width: 65%; margin-left: 50px;">
+                <img src="@/static/images/landing-01.svg" alt="landing-01" style="width: 65%; margin-left: 50px;">
               </div>
             </div>
           </section>
@@ -63,7 +63,7 @@
                 Super Drogas is designed for the cloud
               </h2>
               <div class="col-md-6">
-                <img src="@/static/images/bg.png" alt="bg" width="80%">
+                <img src="@/static/images/landing-02.png" alt="landing-02" width="80%">
               </div>
               <div class="col-md-6">
                 <h1>
