@@ -3,8 +3,6 @@ import host from '@/utilities/host'
 import admin from '@/router/admin'
 import tenant from '@/router/tenant'
 
-const router = host.isAdmin() ? admin : tenant
-
 const USER = 'user'
 const TOKEN = 'token'
 const CUSTOMER = 'customer'
@@ -53,10 +51,12 @@ const actions = {
       if (user.is_staff) {
         commit('SET_USER', response.data.user)
         commit('SET_TOKEN', response.data.token)
+        const router = host.isAdmin() ? admin : tenant
         router.push({ name: 'home' })
       } else {
         commit('SET_CUSTOMER', response.data.user)
         commit('SET_CUSTOMER_TOKEN', response.data.token)
+        const router = host.isAdmin() ? admin : tenant
         router.push({ name: 'landing' })
       }
     } else {
@@ -71,12 +71,14 @@ const actions = {
       commit('SET_TOKEN')
       localStorage.removeItem(USER)
       localStorage.removeItem(TOKEN)
+      const router = host.isAdmin() ? admin : tenant
       router.push({ name: 'login' })
     } else {
       commit('SET_CUSTOMER')
       commit('SET_CUSTOMER_TOKEN')
       localStorage.removeItem(CUSTOMER)
       localStorage.removeItem(CUSTOMER_TOKEN)
+      const router = host.isAdmin() ? admin : tenant
       router.push({ name: 'landing' })
     }
   },
@@ -86,6 +88,7 @@ const actions = {
   passwordRestNewPassword: async (_, form) => {
     const response = await http.post(`password-reset/confirm/${form.uid}/${form.token}/`, form)
     if (!response.error) {
+      const router = host.isAdmin() ? admin : tenant
       router.push({ name: 'password-reset-done' })
     } else {
       return response.data

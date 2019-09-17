@@ -39,8 +39,10 @@ const actions = {
     commit('SET_APP', newApp)
   },
   getTenantInformation: async ({ commit }) => {
-    const response = await http.get(`tenant-info/${host.getSubdomain()}/`)
-    commit('SET_TENANT', response.data)
+    if (!host.isAdmin()) {
+      const response = await http.get(`tenant-info/${host.getSubdomain()}/`)
+      commit('SET_TENANT', response.data)
+    }
   },
   downloadData: async (context) => {
     const response = await http.get(`accounts/tenant_backup?schema_name=${host.getSubdomain()}`)
