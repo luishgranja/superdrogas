@@ -11,7 +11,7 @@
           <div class="col-sm-12">
             <div class="box">
               <div class="box-body">
-                <div v-if="emptyCart" class="text-center">
+                <div v-if="isCartEmpty" class="text-center">
                   <img class="cart-empty-img" src="@/static/images/shopping-cart.png" alt="Cart">
                   <p>Your shopping cart is empty!</p>
                 </div>
@@ -60,21 +60,19 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import template from '@/utilities/template'
 
 export default {
   name: 'shopping-cart',
   computed: {
-    ...mapGetters('ecommerce', [
-      'cartProducts',
-      'emptyCart'
+    ...mapState('ecommerce', [
+      'cartProducts'
     ]),
-    total () {
-      return this.cartProducts.reduce((total, p) => {
-        return total + p.price * p.quantity
-      }, 0)
-    }
+    ...mapGetters('ecommerce', [
+      'isCartEmpty',
+      'total'
+    ])
   },
   methods: {
     ...mapActions('ecommerce', [
