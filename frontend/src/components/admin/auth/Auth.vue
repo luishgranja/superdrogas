@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 .login-page {
-  background-image: url("~@/static/images/pharmacy.jpg");
+  background-image: url("~@/static/images/background.jpg");
   background-size: cover;
   display: flex;
   height: 100vh;

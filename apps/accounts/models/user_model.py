@@ -38,4 +38,4 @@ class User(AbstractUser):
         return self.get_rol_display()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['firt_name', 'last_name', 'email', 'phone']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'phone']

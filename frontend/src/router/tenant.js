@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import store from '@/store'
 import admin from './modules/admin'
 import ecommerce from './modules/ecommerce'
+// import host from '@/utilities/host'
 import Error404 from '@/components/errors/Error404'
+import DoesNotExistTenant from '@/components/errors/DoesNotExistTenant'
 
 Vue.use(Router)
 
@@ -13,6 +15,11 @@ const router = new Router({
   routes: [
     { ...admin },
     { ...ecommerce },
+    {
+      path: '/does-not-exist',
+      name: 'does-not-exist',
+      component: DoesNotExistTenant
+    },
     {
       path: '*',
       component: Error404
@@ -38,5 +45,13 @@ router.beforeEach((to, from, next) => {
       next()
   }
 })
+
+// router.afterEach((to, from) => {
+//   const tenantExist = store.getters['app/tenantExist']
+//   console.log(tenantExist)
+//   if (!tenantExist && to.path !== '/does-not-exist' && !host.isAdmin()) {
+//     router.push({ name: 'does-not-exist' })
+//   }
+// })
 
 export default router

@@ -100,7 +100,7 @@ export default {
           component: Login
         },
         {
-          path: 'password-rest',
+          path: 'password-reset',
           name: 'password-reset',
           component: PasswordReset
         },

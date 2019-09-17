@@ -31,10 +31,7 @@
           I forgot my password
         </router-link>
         <div class="col-md-6 pull-right">
-          <button
-            type="submit"
-            class="btn bg-navy btn-block"
-          >
+          <button type="submit" class="btn bg-navy btn-block">
             Login
             <i class="fa fa-sign-in"></i>
           </button>
@@ -63,7 +60,7 @@ export default {
       'login'
     ]),
     async formHandler () {
-      this.errors = await this.login(this.user)
+      this.errors = await this.login({ ...this.user, is_staff: true })
     }
   }
 }

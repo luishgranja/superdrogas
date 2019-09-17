@@ -1,35 +1,35 @@
 <template>
   <div>
     <h1 class="text-center">
-      New password
+      Enter your new password
     </h1>
     <form @submit.prevent="formHandler()">
       <input-component
-        id="username"
-        v-model="user.username"
+        id="password"
+        v-model="form.new_password1"
         placeholder="New password"
+        type="password"
         :label="false"
-        :inputErrors="errors.username"
+        :inputErrors="errors.new_password1"
       >
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </input-component>
       <input-component
-        id="username"
-        v-model="user.username"
+        id="password_confirmation"
+        v-model="form.new_password2"
         placeholder="Confirm new password"
+        type="password"
         :label="false"
-        :inputErrors="errors.username"
+        :inputErrors="errors.new_password2"
       >
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </input-component>
       <div class="row footer">
         <div class="col-md-6 pull-right">
-          <router-link
-            :to="{ name: 'password-reset-done' }"
-            class="btn bg-navy btn-block"
-          >
+          <button type="submit" class="btn bg-navy btn-block">
             Send
-          </router-link>
+            <i class="fa fa-sign-in"></i>
+          </button>
         </div>
       </div>
     </form>
@@ -40,22 +40,24 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'login',
+  name: 'password-reset-new-password',
   data () {
     return {
-      user: {
-        username: '',
-        password: ''
+      form: {
+        new_password1: '',
+        new_password2: '',
+        uid: this.$route.params.uid,
+        token: this.$route.params.token
       },
       errors: {}
     }
   },
   methods: {
     ...mapActions('authentication', [
-      'login'
+      'passwordRestNewPassword'
     ]),
     async formHandler () {
-      this.errors = await this.login(this.user)
+      this.errors = await this.passwordRestNewPassword(this.form)
     }
   }
 }
