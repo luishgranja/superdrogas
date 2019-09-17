@@ -2,11 +2,29 @@
 Sales utilities
 """
 
+# Django Tenants
+from django_tenants.utils import schema_context
+
+# String
+from string import Template
+
 # Django
 from django.core import signing
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.db.models import Sum
+from django.db.models import Count
+from apps.sales.models.product_on_sale_model import ProductOnSaleInvoice
+from apps.inventory.models.product_model import Product
+from superdrogas.utilities import get_tenant_info
+
+# Accounts models
+from apps.accounts.models import User
+
+# Sales model
+from apps.sales.models.sale_invoice_model import SaleInvoice
 
 # XHTML2PDF
 from xhtml2pdf import pisa
@@ -181,3 +199,101 @@ def generar_factura_pdf(request):
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="' + filename + '"'
         return response
+
+
+def sales_report(request):
+    """
+    :param request:
+    :return: list with most bought products
+    """
+    if request.method == 'GET':
+        schema_name = request.GET.get('schema_name')
+
+    most_products = []
+    response = {}
+
+    with schema_context(schema_name):
+        products = ProductOnSaleInvoice.objects.all().values('product_id').annotate(counter=Sum('quantity')).\
+            order_by('-counter')
+
+        for product in products:
+            product_name = Product.objects.get(id=product['product_id']).name
+            most_products.append({'name': product_name, 'quantity': str(product['counter'])})
+        response.update({'most_products': most_products})
+
+    return JsonResponse(response)
+
+
+def general_pdf_report(request):
+    """
+    :param request:
+    :return: list with most bought products
+    """
+    folder = os.path.dirname(os.path.abspath(__file__))
+
+    sales_report_template = os.path.join(folder, 'report_templates/sales_report.html')
+    src = Template(open(sales_report_template).read())
+
+    product_report_template = os.path.join(folder, 'report_templates/producto.html')
+    src_product = Template(open(product_report_template).read())
+
+    schema_name = ''
+
+    if request.method == 'GET':
+        schema_name = request.GET.get('schema_name')
+
+    filename = f'media/reports/{schema_name} - Sales Report.pdf'
+
+    file = open(filename, "w+b")
+
+    most_products = []
+    response = {}
+
+    with schema_context(schema_name):
+        online_sales = SaleInvoice.objects.filter(sale_type='OL').count()
+        response.update({'online_sales': online_sales})
+
+        online_sales_total_amount = SaleInvoice.objects.filter(sale_type='OL').aggregate(Sum('total_amount'))
+        response.update({'online_amount': online_sales_total_amount['total_amount__sum']})
+
+        insitu_sales = SaleInvoice.objects.filter(sale_type='OS').count()
+        response.update({'in_situ_sales': insitu_sales})
+
+        insitu_sales_total_amount = SaleInvoice.objects.filter(sale_type='OS').aggregate(Sum('total_amount'))
+        response.update({'in_situ_amount': insitu_sales_total_amount['total_amount__sum']})
+
+        clients = User.objects.filter(rol='CM', is_active=True).count()
+        response.update({'clientes_Activos': clients})
+
+        sellers = User.objects.filter(rol='SL', is_active=True).count()
+        response.update({'vendedores_Activos': sellers})
+
+        product_list = []
+        products = ProductOnSaleInvoice.objects.all().values('product_id').annotate(counter=Sum('quantity')).order_by('-counter')[:5]
+
+        for product in products:
+            product_name = Product.objects.get(id=product['product_id']).name
+            most_products.append({'name': product_name, 'quantity': str(product['counter'])})
+
+            cantidad = product['counter']
+            data = {
+                'nombre_producto': product_name,
+                'cantidad': cantidad,
+            }
+
+            result = src_product.substitute(data)
+            product_list.append(result)
+
+        response.update({'most_products': most_products})
+        response.update({'productos': ''.join(product_list)})
+        response.update(({'nombre_empresa': get_tenant_info(schema_name)}))
+
+    result = src.substitute(response)
+    pisa_aux = pisa.CreatePDF(result, dest=file)
+    file.close()
+
+    fs = FileSystemStorage("")
+    with fs.open(filename) as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="' + filename + '"'
+    return response
