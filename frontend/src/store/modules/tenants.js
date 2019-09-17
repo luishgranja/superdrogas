@@ -64,10 +64,7 @@ const mutations = {
   },
   SET_INACTIVE_TENANTS: (state, getters) => {
     state.inactiveTenants = getters.inactiveTenants
-    state.churn = state.inactiveTenants[8]/getters.activeTenants.length-1
-    console.log(state.inactiveTenants[8])
-    console.log(getters.activeTenants.length-1)
-    console.log(state.inactiveTenants[8]/getters.activeTenants.length-1)
+    state.churn = state.inactiveTenants[8]/(getters.activeTenants.length-1)
 
   },
   ADD_TENANT: (state, newTenant) => {
