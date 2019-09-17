@@ -8,7 +8,7 @@
         {{ product.description }}
       </p>
       <div class="text-center">
-        <a @click="addToCart(product.id)" class="btn btn-primary">
+        <a @click="addToCart(product)" class="btn btn-primary">
           <i class="fa fa-cart-plus"></i>
           Add
         </a>

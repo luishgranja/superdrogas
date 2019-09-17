@@ -1,73 +1,60 @@
 // import http from '@/utilities/http'
 import admin from '@/router/admin'
 import tenant from '@/router/tenant'
-import store from '@/store'
 import host from '@/utilities/host'
+import template from '@/utilities/template'
 
 const router = host.isAdmin() ? admin : tenant
 
 const state = {
-  added: [],
-  formData: new FormData(),
-  sale_invoice: {},
-  products_invoice: []
+  cartProducts: [],
+  saleInvoice: {},
+  productsInvoice: [],
+  formData: new FormData()
 }
 
 const getters = {
-  itemsOnCart: state => (state.added) ? state.added.length : 0,
-  emptyCart: state => (state.added) ? state.added.length === 0 : false,
-  cartProducts: state => {
-    var products = store.state.products.products
-    return state.added.map(({ id, quantity }) => {
-      const product = products.find(p => p.id === id)
-      return { ...product, quantity }
-    })
-  },
-  pagoTotal: (state, getters) => {
+  itemsOnCart: state => (state.cartProducts) ? state.cartProducts.length : 0,
+  isCartEmpty: state => (state.cartProducts) ? state.cartProducts.length === 0 : false,
+  total: (state) => {
     var total = 0
-    for (var i = 0; i < getters.cartProducts.length; i++) {
-      total += getters.cartProducts[i].quantity * getters.cartProducts[i].price
+    for (let i = 0; i < state.cartProducts.length; i++) {
+      total += state.cartProducts[i].quantity * state.cartProducts[i].price
     }
     return total
-  },
-  noIva: (state, getters) => {
-    var noIva = 0
-    const total = getters.pagoTotal
-    noIva = total - total * 0.19
-    return noIva
-  },
-  iva: (state, getters) => {
-    var iva = 0
-    const total = getters.pagoTotal
-    iva = total * 0.19
-    return iva
   }
 }
 
 const mutations = {
-  ADD_TO_CART: (state, productId) => {
-    const record = state.added.find(p => p.id === productId)
-    if (!record) {
-      state.added.push({
-        id: productId,
-        quantity: 1
-      })
+  ADD_TO_CART: (state, newProduct) => {
+    let product = state.cartProducts.find(product => product.id === newProduct.id)
+    if (!product) {
+      state.cartProducts.push({ ...newProduct, quantity: 1 })
     } else {
-      record.quantity++
+      state.cartProducts = [
+        ...state.cartProducts.filter(product => product.id !== newProduct.id),
+        { ...product, quantity: product.quantity + 1 }
+      ]
     }
   },
-  ADD_PRODUCT_SALE: (state, newProduct) => {
-    state.products_invoice.unshift(newProduct)
-  },
-  DELETE_FROM_CART: (state, { id }) => {
-    var record = state.added.find(p => p.id === id)
-    if (record.quantity === 1) {
-      state.added = [
-        ...state.added.filter(p => p.id !== id)
+  DELETE_FROM_CART: (state, newProduct) => {
+    newProduct.quantity--
+    if (newProduct.quantity === 0) {
+      state.cartProducts = [
+        ...state.cartProducts.filter(product => product.id !== newProduct.id)
       ]
     } else {
-      record.quantity--
+      state.cartProducts = [
+        ...state.cartProducts.filter(product => product.id !== newProduct.id),
+        newProduct
+      ]
     }
+  },
+  SET_SALE_INVOICE: (state, newSaleInvoice) => {
+    state.saleInvoice = newSaleInvoice
+  },
+  ADD_PRODUCT_INVOICE: (state, newProductInvoice) => {
+    state.productsInvoice.unshift(newProductInvoice)
   },
   BUILD_REQUEST (state, getters) {
     state.formData.append('user_id', '1')
@@ -81,15 +68,16 @@ const mutations = {
     state.formData.append('quantity', getters.cartProducts[i].quantity)
     state.formData.append('total_price', getters.cartProducts[i].price)
     state.formData.append('is_active', true)
-  },
-  SET_SALE: (state, newSale) => {
-    state.sale_invoice = newSale
   }
 }
 
 const actions = {
-  addToCart: ({ commit }, productId) => {
-    commit('ADD_TO_CART', productId)
+  addToCart: ({ commit }, product) => {
+    commit('ADD_TO_CART', product)
+  },
+  deleteFromCart: ({ commit }, product) => {
+    template.destroy()
+    commit('DELETE_FROM_CART', product)
   },
   checkout: async ({ state, commit, getters }, event) => {
     if (event) event.preventDefault()
@@ -107,11 +95,6 @@ const actions = {
     //   }
     router.push({ name: 'checkout' })
     // }
-  },
-  deleteFromCart: ({ commit }, product) => {
-    commit('DELETE_FROM_CART', {
-      id: product.id
-    })
   }
 }
 

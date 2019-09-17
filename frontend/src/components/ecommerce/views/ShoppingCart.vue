@@ -11,7 +11,7 @@
           <div class="col-sm-12">
             <div class="box">
               <div class="box-body">
-                <div v-if="emptyCart" class="text-center">
+                <div v-if="isCartEmpty" class="text-center">
                   <img class="cart-empty-img" src="@/static/images/shopping-cart.png" alt="Cart">
                   <p>Your shopping cart is empty!</p>
                 </div>
@@ -20,8 +20,9 @@
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Price</th>
+                        <th>Unit price</th>
                         <th>Quantity</th>
+                        <th>Total price</th>
                         <th>Image</th>
                         <th>Actions</th>
                       </tr>
@@ -31,6 +32,7 @@
                         <td>{{ product.name }}</td>
                         <td>${{ product.price }}</td>
                         <td>{{ product.quantity }}</td>
+                        <td>${{ product.quantity * product.price }}</td>
                         <td class="text-center">
                           <img class="product-img" :src="product.image" alt="Product">
                         </td>
@@ -43,9 +45,11 @@
                     </tbody>
                   </table>
                   <div class="pull-right">
-                    Total: <strong>${{ total }}</strong>
-                    <button @click="checkout($event)" class="btn btn-primary btn-flat pull-rigth">
-                      <i class="fa fa-credit-card"></i>
+                    <div class="total">
+                      Total: <strong>${{ total }}</strong>
+                    </div>
+                    <button @click="checkout($event)" class="btn btn-raised btn-success action-btn margin-btn">
+                      <i class="fa fa-money"></i>
                       Checkout
                     </button>
                   </div>
@@ -60,21 +64,19 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import template from '@/utilities/template'
 
 export default {
   name: 'shopping-cart',
   computed: {
-    ...mapGetters('ecommerce', [
-      'cartProducts',
-      'emptyCart'
+    ...mapState('ecommerce', [
+      'cartProducts'
     ]),
-    total () {
-      return this.cartProducts.reduce((total, p) => {
-        return total + p.price * p.quantity
-      }, 0)
-    }
+    ...mapGetters('ecommerce', [
+      'isCartEmpty',
+      'total'
+    ])
   },
   methods: {
     ...mapActions('ecommerce', [
@@ -92,6 +94,13 @@ export default {
 </script>
 
 <style scoped>
+.total {
+  font-size: 20px;
+  display: inline;
+}
+.margin-btn {
+  margin: 10px 5px 10px 20px;
+}
 .cart-empty-img {
   height: 250px;
 }
