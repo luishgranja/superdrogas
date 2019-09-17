@@ -72,7 +72,3 @@ def get_tenant_report(request):
         response.update({'online_sales_total_amount': online_sales_total_amount['total_amount__sum']})
 
     return JsonResponse(response)
-
-
-
-
