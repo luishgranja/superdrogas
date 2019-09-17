@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import store from '@/store'
 import admin from './modules/admin'
 import ecommerce from './modules/ecommerce'
+import host from '@/utilities/host'
 import Error404 from '@/components/errors/Error404'
 import DoesNotExistTenant from '@/components/errors/DoesNotExistTenant'
 
@@ -28,7 +29,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const tenantExist = store.getters['app/tenantExist']
-  if (!tenantExist && to.path !== '/does-not-exist') {
+  if (!tenantExist && to.path !== '/does-not-exist' && !host.isAdmin()) {
     next({ name: 'does-not-exist' })
   }
 
